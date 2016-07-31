@@ -1,4 +1,4 @@
-# FresherNote
+# SoundCloned
 
 [Heroku link][heroku] **Note:** This should be a link to your production site
 
@@ -6,28 +6,31 @@
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+SoundCloned is a web application inspired by SoundCloud that will be built using Ruby on Rails, React.js and the Web Audio API, with potential 3rd party integrations of the Giphy API and the jsfft library. By the end of Week 9, this app will have the following set of features, as a minimum:
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
-- [ ] A production README, replacing this README (**NB**: check out the [sample production README](docs/production_readme.md) -- you'll write this later)
-- [ ] Notes
+- [ ] A production README, replacing this README
+- [ ] Song CUD
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features
   - [ ] Adequate CSS styling
-- [ ] Notebooks for organizing notes
+- [ ] Song Playback (R)
+  - [ ] Smooth, bug-free navigation
+  - [ ] Playback using Web Audio
+  - [ ] Adequate seed data to demonstrate the site's features
+  - [ ] Basic visualization of track's progress
+  - [ ] Adequate CSS styling
+- [ ] User comments
+  - [ ] Smooth, bug-free navigation
+  - [ ] Adequate seed data to demonstrate the site's features
+  - [ ] Realtime 'playback' of comments based on where in song they were created
+  - [ ] Adequate CSS styling
+- [ ] User pages with profile information and user's uploaded tracks
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features
   - [ ] Adequate CSS styling
-- [ ] Tags for notes
-  - [ ] Smooth, bug-free navigation
-  - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Adequate CSS styling
-- [ ] Rich Text Editing of notes
-  - [ ] Smooth, bug-free navigation
-  - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Adequate CSS styling
-- [ ] Infinite Scroll for Notes
+- [ ] Continuous Playback
 
 ## Design Docs
 * [View Wireframes][views]
