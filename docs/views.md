@@ -6,17 +6,29 @@
 ## New Session
 ![new-session]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## TracksIndex / TracksIndexItem
+![tracks]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## TrackIndexItemDetail
+![track]
 
-## NotebookForm
-![notebook-form]
+## CurrentTrackDetail
+![current-track]
+
+## UploadTrackModal / EditTrackModal
+![upload-track-modal]
+
+## ProfileView
+![profile]
+
+## ProfileView / TracksIndex / TracksIndexItem
+![profile-and-tracks]
 
 [new-user]: ./wireframes/new_user.png
 [new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[tracks]: ./wireframes/tracks_index.png
+[track]: ./wireframes/track_index_item.png
+[current-track]: ./wireframes/current_track.png
+[upload-track-modal]: ./wireframes/upload_modal.png
+[profile]:./wireframes/profile_view.png
+[profile-and-tracks]: ./wireframes/profile_view_tracks_index.png

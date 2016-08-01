@@ -1,4 +1,4 @@
-# Phase 7: - Infinite scroll for Tracks Index (1 day, W2 F 6pm)
+# Phase 7: Infinite scroll for Tracks Index (1 day, W2 F 6pm)
 
 ## Rails
 ### Models
