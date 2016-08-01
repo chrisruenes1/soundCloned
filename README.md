@@ -63,76 +63,112 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] style signin/signup components
 - [ ] seed users
 
-### Phase 2: Notes Model, API, and components (2 days, W1 F 6pm)
+### Phase 2: Tracks Model, API, and CUD components (1 day, W1 Th 6pm)
 
-**Objective:** Notes can be created, read, edited and destroyed through
+**Objective:** Tracks can be created, edited and destroyed through
 the API.
 
-- [ ] create `Note` model
+- [ ] create `Track` model
 - [ ] seed the database with a small amount of test data
-- [ ] CRUD API for notes (`NotesController`)
-- [ ] jBuilder views for notes
+- [ ] CUD API for tracks (`TracksController`)
 - [ ] test out API interaction in the console.
-- implement each note component, building out the flux loop as needed.
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
-- [ ] save Notes to the DB when the form loses focus or is left idle after editing.
-- [ ] style notes components
-- [ ] seed notes
+- [ ] jBuilder views for tracks
+- implement each track component, building out the flux loop as needed.
+  - [ ] `TracksIndex`
+  - [ ] `TrackIndexItem (minus playback)`
+  - [ ] `TrackForm`
+- [ ] save tracks to the DB when the form loses focus or is left idle after editing.
+- [ ] style tracks components
+- [ ] seed tracks
 
-### Phase 3: Notebooks (2 day, W2 Tu 6pm)
+### Phase 3: Read and playback tracks (1 day, W1 F 6pm (bonus over weekend))
 
-**Objective:** Notes belong to Notebooks, and can be viewed by notebook.
+**Objective:** TrackVisualizer provides users with a clear sense
+of song's progress; users can start or stop the song by clicking a button
+or by clicking into a particular position in the visualizer's canvas
 
-- [ ] create `Notebook` model
+- [ ] Add playback/pause button to TrackIndexItem
+- [ ] Integrate Web Audio functionality to start and stop a track
+- Build out state of the TrackIndexItem using Web Audio analyzer so that
+  - [ ] it knows the current position of playback
+  - [ ] it knows whether its track is currently playing or not
+  - [ ] it can (optionally) keep track of elapsed time of the track using setTimeout
+    (supposedly it is non-trivial to fetch elapsed time from Web Audio)
+  - [ ] given these, all tracks can be in multiple states of play status and position
+    at the same time   
+- [ ] create `TrackVisualizer` component
+- [ ] add a canvas to `TrackVisualizer`
+- [ ] use web audio's analyzer to divide the canvas into clickable portions mapped to
+  song position
+- [ ] add a simple progress bar to the canvas
+- [ ] use setTimeout to update the state of the progress bar
+- [ ] BONUS: turn the progress bar into a bar graph that updates color based on the
+      current spectrum of the audio, derived from Web Audio's fft analyzer. Animate
+      background color of page to match current color of bar.
+
+### Phase 4: Continuous Playback (1 Day, W2 M 6pm)
+
+**Objective:** a currentTrack component allows users to navigate around site while track plays and control playback
+
+- [ ] Create currentTrack footer component
+- [ ] Build out flux cycle to allow for
+   - [ ] keeping track of the currently played song, regardless of navigation
+   - [ ] the current tracker updates only when a new play button, outside of the
+         current track footer, has been pressed
+   - [ ] `Next` button resets currentTrack to whatever is next on the trackIndex's
+          track list
+- [ ] Use progress bar from previous phase to visualize track's progress
+- [ ] Add volume control to currentTrack component and control using a gain node in
+      Web Audio
+- [ ] Test current track by navigating around site and trying to break it. Make
+      sure it works smoothly and without stutters
+- [ ] Style currentTrack footer component
+       
+
+### Phase 5: Comments (2 day, W2 W 6pm)
+
+**Objective:** Comments belong to tracks and to users. As a bonus, they are played
+at a particular position in the song
+
+- [ ] create `Comment` model
 - build out API, Flux loop, and components for:
-  - [ ] Notebook CRUD
-  - [ ] adding notes requires a notebook
-  - [ ] moving notes to a different notebook
-  - [ ] viewing notes by notebook
+  - [ ] Comment CRUD
+     - [ ] Add comment input to TrackIndexItem
+  - [ ] Adding comments requires the user to have started listening to track
+        - A simple implementation will add a comment input when the play/pause
+          button or track visualizer has been engaged. More complex could keep
+          track of plays by a particular user
+  - [ ] Allow all of a songs comments to be viewed on TrackIndexItem
 - [ ] Use CSS to style new components
-- [ ] Seed Notebooks
+- [ ] Seed Comments
+- [ ] BONUS: tracks are `played` in the order in which they were created, one at a time
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook,
-which has its own `Index` view.
+### Phase 6: Profiles (1 day, W2 Th 6pm)
 
-### Phase 4: Tags (1 days, W2 W 6pm)
+**Objective:** Users can create CRU profiles
 
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
-
-- [ ] create `Tag` model and join table
+- [ ] create `Profile` model
 - build out API, Flux loop, and components for:
-  - [ ] fetching tags for notebook
-  - [ ] adding tags to notebook
-  - [ ] creating tags while adding to notebooks
-  - [ ] searching notebooks by tag
+  - [ ] creating a profile
+  - [ ] displaying a user's tracks
+  - [ ] profiles and associated tracks are only editable by owner
 - [ ] Style new elements
-- [ ] Seed tags and tag the seeded Notebooks
+- [ ] Seed profiles
 
-### Phase 5: Allow Complex Styling in Notes (1 days, W2 Th 6pm)
 
-**objective:** Enable complex styling of notes.
+### Phase 7: - Infinite scroll for Tracks Index (1 day, W2 F 6pm)
 
-- [ ] Integrate `react-quill` (based on Quill.js).
-- [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new Quill elements.
-- [ ] Add Quill styling to seeded notes
+**objective:** Add infinite scroll to Tracks Index
 
-### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2 F 6pm)
-
-**objective:** Add infinite scroll to Notes Index
-
-- [ ] Paginate Notes Index API to send 20 results at a time
+- [ ] Paginate Tracks Index API to send 20 results at a time
 - [ ] Append next set of results when user scrolls and is near bottom
 - [ ] Make sure styling still looks good
-- [ ] Ensure we have enough seeded notes to demo infinite scroll
+- [ ] Ensure we have enough seeded tracks to demo infinite scroll
 
 ### Bonus Features (TBD)
-- [ ] Search through notes for blocks of text
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
-- [ ] Multiple sessions
+- [ ] Giphy integration to automatically generate track images if none are provided
+- [ ] Search by genre, name or tag
+- [ ] Location services to localize Stream (trackIndex)
 
 [phase-one]: docs/phases/phase1.md
 [phase-two]: docs/phases/phase2.md

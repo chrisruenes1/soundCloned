@@ -1,40 +1,41 @@
-# Phase 2: Flux Architecture and Note CRUD (2 days, W1 F 6pm)
+# Phase 2: Tracks Model, API, and CUD components (1 day, W1 Th 6pm)
 
 ## Rails
 ### Models
-* Note
+* Track
 
 ### Controllers
-* Api::NotesController (create, destroy, index, show, update)
+* Api::TracksController (create, destroy, index, show, update)
 
 ### Views
-* notes/index.json.jbuilder
-* notes/show.json.jbuilder
+* tracks/index.json.jbuilder
+* tracks/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotesIndex
-  - NotesIndexItem
-* NoteForm
+* TracksIndex
+  - TracksIndexItem
+* TrackForm
 
 ### Stores
-* Note
+* Track
 
 ### Actions
-* `ApiActions.receiveAllNotes`
-* `ApiActions.receiveSingleNote`
-* `ApiActions.deleteNote`
-* `NoteActions.fetchAllNotes`
-* `NoteActions.fetchSingleNote`
-* `NoteActions.createNote`
-* `NoteActions.editNote`
-* `NoteActions.destroyNote`
+* `ApiActions.receiveAllTracks`
+* `ApiActions.receiveSingleTrack`
+* `ApiActions.removeTrack`
+* `TrackActions.fetchNTracks`
+* `TrackActions.fetchUserTracks`
+* `TrackActions.createTrack`
+* `TrackActions.editTrack`
+* `TrackActions.destroyTrack`
 
 ### ApiUtil
-* `ApiUtil.fetchAllNotes`
-* `ApiUtil.fetchSingleNote`
-* `ApiUtil.createNote`
-* `ApiUtil.editNote`
-* `ApiUtil.destroyNote`
+* `ApiUtil.fetchAllTracks`
+* `ApiUtil.fetchUserTracks`
+* `ApiUtil.createTrack`
+* `ApiUtil.editTrack`
+* `ApiUtil.destroyTrack`
 
 ## Gems/Libraries
+* giphy 

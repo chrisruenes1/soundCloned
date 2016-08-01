@@ -1,23 +1,23 @@
-# Phase 4: Tags (1 days, W2 W 6pm)
+# Phase 4: Continuous Playback (1 Day, W2 M 6pm)
 
 ## Rails
 
 ### Models
-* Tag
-* Taggings
+* Track
 
 ### Controllers
 
 ### Views
-* tags/show.json.jbuilder
-* SearchIndex
+* currentTrack.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NoteTags
+* currentTrack
 
 ### Stores
+
 
 ### Actions
 
 ## Gems/Libraries
+* web-audio-api

@@ -1,42 +1,27 @@
-# Phase 3: Notebooks (2 day, W2 Tu 6pm)
+# Phase 3: Read and playback tracks (1 day, W1 F 6pm (bonus over weekend))
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* Track
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
+* tracks/index.json.jbuilder
+* tracks/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
+* TrackIndex
+  - TrackIndexItem
+    -TrackVisualizer
 
 ### Stores
-* Notebook
+* Track
 
 ### Actions
-* `ApiActions.receiveAllNotebooks`
-* `ApiActions.receiveSingleNotebook`
-* `ApiActions.deleteNotebook`
-* `NotebookActions.fetchAllNotebooks`
-* `NotebookActions.fetchSingleNotebook`
-* `NotebookActions.createNotebook`
-* `NotebookActions.editNotebook`
-* `NotebookActions.destroyNotebook`
 
 ### ApiUtil
-* `ApiUtil.fetchAllNotebooks`
-* `ApiUtil.fetchSingleNotebook`
-* `ApiUtil.createNotebook`
-* `ApiUtil.editNotebook`
-* `ApiUtil.destroyNotebook`
 
 ## Gems/Libraries
+* web-audio-api

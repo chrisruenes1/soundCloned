@@ -77,7 +77,7 @@ audio file associated with that track. This will be fleshed out more in the next
   0. `GET /api/tracks/:userId` is called.
   0. `receiveNTracks` is set as the success callback.
 
-* `updateTrack`
+* `editTrack`
   0. invoked from update modal's `TrackForm` `onSubmit`
   0. `PATCH /api/tracks/:id` is called.
   0. `receiveSingleTrack` is set as the success callback.
@@ -150,7 +150,7 @@ will be fetched along with the tracks, using ActiveRecord#includes
   0. `POST /api/profiles` is called.
   0. `receiveProfile` is set as the callback.
 
-*  `updateProfile`
+*  `editProfile`
   0. invoked from `ProfileForm` `onSumbit`
   0. `PATCH /api/profiles/` is called.
   0. `receiveProfile` is set as the callback
@@ -164,17 +164,13 @@ will be fetched along with the tracks, using ActiveRecord#includes
 
 ### Profile API Response Actions
 
-* `receiveSingleComment`
+* `receiveProfile`
   0. invoked from an API callback.
-  0. `Comment` store updates `_comments[:trackId]` and emits change.
-
-* `removeComment`
-  0. invoked from an API callback.
-  0. `Comment` store removes `_comments[:trackId][:id]` and emits change.
+  0. `Profile` store updates `_profiles[:id]` and emits change.
 
 ### Store Listeners
 
-* `CommentsIndex` component listens to `Comment` store.
+* `ProfileView` component listens to `Profile` store.
 
 
 ## SearchSuggestion Cycles (Bonus)
