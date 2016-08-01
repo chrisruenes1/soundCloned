@@ -27,8 +27,8 @@ _**exactly**_ match the nesting of your routes.)
 * **component:** `App` **path:** `/`
   * **component** `LoginForm` **path:** /login
   * **component** `SignupForm` **path:** /signup
-  * **component:** `NotesIndex` **path:** index
-  * **component:** `NotesIndex` **path:** `notebooks/:notebookId`
+  * **component:** `TracksIndex` **path:** index
+  * **component:** `TracksIndex` **path:** `notebooks/:trackId`
     * **component:** `NoteDetail` **path:** `notes/:noteId`
   * **component:** `NotesIndex` **path:** none
     * **component:** `NoteDetail` **path:** `notes/:noteId`
