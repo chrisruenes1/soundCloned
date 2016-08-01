@@ -15,6 +15,7 @@ _**exactly**_ match the nesting of your routes.)
   * **TracksIndex**
     * TracksIndexItem
       * Track Visualizer
+  * TrackForm (upload/update modal)
   * **LoginForm**
   * **SignupForm**
   * CurrentTrack
@@ -30,4 +31,4 @@ _**exactly**_ match the nesting of your routes.)
   * **component:** `TracksIndex` **path:** `tracks/:userId`
 
 For routes that have no :userId, Tracks will render a collection of tracks,
-similar to SoundCloud's Stream functionality; 10 per database call. 
+similar to SoundCloud's Stream functionality; 10 per database call.

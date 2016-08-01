@@ -7,9 +7,7 @@ store listeners are listed at the end.
 
 You should be able to use this document trace an **action** starting
 with where it was invoked, through the **API**/**store** involved, and
-finally to the **components** that update as a result. This is important
-because once you start implementing your flux loops, that's precisely
-what you'll need to do.
+finally to the **components** that update as a result.
 
 ## Auth Cycles
 
@@ -51,108 +49,139 @@ what you'll need to do.
   0. invoked from API callbacks on success for actions that generate POST requests
   0. removes `_errors` for a given `form` in the `ErrorStore`
 
-## Note Cycles
+## Track Cycles
 
-### Notes API Request Actions
+Ultimately, I would like to store the tracks, audio files, and images in three respective databases,
+loading all tracks first, then in the success callbacks asynchronously loading the associated
+image and audio files. However, I first want to do more research about the best way to avoid
+turning the track query into an N+1 query.
 
-* `fetchAllNotes`
-  0. invoked from `NotesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notes` is called.
-  0. `receiveAllNotes` is set as the success callback.
+So, for now, 'tracks' refers to the metadata about a track, as well as the image and
+audio file associated with that track. This will be fleshed out more in the next day or two.
 
-* `createNote`
-  0. invoked from new note button `onClick`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the success callback.
+### Tracks API Request Actions
 
-* `fetchSingleNote`
-  0. invoked from `NoteDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notes/:id` is called.
-  0. `receiveSingleNote` is set as the success callback.
+* `fetchNTracks`
+  0. invoked from `TracksIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/tracks` is called.
+  0. `receiveNTracks` is set as the success callback.
 
-* `updateNote`
-  0. invoked from `NoteForm` `onSubmit`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the success callback.
+* `createTrack`
+  0. invoked from upload modal's `TrackForm` `onSubmit`
+  0. `POST /api/tracks` is called.
+  0. `receiveSingleTrack` is set as the success callback.
 
-* `destroyNote`
-  0. invoked from delete note button `onClick`
-  0. `DELETE /api/notes/:id` is called.
-  0. `removeNote` is set as the success callback.
+* `fetchUserTracks`
+  0. Should be ActiveRecord#included in `fetchUserProfile` method
+  0. invoked from `ProfileView` `didMount`/`willReceiveProps`
+  0. `GET /api/tracks/:userId` is called.
+  0. `receiveNTracks` is set as the success callback.
 
-### Notes API Response Actions
+* `updateTrack`
+  0. invoked from update modal's `TrackForm` `onSubmit`
+  0. `PATCH /api/tracks/:id` is called.
+  0. `receiveSingleTrack` is set as the success callback.
 
-* `receiveAllNotes`
+* `destroyTrack`
+  0. invoked from delete track button `onClick`
+  0. `DELETE /api/tracks/:id` is called.
+  0. `removeTrack` is set as the success callback.
+
+### Tracks API Response Actions
+
+* `receiveAllTracks`
   0. invoked from an API callback.
-  0. `Note` store updates `_notes` and emits change.
+  0. `Track` store updates `_tracks` and emits change.
+  0. `Comments` store updates `_comments` and emits change
 
-* `receiveSingleNote`
+* `receiveSingleTrack`
   0. invoked from an API callback.
-  0. `Note` store updates `_notes[id]` and emits change.
+  0. `Track` store updates `_tracks[id]` and emits change.
+  0. `Comments` store updates `_comments` and emits change
 
-* `removeNote`
+* `removeTrack`
   0. invoked from an API callback.
-  0. `Note` store removes `_notes[id]` and emits change.
+  0. `Track` store removes `_tracks[id]` and emits change.
+  0. `Comments` store updates `_comments` and emits change
 
 ### Store Listeners
 
-* `NotesIndex` component listens to `Note` store.
-* `NoteDetail` component listens to `Note` store.
+* `TracksIndex` component listens to `Track` store.
+* `TrackIndexItem` component listens to `Track` store.
 
 
-## Notebook Cycles
+## Comment Cycles
 
-### Notebooks API Request Actions
+### Comments API Request Actions
 
-* `fetchAllNotebooks`
-  0. invoked from `NotebooksIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks` is called.
-  0. `receiveAllNotebooks` is set as the success callback.
+There is no fetchAllComments because all comments for the current set of tracks
+will be fetched along with the tracks, using ActiveRecord#includes
 
-* `createNotebook`
-  0. invoked from new notebook button `onClick`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the callback.
+* `createComment`
+  0. invoked from add comment button `onClick`
+  0. `POST /api/comments` is called.
+  0. `receiveSingleComment` is set as the callback.
 
-* `fetchSingleNotebook`
-  0. invoked from `NotebookDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks/:id` is called.
-  0. `receiveSingleNotebook` is set as the success callback.
+* `destroyComment`
+  0. invoked from delete comment button `onClick`
+  0. `DELETE /api/comments/:id` is called.
+  0. `removeComment` is set as the success callback.
 
-* `updateNotebook`
-  0. invoked from `NotebookForm` `onSubmit`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the success callback.
+### Comments API Response Actions
 
-* `destroyNotebook`
-  0. invoked from delete notebook button `onClick`
-  0. `DELETE /api/notebooks/:id` is called.
-  0. `removeNotebook` is set as the success callback.
-
-### Notebooks API Response Actions
-
-* `receiveAllNotebooks`
+* `receiveSingleComment`
   0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks` and emits change.
+  0. `Comment` store updates `_comments[:trackId]` and emits change.
 
-* `receiveSingleNotebook`
+* `removeComment`
   0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks[id]` and emits change.
-
-* `removeNotebook`
-  0. invoked from an API callback.
-  0. `Notebook` store removes `_notebooks[id]` and emits change.
+  0. `Comment` store removes `_comments[:trackId][:id]` and emits change.
 
 ### Store Listeners
 
-* `NotebooksIndex` component listens to `Notebook` store.
+* `CommentsIndex` component listens to `Comment` store.
+
+## Profile Cycles
+
+### Profile API Request Actions
+
+* `createProfile`
+  0. invoked from `ProfileForm` `onSubmit`
+  0. `POST /api/profiles` is called.
+  0. `receiveProfile` is set as the callback.
+
+*  `updateProfile`
+  0. invoked from `ProfileForm` `onSumbit`
+  0. `PATCH /api/profiles/` is called.
+  0. `receiveProfile` is set as the callback
+  
+*   `fetchUserProfile`
+  0. invoked from `ProfileView` `didMount`/`willReceiveProps`
+  0. `GET /api/profiles/:id` is called.
+  0. `receiveProfile` is set as the callback.
+  0. `GET /api/tracks/:userId` is called. (see above: `FetchUserTracks`)
+  0. `receiveNTracks` is set as callback
+
+### Profile API Response Actions
+
+* `receiveSingleComment`
+  0. invoked from an API callback.
+  0. `Comment` store updates `_comments[:trackId]` and emits change.
+
+* `removeComment`
+  0. invoked from an API callback.
+  0. `Comment` store removes `_comments[:trackId][:id]` and emits change.
+
+### Store Listeners
+
+* `CommentsIndex` component listens to `Comment` store.
 
 
-## SearchSuggestion Cycles
+## SearchSuggestion Cycles (Bonus)
 
 * `fetchSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when there is text
-  0. `GET /api/notes` is called with `text` param.
+  0. invoked from `TrackSearchBar` `onChange` when there is text
+  0. `GET /api/tracks` is called with `text` param.
   0. `receiveSearchSuggestions` is set as the success callback.
 
 * `receiveSearchSuggestions`
@@ -160,7 +189,7 @@ what you'll need to do.
   0. `SearchSuggestion` store updates `_suggestions` and emits change.
 
 * `removeSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when empty
+  0. invoked from `TracksSearchBar` `onChange` when empty
   0. `SearchSuggestion` store resets `_suggestions` and emits change.
 
 ### Store Listeners
