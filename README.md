@@ -6,7 +6,7 @@
 
 ## Minimum Viable Product
 
-SoundCloned is a web application inspired by SoundCloud that will be built using Ruby on Rails, React.js and the Web Audio API, with potential 3rd party integrations of the Giphy API and the jsfft library. By the end of Week 9, this app will have the following set of features, as a minimum:
+SoundCloned is a web application inspired by SoundCloud that will be built using Ruby on Rails, React.js and the Web Audio API, with potential 3rd party integration with the Giphy API. By the end of Week 9, this app will have the following set of features, as a minimum:
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
@@ -17,15 +17,15 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
   - [ ] Adequate CSS styling
 - [ ] Song Playback (R)
   - [ ] Smooth, bug-free navigation
-  - [ ] Playback using Web Audio
   - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Basic visualization of track's progress
   - [ ] Adequate CSS styling
+  - [ ] Playback using Web Audio
+  - [ ] Basic visualization of track's progress
 - [ ] User comments
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Realtime 'playback' of comments based on where in song they were created
   - [ ] Adequate CSS styling
+  - [ ] Realtime 'playback' of comments based on where in song they were created
 - [ ] User pages with profile information and user's uploaded tracks
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features

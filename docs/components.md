@@ -8,30 +8,26 @@ _**exactly**_ match the nesting of your routes.)
 
 * **App**
   * Navbar
-  * NotebooksIndex
-    * Search
-    * NotebookIndexItem
-    * NotebookForm
+  * **ProfileView**
+    * Profile Header
+    * Profile Form
+    * TracksIndex (for user)
+  * **TracksIndex**
+    * TracksIndexItem
+      * Track Visualizer
   * **LoginForm**
   * **SignupForm**
-  * **NotesIndex**
-    * NoteForm
-    * NoteIndexItem
-    * **NoteDetail**
-      * NoteTags
-      * NoteEditArea
+  * CurrentTrack
 
 
 ## Routes
 
 * **component:** `App` **path:** `/`
+  * **component:** `ProfileView` **path:** `/profile/:userId`
   * **component** `LoginForm` **path:** /login
   * **component** `SignupForm` **path:** /signup
   * **component:** `TracksIndex` **path:** index
-  * **component:** `TracksIndex` **path:** `notebooks/:trackId`
-    * **component:** `NoteDetail` **path:** `notes/:noteId`
-  * **component:** `NotesIndex` **path:** none
-    * **component:** `NoteDetail` **path:** `notes/:noteId`
+  * **component:** `TracksIndex` **path:** `tracks/:userId`
 
-For Routes that have no `notebookId`, `NotesIndex` will render all
-notes.
+For routes that have no :userId, Tracks will render a collection of tracks,
+similar to SoundCloud's Stream functionality; 10 per database call. 
