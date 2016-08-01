@@ -156,7 +156,7 @@ at a particular position in the song
 - [ ] Seed profiles
 
 
-### Phase 7: - Infinite scroll for Tracks Index (1 day, W2 F 6pm)
+### Phase 7: Infinite scroll for Tracks Index (1 day, W2 F 6pm)
 
 **objective:** Add infinite scroll to Tracks Index
 
