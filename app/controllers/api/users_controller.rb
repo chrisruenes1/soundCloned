@@ -15,4 +15,8 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status:400
     end
   end
+
+  def user_params
+    params.require(:user).permit(:fname, :lname, :username, :group_name, :city, :state, :bio)
+  end
 end
