@@ -34,7 +34,7 @@
 - `POST /api/comments`
 - `DELETE /api/comments/:id`
 - `GET /api/tracks/:id/comments`
-  - index of all notes for a notebook
+  - index of all comments for a track
   - this route may not end up being necessary since comment queries will be included in track queries
 
 ### Profiles

@@ -11,16 +11,11 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] A production README, replacing this README
-- [ ] Song CUD
-  - [ ] Smooth, bug-free navigation
-  - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Adequate CSS styling
-- [ ] Song Playback (R)
+- [ ] Song CRUD
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features
   - [ ] Adequate CSS styling
   - [ ] Playback using Web Audio
-  - [ ] Basic visualization of track's progress
 - [ ] User comments
   - [ ] Smooth, bug-free navigation
   - [ ] Adequate seed data to demonstrate the site's features
@@ -63,14 +58,13 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] style signin/signup components
 - [ ] seed users
 
-### Phase 2: Tracks Model, API, and CUD components (1 day, W1 Th 6pm)
+### Phase 2: Tracks Model, API, and CUD components (2 day, W1 F 6pm bonus over weekend))
 
-**Objective:** Tracks can be created, edited and destroyed through
-the API.
+**Objective:** Tracks can be created, read (played), edited and destroyed through the API. Users can start or stop the song by clicking a play/pause button
 
 - [ ] create `Track` model
 - [ ] seed the database with a small amount of test data
-- [ ] CUD API for tracks (`TracksController`)
+- [ ] CRUD API for tracks (`TracksController`)
 - [ ] test out API interaction in the console.
 - [ ] jBuilder views for tracks
 - implement each track component, building out the flux loop as needed.
@@ -80,33 +74,17 @@ the API.
 - [ ] save tracks to the DB when the form loses focus or is left idle after editing.
 - [ ] style tracks components
 - [ ] seed tracks
-
-### Phase 3: Read and playback tracks (1 day, W1 F 6pm (bonus over weekend))
-
-**Objective:** TrackVisualizer provides users with a clear sense
-of song's progress; users can start or stop the song by clicking a button
-or by clicking into a particular position in the visualizer's canvas
-
 - [ ] Add playback/pause button to TrackIndexItem
 - [ ] Integrate Web Audio functionality to start and stop a track
 - Build out state of the TrackIndexItem using Web Audio analyzer so that
-  - [ ] it knows the current position of playback
-  - [ ] it knows whether its track is currently playing or not
-  - [ ] it can (optionally) keep track of elapsed time of the track using setTimeout
-    (supposedly it is non-trivial to fetch elapsed time from Web Audio)
-  - [ ] given these, all tracks can be in multiple states of play status and position
-    at the same time   
-- [ ] create `TrackVisualizer` component
-- [ ] add a canvas to `TrackVisualizer`
-- [ ] use web audio's analyzer to divide the canvas into clickable portions mapped to
-  song position
-- [ ] add a simple progress bar to the canvas
-- [ ] use setTimeout to update the state of the progress bar
-- [ ] BONUS: turn the progress bar into a bar graph that updates color based on the
-      current spectrum of the audio, derived from Web Audio's fft analyzer. Animate
-      background color of page to match current color of bar.
+- [ ] it knows the current position of playback
+- [ ] it knows whether its track is currently playing or not
+- [ ] it can (optionally) keep track of elapsed time of the track using setTimeout
+(supposedly it is non-trivial to fetch elapsed time from Web Audio)
+- [ ] given these, all tracks can be in multiple states of play status and position at the same time   
 
-### Phase 4: Continuous Playback (1 Day, W2 M 6pm)
+
+### Phase 3: Continuous Playback (1 Day, W2 M 6pm)
 
 **Objective:** a currentTrack component allows users to navigate around site while track plays and control playback
 
@@ -123,12 +101,11 @@ or by clicking into a particular position in the visualizer's canvas
 - [ ] Test current track by navigating around site and trying to break it. Make
       sure it works smoothly and without stutters
 - [ ] Style currentTrack footer component
-       
 
-### Phase 5: Comments (2 day, W2 W 6pm)
 
-**Objective:** Comments belong to tracks and to users. As a bonus, they are played
-at a particular position in the song
+### Phase 4: Comments (2 day, W2 W 6pm)
+
+**Objective:** Comments belong to tracks and to users. As a bonus, they are played at a particular position in the song
 
 - [ ] create `Comment` model
 - build out API, Flux loop, and components for:
@@ -143,7 +120,7 @@ at a particular position in the song
 - [ ] Seed Comments
 - [ ] BONUS: tracks are `played` in the order in which they were created, one at a time
 
-### Phase 6: Profiles (1 day, W2 Th 6pm)
+### Phase 5: Profiles (1 day, W2 Th 6pm)
 
 **Objective:** Users can create CRU profiles
 
@@ -156,7 +133,7 @@ at a particular position in the song
 - [ ] Seed profiles
 
 
-### Phase 7: Infinite scroll for Tracks Index (1 day, W2 F 6pm)
+### Phase 6: Infinite scroll for Tracks Index (1 day, W2 F 6pm)
 
 **objective:** Add infinite scroll to Tracks Index
 
@@ -166,6 +143,12 @@ at a particular position in the song
 - [ ] Ensure we have enough seeded tracks to demo infinite scroll
 
 ### Bonus Features (TBD)
+- [ ] create `TrackVisualizer` component
+- [ ] add a canvas to `TrackVisualizer`
+- [ ] use web audio's analyzer to divide the canvas into clickable portions mapped to song position
+- [ ] add a simple progress bar to the canvas
+- [ ] use setTimeout to update the state of the progress bar
+- [ ] BONUS: turn the progress bar into a bar graph that updates color based on the current spectrum of the audio, derived from Web Audio's fft analyzer. Animate background color of page to match current color of bar.
 - [ ] Giphy integration to automatically generate track images if none are provided
 - [ ] Search by genre, name or tag
 - [ ] Location services to localize Stream (trackIndex)
