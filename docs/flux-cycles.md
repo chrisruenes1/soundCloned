@@ -51,14 +51,6 @@ finally to the **components** that update as a result.
 
 ## Track Cycles
 
-Ultimately, I would like to store the tracks, audio files, and images in three respective databases,
-loading all tracks first, then in the success callbacks asynchronously loading the associated
-image and audio files. However, I first want to do more research about the best way to avoid
-turning the track query into an N+1 query.
-
-So, for now, 'tracks' refers to the metadata about a track, as well as the image and
-audio file associated with that track. This will be fleshed out more in the next day or two.
-
 ### Tracks API Request Actions
 
 * `fetchNTracks`
@@ -92,17 +84,17 @@ audio file associated with that track. This will be fleshed out more in the next
 * `receiveAllTracks`
   0. invoked from an API callback.
   0. `Track` store updates `_tracks` and emits change.
-  0. `Comments` store updates `_comments` and emits change
+  0. `Track` store updates `_comments` and emits change
 
 * `receiveSingleTrack`
   0. invoked from an API callback.
   0. `Track` store updates `_tracks[id]` and emits change.
-  0. `Comments` store updates `_comments` and emits change
+  0. `Track` store updates `_comments` and emits change
 
 * `removeTrack`
   0. invoked from an API callback.
   0. `Track` store removes `_tracks[id]` and emits change.
-  0. `Comments` store updates `_comments` and emits change
+  0. `Track` store updates `_comments` and emits change
 
 ### Store Listeners
 
@@ -114,8 +106,7 @@ audio file associated with that track. This will be fleshed out more in the next
 
 ### Comments API Request Actions
 
-There is no fetchAllComments because all comments for the current set of tracks
-will be fetched along with the tracks, using ActiveRecord#includes
+There is no fetchAllComments because all comments for the current set of tracks will be fetched along with the tracks, using ActiveRecord#includes
 
 * `createComment`
   0. invoked from add comment button `onClick`
@@ -131,33 +122,28 @@ will be fetched along with the tracks, using ActiveRecord#includes
 
 * `receiveSingleComment`
   0. invoked from an API callback.
-  0. `Comment` store updates `_comments[:trackId]` and emits change.
+  0. `Track` store updates `_comments` and emits change.
 
 * `removeComment`
   0. invoked from an API callback.
-  0. `Comment` store removes `_comments[:trackId][:id]` and emits change.
+  0. `Track` store removes `_comments[:id]` and emits change.
 
 ### Store Listeners
 
-* `CommentsIndex` component listens to `Comment` store.
+* `CommentsIndex` component listens to `Track` store.
 
 ## Profile Cycles
 
 ### Profile API Request Actions
 
-* `createProfile`
-  0. invoked from `ProfileForm` `onSubmit`
-  0. `POST /api/profiles` is called.
-  0. `receiveProfile` is set as the callback.
-
 *  `editProfile`
   0. invoked from `ProfileForm` `onSumbit`
-  0. `PATCH /api/profiles/` is called.
+  0. `PATCH /api/users/` is called.
   0. `receiveProfile` is set as the callback
-  
+
 *   `fetchUserProfile`
   0. invoked from `ProfileView` `didMount`/`willReceiveProps`
-  0. `GET /api/profiles/:id` is called.
+  0. `GET /api/users/:id` is called.
   0. `receiveProfile` is set as the callback.
   0. `GET /api/tracks/:userId` is called. (see above: `FetchUserTracks`)
   0. `receiveNTracks` is set as callback
@@ -166,11 +152,11 @@ will be fetched along with the tracks, using ActiveRecord#includes
 
 * `receiveProfile`
   0. invoked from an API callback.
-  0. `Profile` store updates `_profiles[:id]` and emits change.
+  0. `User` store updates `_users[:id]` and emits change.
 
 ### Store Listeners
 
-* `ProfileView` component listens to `Profile` store.
+* `ProfileView` component listens to `User` store.
 
 
 ## SearchSuggestion Cycles (Bonus)
