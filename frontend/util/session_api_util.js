@@ -1,9 +1,9 @@
 module.exports = {
-  login(username, password, success, error){
+  login(credentials, success, error){
     $.ajax({
       url:'session/',
       type:'POST',
-      data: {username: username, password: password},
+      data: {username: credentials.username, password: credentials.password},
       success,
       error
     });
