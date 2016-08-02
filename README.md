@@ -1,6 +1,6 @@
 # SoundCloned
 
-[Heroku link][heroku] **Note:** This should be a link to your production site
+[Heroku link][heroku] https://soundcloned.herokuapp.com/
 
 [heroku]: http://www.herokuapp.com
 
@@ -47,6 +47,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 **Objective:** Functioning rails project with front-end Authentication
 
 - [ ] create new project
+- [ ] set up Heroku
 - [ ] create `User` model
 - [ ] authentication backend setup
 - [ ] create `StaticPages` controller and root view
