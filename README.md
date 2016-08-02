@@ -51,7 +51,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [x] create `User` model
 - [x] authentication backend setup
 - [x] create `StaticPages` controller and root view
-- [ ] set up webpack & flux scaffold with skeleton files
+- [x] set up webpack & flux scaffold with skeleton files
 - [ ] setup `APIUtil` to interact with the API
 - [ ] set up flux cycle for frontend auth
 - [ ] user signup/signin components
