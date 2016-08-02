@@ -12,6 +12,7 @@
 
 - `POST /api/users`
 - `PATCH /api/users`
+- `GET /api/users/:userId`
 
 ### Session
 
@@ -37,9 +38,3 @@
 - `GET /api/tracks/:id/comments`
   - index of all comments for a track
   - this route may not end up being necessary since comment queries will be included in track queries
-
-### Profiles
-
-- `POST /api/profiles`
-- `GET /api/profiles/:id`
-- `PATCH /api/profiles/:id`
