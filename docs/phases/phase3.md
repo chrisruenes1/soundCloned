@@ -1,27 +1,23 @@
-# Phase 3: Read and playback tracks (1 day, W1 F 6pm (bonus over weekend))
+# Phase 3: Continuous Playback (1 Day, W2 M 6pm)
 
 ## Rails
+
 ### Models
 * Track
 
 ### Controllers
 
 ### Views
-* tracks/index.json.jbuilder
-* tracks/show.json.jbuilder
+* currentTrack.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* TrackIndex
-  - TrackIndexItem
-    -TrackVisualizer
+* currentTrack
 
 ### Stores
-* Track
+
 
 ### Actions
-
-### ApiUtil
 
 ## Gems/Libraries
 * web-audio-api

@@ -1,4 +1,4 @@
-# Phase 2: Tracks Model, API, and CUD components (1 day, W1 Th 6pm)
+# Phase 2: Tracks Model, API, and CUD components (2 day, W1 F 6pm)
 
 ## Rails
 ### Models
@@ -38,4 +38,4 @@
 * `ApiUtil.destroyTrack`
 
 ## Gems/Libraries
-* giphy 
+* web-audio-api

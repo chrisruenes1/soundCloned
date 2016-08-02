@@ -58,7 +58,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] style signin/signup components
 - [ ] seed users
 
-### Phase 2: Tracks Model, API, and CUD components (2 day, W1 F 6pm bonus over weekend))
+### Phase 2: Tracks Model, API, and CUD components (2 day, W1 F 6pm)
 
 **Objective:** Tracks can be created, read (played), edited and destroyed through the API. Users can start or stop the song by clicking a play/pause button
 
@@ -158,3 +158,4 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 [phase-three]: docs/phases/phase3.md
 [phase-four]: docs/phases/phase4.md
 [phase-five]: docs/phases/phase5.md
+[phase-six]: docs/phases/phase6.md
