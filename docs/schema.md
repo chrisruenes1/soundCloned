@@ -6,8 +6,8 @@ column name   | data type   | details
 id            | integer     | not null, primary key
 title         | string      | not null
 composer_id   | integer     | not null, foreign key (references users), indexed
-image_id      | integer     | not null, foreign key (references track_images)
-audio_file_id | integer     | not null, foreign key (references audio_files)
+image_id      | integer     | not null, foreign key (ref to fetch from AWS)
+audio_file_id | integer     | not null, foreign key (references to fetch from AWS)
 album_title   | string      |
 
 
@@ -20,40 +20,19 @@ track_id      | integer     | not null, foreign key (references tracks), indexed
 content       | string      | not null
 song_location | timestamp   | not null
 
-## profiles
+## users
 column name   | data type   | details
 --------------|-------------|---------------------------------------------------
-id            | integer     | not null, primary key
-user_id       | integer     | not null, foreign key (references users), indexed
-fname         | string      |
-lname         | string      |
-group_name    | string      | not null
-city          | string      | not null
-state         | string      |
-bio           | text        |
-
-## users
-column name     | data type | details
-----------------|-----------|---------------------------
-id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
-password_digest | string    | not null
-session_token   | string    | not null, indexed, unique
-
-## audio_files
-column name     | data type | details                
-----------------|-----------|----------------------------------------
-id              | integer   | not null, primary key
-data            | ?         | not null
-track_id        | integer   | not null, foreign key, indexed, unique
-
-## track_images
-column name     | data type | details                
-----------------|-----------|----------------------------------------
-id              | integer   | not null, primary key
-data            | ?         | not null
-track_id        | integer   | not null, foreign key, indexed
-
+id              | integer       | not null, primary key
+username        | string        | not null, indexed, unique
+password_digest | string        | not null
+session_token   | string        | not null, indexed, unique
+fname           | string        |
+lname           | string        |
+group_name      | string        | not null
+city            | string        | not null
+state           | string        |
+bio             | text          |
 
 ## tags (bonus)
 column name | data type | details
