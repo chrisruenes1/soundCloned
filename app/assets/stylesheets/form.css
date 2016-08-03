@@ -17,6 +17,14 @@
   margin-top:200px;
 }
 
+.modal-form-text-spacer {
+  height:15px;
+  line-height:15px;
+  width:400px;
+  color:#333;
+  margin-bottom:5px;
+}
+
 .modal-form-element {
   height:30px;
   width:400px;

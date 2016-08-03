@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
 
 users = []
 10.times do
@@ -19,6 +20,18 @@ users = []
   }
   users.push(user)
 end
+
+demo_user = {
+  fname: "Chris",
+  lname: "Ruenes",
+  username: "chrisruenes1",
+  password: "demopassword1",
+  group_name: "The Peaches",
+  city: "New York City",
+  state: "New York"
+}
+
+users.push(demo_user)
 
 User.create(
   users

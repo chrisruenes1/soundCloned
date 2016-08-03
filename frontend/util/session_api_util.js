@@ -2,7 +2,6 @@ const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
   login(credentials, success, error){
-    console.log("made it to login api_util");
     $.ajax({
       url:'api/session/',
       type:'POST',
