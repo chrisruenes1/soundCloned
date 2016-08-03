@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
- */  font-family: 'Titillium', sans-serif;
+ */
+body{
+  font-family: 'Titillium', sans-serif;
+}
