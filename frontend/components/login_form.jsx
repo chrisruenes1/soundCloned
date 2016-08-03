@@ -64,7 +64,7 @@ const LoginForm = React.createClass({
 
           <input
             type="submit"
-            value="Sign In!"
+            value="Log In!"
             ></input>
 
         </form>
