@@ -26,7 +26,8 @@ SessionStore.isUserLoggedIn = function(){
 SessionStore.__onDispatch = (payload) =>{
   switch (payload.actionType) {
     case SessionConstants.LOGIN:
-      _login(payload.currentUser);
+      let currentUser = payload.currentUser ? payload.currentUser : {};
+      _login(currentUser);
       break;
     case SessionConstants.LOGOUT:
       _logout();
