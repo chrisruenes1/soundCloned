@@ -1,0 +1,38 @@
+ .navbar{
+  color:white;
+  background-color:#403e3e;
+  height:50px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight:200;
+  font-size:15px;
+}
+
+.navbar-minor{
+  color:#9c9696;
+}
+
+.navbar-element{
+  text-align:center;
+  float:left;
+  margin:5px;
+  height:25px;
+  line-height: 25px;
+  margin-top:12.5px;
+  margin-bottom:12.5px;
+}
+
+.navbar-button{
+  border-radius: 3px;
+  border: 1px #9c9696 solid;
+  cursor: pointer;
+}
+
+.login{
+  width:75px;
+}
+
+.signup{
+  width:125px;
+  background-color:#ec4908;
+  border:1px solid #ec4908;
+}
