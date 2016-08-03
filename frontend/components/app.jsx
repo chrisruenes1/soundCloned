@@ -2,6 +2,7 @@ const React = require('react');
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const Link = require('react-router').Link;
+const Navbar = require('./navbar');
 
 const App = React.createClass({
   handleLogoutSubmit(e){
@@ -29,12 +30,7 @@ const App = React.createClass({
 
     return(
       <div>
-        <header>
-          {
-            headerContent
-          }
-        </header>
-        <marquee>Watch me go!</marquee>
+        <Navbar/>
         {this.props.children}
       </div>
     );
