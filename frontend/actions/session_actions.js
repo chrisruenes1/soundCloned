@@ -1,16 +1,17 @@
 const SessionApiUtil = require("../util/session_api_util");
 const AppDispatcher = require ("../dispatcher/dispatcher");
 const SessionConstants = require("../constants/session_constants");
+const ErrorActions = require("./error_actions");
 
 module.exports = {
   signup:function(user){
-    SessionApiUtil.signup(user, this.receiveCurrentUser);
+    SessionApiUtil.signup(user, this.receiveCurrentUser, ErrorActions.setErrors);
   },
   login:function(credentials){
-    SessionApiUtil.login(credentials, this.receiveCurrentUser);
+    SessionApiUtil.login(credentials, this.receiveCurrentUser, ErrorActions.setErrors);
   },
   logout:function(){
-    SessionApiUtil.logout(this.receiveCurrentUser);
+    SessionApiUtil.logout(this.receiveCurrentUser, ErrorActions.setErrors);
   },
 
   receiveCurrentUser(currentUser){
