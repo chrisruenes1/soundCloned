@@ -16,7 +16,7 @@ const _logout = function(){
 };
 
 SessionStore.currentUser = function(){
-  return Object.apply({}, _currentUser);
+  return Object.assign({}, _currentUser);
 };
 
 SessionStore.isUserLoggedIn = function(){
@@ -26,7 +26,7 @@ SessionStore.isUserLoggedIn = function(){
 SessionStore.__onDispatch = (payload) =>{
   switch (payload.actionType) {
     case SessionConstants.LOGIN:
-      _login(payload.user);
+      _login(payload.currentUser);
       break;
     case SessionConstants.LOGOUT:
       _logout();

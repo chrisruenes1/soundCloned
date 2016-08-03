@@ -4,6 +4,7 @@ const App = require('./components/app');
 const LoginForm = require('./components/login_form');
 const SignupForm = require('./components/signup_form');
 const TracksIndex = require('./components/tracks_index');
+const SessionActions = require('./actions/session_actions');
 import { Router, Route, IndexRoute, hashHistory} from "react-router";
 
 
@@ -18,5 +19,6 @@ const appRouter = (
 );
 
 document.addEventListener("DOMContentLoaded", () => {
+  SessionActions.receiveCurrentUser(window.currentUser);
   ReactDOM.render(appRouter, document.getElementById('content'));
 });
