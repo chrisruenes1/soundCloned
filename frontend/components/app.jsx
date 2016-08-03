@@ -1,6 +1,6 @@
 const React = require('react');
 
-const Placeholder = React.createClass({
+const App = React.createClass({
   render(){
     return(
       <div>
@@ -11,4 +11,4 @@ const Placeholder = React.createClass({
   }
 });
 
-module.exports = Placeholder;
+module.exports = App;

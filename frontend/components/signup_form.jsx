@@ -3,7 +3,7 @@ const SessionActions = require('../actions/session_actions');
 const SessionStore = require('../stores/session_store');
 import {hashHistory} from 'react-router';
 
-const LoginForm = React.createClass({
+const SignupForm = React.createClass({
   getInitialState(){
     return {username:"", password:""};
   },
@@ -21,7 +21,7 @@ const LoginForm = React.createClass({
       username:this.state.username,
       password:this.state.password
     };
-    SessionActions.login(submitData);
+    SessionActions.signup(submitData);
     this.setState({username:"", password:""});
   },
   render(){
@@ -46,7 +46,7 @@ const LoginForm = React.createClass({
 
         <input
           type="submit"
-          value="Sign In!"
+          value="Sign Up!"
           ></input>
 
       </form>
@@ -64,6 +64,8 @@ const LoginForm = React.createClass({
       console.log("FAILURE");
     }
   }
+
+
 });
 
-module.exports = LoginForm;
+module.exports = SignupForm;

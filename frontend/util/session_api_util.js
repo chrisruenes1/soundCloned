@@ -1,16 +1,17 @@
 module.exports = {
   login(credentials, success, error){
+    console.log("made it to login api_util");
     $.ajax({
-      url:'session/',
+      url:'api/session/',
       type:'POST',
-      data: {username: credentials.username, password: credentials.password},
+      data: {user: {username: credentials.username, password: credentials.password}},
       success,
       error
     });
   },
   signup(user, success, error){
     $.ajax({
-      url:'user',
+      url:'api/users',
       type:'POST',
       data: {user: user},
       success,
@@ -19,7 +20,7 @@ module.exports = {
   },
   logout(success, error){
     $.ajax({
-      url:'session/',
+      url:'api/session',
       type:'DELETE',
       success,
       error
