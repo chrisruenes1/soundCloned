@@ -6,7 +6,7 @@ const Navbar = React.createClass({
     return(
       <nav className="navbar">
         <ul className="group">
-          <li className="navbar-element navbar-button login"><button onClick={LoginFormModal.show}>Sign in</button><LoginFormModal/></li>
+          <li className="navbar-element navbar-button login"><Link to="/login">Sign in</Link></li>
           <li className="navbar-element navbar-minor">or</li>
           <li className="navbar-element navbar-button signup"><Link to="/signup">Create account</Link></li>
         </ul>
