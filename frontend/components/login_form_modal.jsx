@@ -8,6 +8,7 @@ const LoginFormModal = React.createClass({
     return {show:false};
   },
   show(){
+    console.log("SHOW CLICKED");
     this.setState({show:true});
   },
 

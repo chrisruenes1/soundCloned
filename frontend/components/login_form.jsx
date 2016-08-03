@@ -46,23 +46,25 @@ const LoginForm = React.createClass({
 
         <form onSubmit={this.handleSubmit}>
 
-          <input
+          <input className="login-form-input"
             type="text"
             value={this.state.username}
             onChange={this.usernameChange}
+            placeholder="username"
             ></input>
 
           <br></br>
 
-          <input
+          <input className="login-form-input"
             type="password"
             value={this.state.password}
             onChange={this.passwordChange}
+            placeholder="password"
             ></input>
 
           <br></br>
 
-          <input
+          <input className="login-form-submit"
             type="submit"
             value="Log In!"
             ></input>
