@@ -1,4 +1,4 @@
-const SessionApiUtil = require("../util/api_util");
+const SessionApiUtil = require("../util/session_api_util");
 const AppDispatcher = require ("../dispatcher/dispatcher");
 const SessionConstants = require("../constants/session_constants");
 

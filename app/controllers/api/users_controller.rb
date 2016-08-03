@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def new
-    @user = new User
+    @user = User.new
   end
 
   def show
@@ -8,15 +8,17 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    @user = new User(user_params)
+    @user = User.new(user_params)
     if @user.save
-      render :show
+      login_user!(@user)
+      render "api/users/show"
     else
-      render json: @user.errors.full_messages, status:400
+      debugger
+      render json: @user.errors.full_messages, status:422
     end
   end
 
   def user_params
-    params.require(:user).permit(:fname, :lname, :username, :group_name, :city, :state, :bio)
+    params.require(:user).permit(:username, :password)
   end
 end

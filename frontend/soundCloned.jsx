@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const App = require('./components/app');
 const LoginForm = require('./components/login_form');
+const SignupForm = require('./components/signup_form');
 const TracksIndex = require('./components/tracks_index');
 import { Router, Route, IndexRoute, hashHistory} from "react-router";
 
@@ -11,7 +12,7 @@ const appRouter = (
     <Route path="/" component={ App } >
       <IndexRoute component = { TracksIndex } />
       <Route path="/login" component={ LoginForm } />
-      <Route path="/signup" component={ LoginForm } />
+      <Route path="/signup" component={SignupForm } />
     </ Route>
   </Router>
 );
