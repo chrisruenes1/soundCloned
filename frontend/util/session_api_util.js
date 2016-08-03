@@ -1,3 +1,5 @@
+const ErrorConstants = require('../constants/error_constants');
+
 module.exports = {
   login(credentials, success, error){
     console.log("made it to login api_util");
@@ -6,7 +8,9 @@ module.exports = {
       type:'POST',
       data: {user: {username: credentials.username, password: credentials.password}},
       success,
-      error
+      error:function(xhr){
+        error(ErrorConstants.LOGIN, xhr.responseJSON);
+      }
     });
   },
   signup(user, success, error){
@@ -15,7 +19,9 @@ module.exports = {
       type:'POST',
       data: {user: user},
       success,
-      error
+      error:function(xhr){
+        error(ErrorConstants.SIGNUP, xhr.responseJSON);
+      }
     });
   },
   logout(success, error){
@@ -23,7 +29,9 @@ module.exports = {
       url:'api/session',
       type:'DELETE',
       success,
-      error
+      error:function(){
+        console.log("Logout error in SessionApiUtil#logout");
+      }
     });
   },
 };

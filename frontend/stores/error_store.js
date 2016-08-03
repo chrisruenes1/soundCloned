@@ -1,7 +1,7 @@
 const Store = require('flux/utils').Store;
 const AppDispatcher = require('../dispatcher/dispatcher');
 const ErrorStore = new Store(AppDispatcher);
-
+const ErrorConstants = require("../constants/error_constants");
 let _errors = [];
 let _form = "";
 
@@ -23,5 +23,14 @@ const _clearErrors = function(){
 };
 
 ErrorStore.__onDispatch = function(payload){
-  
+  switch (payload.actionType){
+   case ErrorConstants.SET_ERRORS:
+    _setErrors(payload.form, payload.errors);
+    break;
+  case ErrorConstants.CLEAR_ERRORS:
+    _clearErrors();
+    break;
+  }
 };
+
+module.exports = ErrorStore;
