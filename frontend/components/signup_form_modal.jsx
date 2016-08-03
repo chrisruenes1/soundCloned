@@ -1,8 +1,8 @@
 const React = require('react');
 const Modal = require('react-modal');
-const LoginForm = require('./login_form');
+const SignupForm = require('./signup_form');
 
-const LoginFormModal = React.createClass({
+const SignupFormModal = React.createClass({
   getInitialState(){
     return {modalIsOpen:false};
   },
@@ -18,14 +18,14 @@ const LoginFormModal = React.createClass({
   render(){
     return(
       <div>
-        <button onClick={this.openModal}>Sign In!</button>
+        <button onClick={this.openModal}>Create account</button>
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
         >
-        <LoginForm close={this.closeModal}/>
+        <SignupForm close={this.closeModal}/>
         </Modal>
       </div>
     );
@@ -33,4 +33,4 @@ const LoginFormModal = React.createClass({
 
 });
 
-module.exports = LoginFormModal;
+module.exports = SignupFormModal;

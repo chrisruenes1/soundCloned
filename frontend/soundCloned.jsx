@@ -1,7 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const App = require('./components/app');
+const Modal = require('react-modal');
 const LoginForm = require('./components/login_form');
+const LoginPlaceholder = require('./components/login_placeholder');
 const SignupForm = require('./components/signup_form');
 const TracksIndex = require('./components/tracks_index');
 const SessionActions = require('./actions/session_actions');
@@ -18,13 +20,13 @@ const appRouter = (
   <Router history={hashHistory}>
     <Route path="/" component={ App } >
       <IndexRoute component = { TracksIndex } onEnter={ _ensureLoggedIn}/>
-      <Route path="/login" component={ LoginForm } />
-      <Route path="/signup" component={ SignupForm } />
+      <Route path="/login" component ={ LoginPlaceholder }/>
     </ Route>
   </Router>
 );
 
 document.addEventListener("DOMContentLoaded", () => {
   SessionActions.receiveCurrentUser(window.currentUser);
+  Modal.setAppElement(document.body);
   ReactDOM.render(appRouter, document.getElementById('content'));
 });

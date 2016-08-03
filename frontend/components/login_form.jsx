@@ -44,27 +44,27 @@ const LoginForm = React.createClass({
           }
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="modal-form" onSubmit={this.handleSubmit}>
 
-          <input className="login-form-input"
+          <input className="modal-form-element modal-form-input"
             type="text"
             value={this.state.username}
             onChange={this.usernameChange}
-            placeholder="username"
+            placeholder="your username"
             ></input>
 
           <br></br>
 
-          <input className="login-form-input"
+          <input className="modal-form-element modal-form-input"
             type="password"
             value={this.state.password}
             onChange={this.passwordChange}
-            placeholder="password"
+            placeholder="your password"
             ></input>
 
           <br></br>
 
-          <input className="login-form-submit"
+          <input className="modal-form-element modal-form-submit"
             type="submit"
             value="Log In!"
             ></input>
@@ -83,7 +83,8 @@ const LoginForm = React.createClass({
     });
   },
   _onSessionChange(){
-    if (SessionStore.isUserLoggedIn){
+    if (SessionStore.isUserLoggedIn()){
+      this.props.close();
       hashHistory.push("/");
     }
   },

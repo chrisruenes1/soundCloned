@@ -1,14 +1,13 @@
  .navbar{
-  color:white;
-  background-color:#403e3e;
+  color:#fff;
+  background-color:#333;
   height:50px;
-  font-family: 'Open Sans', sans-serif;
   font-weight:200;
   font-size:15px;
 }
 
 .navbar-minor{
-  color:#9c9696;
+  color:#999;
 }
 
 .navbar-element{
@@ -23,8 +22,16 @@
 
 .navbar-button{
   border-radius: 3px;
-  border: 1px #9c9696 solid;
+  border:1px #757575 solid;
   cursor: pointer;
+}
+
+.reactive-navbar-button:hover{
+  border:1px #e5e5e5 solid;
+}
+
+.logout{
+  width:75px;
 }
 
 .login{
@@ -33,6 +40,6 @@
 
 .signup{
   width:125px;
-  background-color:#ec4908;
-  border:1px solid #ec4908;
+  background-color:#f50;
+  border:none;
 }

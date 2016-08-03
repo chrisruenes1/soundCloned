@@ -45,25 +45,27 @@ const SignupForm = React.createClass({
           }
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="modal-form" onSubmit={this.handleSubmit}>
 
-          <input
+          <input className="modal-form-element modal-form-input"
             type="text"
             value={this.state.username}
             onChange={this.usernameChange}
+            placeholder="username"
             ></input>
 
           <br></br>
 
-          <input
+          <input className="modal-form-element modal-form-input"
             type="password"
             value={this.state.password}
             onChange={this.passwordChange}
+            placeholder="password"
             ></input>
 
           <br></br>
 
-          <input
+          <input className="modal-form-element modal-form-submit"
             type="submit"
             value="Sign Up!"
             ></input>
