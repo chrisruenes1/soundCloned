@@ -5,27 +5,27 @@ const UserConstants = require('../constants/user_constants');
 
 let _user = {};
 
-UserStore.User = function(){
+UserStore.user = function(){
   return Object.assign({}, _user);
 };
 
-const _reset_user = function(user){
+const _resetUser = function(user){
   _user = user;
   UserStore.__emitChange();
 };
 
-const _remove_user = function(){
+const _removeUser = function(){
   _user = {};
   UserStore.__emitChange();
 };
 
-UserStore.__onDispatch = function(payload){
+UserStore.__onDispatch = (payload) => {
   switch(payload.actionType){
-    case RECEIVE_USER:
-      this.reset_user(payload.user);
+    case UserConstants.RECEIVE_USER:
+      this.resetUser(payload.user);
       break;
-    case REMOVE_USER:
-      this.remove_user();
+    case UserConstants.REMOVE_USER:
+      this.removeUser();
       break;
   }
 };
