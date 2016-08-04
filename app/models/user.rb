@@ -8,10 +8,11 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
-#  group_name      :string           not null
-#  city            :string           not null
+#  group_name      :string           default("The Peaches"), not null
+#  city            :string           default("New York City"), not null
 #  state           :string
 #  bio             :text
+#  custom_url      :string
 #
 
 class User < ActiveRecord::Base
@@ -21,7 +22,7 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_custom_url
 
   def self.generate_session_token
     session_token = SecureRandom::urlsafe_base64(16)
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+  
+  def ensure_custom_url
+    self.custom_url ||= self.id
   end
 
   def reset_session_token!

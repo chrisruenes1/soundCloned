@@ -17,7 +17,13 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def find_by_url
+    @user = User.find_by(custom_url: params[:custom_url])
+    render "api/users/show"
+  end
+
   def user_params
     params.require(:user).permit(:username, :password)
   end
+
 end

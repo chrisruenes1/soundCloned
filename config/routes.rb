@@ -4,4 +4,5 @@ Rails.application.routes.draw do
     resource :session, only: [:new, :create, :destroy]
   end
   root to:"static_pages#root"
+  get "api/users/url/:custom_url", to: "users#find_by_url"
 end

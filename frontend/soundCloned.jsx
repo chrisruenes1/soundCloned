@@ -6,6 +6,7 @@ const LoginForm = require('./components/login_form');
 const LoginPlaceholder = require('./components/login_placeholder');
 const SignupForm = require('./components/signup_form');
 const TracksIndex = require('./components/tracks_index');
+const UserProfile = require('./components/profile_form');
 const SessionActions = require('./actions/session_actions');
 const SessionStore = require('./stores/session_store');
 import { Router, Route, IndexRoute, hashHistory} from "react-router";
@@ -20,7 +21,8 @@ const appRouter = (
   <Router history={hashHistory}>
     <Route path="/" component={ App } >
       <IndexRoute component = { TracksIndex } onEnter={ _ensureLoggedIn}/>
-      <Route path="/login" component ={ LoginPlaceholder }/>
+      <Route path="/login" component={ LoginPlaceholder }/>
+      <Route path="/users/url/:customUrl" component={ UserProfile } onEnter={ _ensureLoggedIn}/>
     </ Route>
   </Router>
 );
