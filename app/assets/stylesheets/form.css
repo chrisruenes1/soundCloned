@@ -11,10 +11,10 @@
 
 .modal-form {
   height:200px;
-  width:275px;
+  width:400px;
   text-align:center;
   margin:0 auto;
-  margin-top:200px;
+  margin-top:25%;
 }
 
 .modal-form-text-spacer {
@@ -22,12 +22,14 @@
   line-height:15px;
   width:400px;
   color:#333;
-  margin-bottom:5px;
+  margin-bottom:7px;
+  font-size:20px;
 }
 
 .modal-form-element {
-  height:30px;
+  height:50px;
   width:400px;
-  margin-bottom:5px;
+  font-size:20px;
+  margin-bottom:7px;
   border-radius:5px;
 }
