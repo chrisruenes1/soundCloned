@@ -1,34 +1,33 @@
-# Phase 6: Profiles (1 day, W2 Th 6pm)
+# Phase 5: Comments (2 day, W2 W 6pm)
 
 ## Rails
 ### Models
-* profiles
+* comments
 
 ### Controllers
-* Api::ProfilesController (create, destroy, update, show)
+* Api::CommentsController (create, destroy)
 
 
 ### Views
-* profile.json.jbuilder
+* comment.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* profile
-* trackIndex
+* trackIndexItem
+* comment
 
 ### Stores
-* profile
-* track
+* comment
 
 ### Actions
-* `ApiActions.receiveProfile`
-* `ProfileActions.createProfile`
-* `ProfileActions.editProfile`
-* `ProfileActions.fetchUserProfile`
+* `ApiActions.receiveSingleComment`
+* `ApiActions.removeComment`
+* `TrackActions.createComment`
+* `TrackActions.destroyComment`
 
 ### ApiUtil
-* `ApiUtil.createProfile`
-* `ApiUtil.editProfile`
-* `ApiUtil.fetchUserProfile`
+* `ApiUtil.fetchAllComments`
+* `ApiUtil.createComment`
+* `ApiUtil.destroyComment`
 
 ## Gems/Libraries
