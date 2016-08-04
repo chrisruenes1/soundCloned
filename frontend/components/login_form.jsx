@@ -52,34 +52,38 @@ const LoginForm = React.createClass({
         </ul>
 
         <form className="modal-form" onSubmit={this.handleSubmit}>
-
-          <input className="modal-form-element modal-form-input"
-            type="text"
-            value={this.state.username}
-            onChange={this.usernameChange}
-            placeholder="your username"
-            ></input>
-
-          <br></br>
-
-          <input className="modal-form-element modal-form-input"
-            type="password"
-            value={this.state.password}
-            onChange={this.passwordChange}
-            placeholder="your password"
-            ></input>
-
-          <br></br>
-
-          <input className="modal-form-element modal-form-submit"
-            type="submit"
-            value="Log In!"
-            ></input>
-
-          <br></br>
-          <div className="modal-form-text-spacer">or</div>
           
-          <button onClick={this.guestLogin} className="modal-form-element modal-form-submit">Guest Login</button>
+          <div className="input-container">
+
+            <input className="modal-form-element modal-form-input"
+              type="text"
+              value={this.state.username}
+              onChange={this.usernameChange}
+              placeholder="your username"
+              ></input>
+
+            <br></br>
+
+            <input className="modal-form-element modal-form-input"
+              type="password"
+              value={this.state.password}
+              onChange={this.passwordChange}
+              placeholder="your password"
+              ></input>
+
+            <br></br>
+
+            <input className="modal-form-element modal-form-submit"
+              type="submit"
+              value="Log In!"
+              ></input>
+
+            <br></br>
+            <div className="modal-form-text-spacer">or</div>
+            
+            <button onClick={this.guestLogin} className="modal-form-element modal-form-submit">Guest Login</button>
+            
+          </div>
 
         </form>
       </div>
