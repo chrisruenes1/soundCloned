@@ -63,7 +63,6 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 
 **Objective:** Users can create CRU profiles
 
-- [ ] create `Profile` model
 - build out API, Flux loop, and components for:
   - [ ] creating a profile
   - [ ] displaying a user's tracks
