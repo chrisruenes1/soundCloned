@@ -1,7 +1,7 @@
 const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
-  fetchUser(url, success){
+  fetchUser(url, success, error){
     
     $.ajax({
       url:`/api/users/url/${url}`,
