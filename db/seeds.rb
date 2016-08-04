@@ -33,6 +33,6 @@ demo_user = {
 
 users.push(demo_user)
 
-User.create(
+User.create!(
   users
 );

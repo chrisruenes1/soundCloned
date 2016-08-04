@@ -19,7 +19,11 @@ class Api::UsersController < ApplicationController
 
   def find_by_url
     @user = User.find_by(custom_url: params[:custom_url])
-    render "api/users/show"
+    if @user
+      render "api/users/show"
+    else
+      render json: @user.errors.full_messages, status:404
+    end
   end
 
   def user_params

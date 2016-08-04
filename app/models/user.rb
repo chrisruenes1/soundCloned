@@ -17,12 +17,13 @@
 
 class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, :group_name, :city, presence:true
-  validates :username, :password_digest, :session_token, uniqueness:true
+  validates :username, :password_digest, :session_token, :custom_url, uniqueness:true
   validates :password, length: {minimum: 6, allow_nil: true}
 
   attr_reader :password
 
-  after_initialize :ensure_session_token, :ensure_custom_url
+  after_initialize :ensure_session_token
+  before_validation :ensure_custom_url
 
   def self.generate_session_token
     session_token = SecureRandom::urlsafe_base64(16)
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
   end
   
   def ensure_custom_url
-    self.custom_url ||= self.id
+    self.custom_url ||= self.username
   end
 
   def reset_session_token!
