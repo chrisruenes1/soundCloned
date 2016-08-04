@@ -57,9 +57,21 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [x] user signup/signin components
 - [x] blank landing component after signin
 - [x] style signin/signup components
-- [ ] seed users
+- [x] seed users
 
-### Phase 2: Tracks Model, API, and CRUD components (2 day, W1 F 6pm)
+### Phase 2: Profiles (1 day, W2 Th 6pm)
+
+**Objective:** Users can create CRU profiles
+
+- [ ] create `Profile` model
+- build out API, Flux loop, and components for:
+  - [ ] creating a profile
+  - [ ] displaying a user's tracks
+  - [ ] profiles and associated tracks are only editable by owner
+- [ ] Style new elements
+- [ ] Seed profiles
+
+### Phase 3: Tracks Model, API, and CRUD components (2 day, W1 F 6pm)
 
 **Objective:** Tracks can be created, read (played), edited and destroyed through the API. Users can start or stop the song by clicking a play/pause button
 
@@ -85,7 +97,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] given these, all tracks can be in multiple states of play status and position at the same time   
 
 
-### Phase 3: Continuous Playback (1 Day, W2 M 6pm)
+### Phase 4: Continuous Playback (1 Day, W2 M 6pm)
 
 **Objective:** a currentTrack component allows users to navigate around site while track plays and control playback
 
@@ -104,7 +116,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] Style currentTrack footer component
 
 
-### Phase 4: Comments (2 day, W2 W 6pm)
+### Phase 5: Comments (2 day, W2 W 6pm)
 
 **Objective:** Comments belong to tracks and to users. As a bonus, they are played at a particular position in the song
 
@@ -120,18 +132,6 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] Use CSS to style new components
 - [ ] Seed Comments
 - [ ] BONUS: tracks are `played` in the order in which they were created, one at a time
-
-### Phase 5: Profiles (1 day, W2 Th 6pm)
-
-**Objective:** Users can create CRU profiles
-
-- [ ] create `Profile` model
-- build out API, Flux loop, and components for:
-  - [ ] creating a profile
-  - [ ] displaying a user's tracks
-  - [ ] profiles and associated tracks are only editable by owner
-- [ ] Style new elements
-- [ ] Seed profiles
 
 
 ### Phase 6: Infinite scroll for Tracks Index (1 day, W2 F 6pm)

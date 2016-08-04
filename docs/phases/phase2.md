@@ -1,41 +1,34 @@
-# Phase 2: Tracks Model, API, and CUD components (2 day, W1 F 6pm)
+# Phase 2: Profiles (1 day, W1 Th 6pm)
 
 ## Rails
 ### Models
-* Track
+* profiles
 
 ### Controllers
-* Api::TracksController (create, destroy, index, show, update)
+* Api::UsersController (create, destroy, update, show)
+
 
 ### Views
-* tracks/index.json.jbuilder
-* tracks/show.json.jbuilder
+* user.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* TracksIndex
-  - TracksIndexItem
-* TrackForm
+* profile
+* trackIndex
 
 ### Stores
-* Track
+* user
+* track
 
 ### Actions
-* `ApiActions.receiveAllTracks`
-* `ApiActions.receiveSingleTrack`
-* `ApiActions.removeTrack`
-* `TrackActions.fetchNTracks`
-* `TrackActions.fetchUserTracks`
-* `TrackActions.createTrack`
-* `TrackActions.editTrack`
-* `TrackActions.destroyTrack`
+* `ApiActions.receiveUser`
+* `UserActions.createUser`
+* `UserActions.editUser`
+* `UserActions.fetchUserUser`
 
 ### ApiUtil
-* `ApiUtil.fetchAllTracks`
-* `ApiUtil.fetchUserTracks`
-* `ApiUtil.createTrack`
-* `ApiUtil.editTrack`
-* `ApiUtil.destroyTrack`
+* `ApiUtil.createUsr`
+* `ApiUtil.editUser`
+* `ApiUtil.fetchUser`
 
 ## Gems/Libraries
-* web-audio-api

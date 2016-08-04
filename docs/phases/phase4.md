@@ -1,33 +1,23 @@
-# Phase 5: Comments (2 day, W2 W 6pm)
+# Phase 4: Continuous Playback (1 Day, W2 M 6pm)
 
 ## Rails
+
 ### Models
-* comments
+* Track
 
 ### Controllers
-* Api::CommentsController (create, destroy)
-
 
 ### Views
-* comment.json.jbuilder
+* currentTrack.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* trackIndexItem
-* comment
+* currentTrack
 
 ### Stores
-* comment
+
 
 ### Actions
-* `ApiActions.receiveSingleComment`
-* `ApiActions.removeComment`
-* `TrackActions.createComment`
-* `TrackActions.destroyComment`
-
-### ApiUtil
-* `ApiUtil.fetchAllComments`
-* `ApiUtil.createComment`
-* `ApiUtil.destroyComment`
 
 ## Gems/Libraries
+* web-audio-api

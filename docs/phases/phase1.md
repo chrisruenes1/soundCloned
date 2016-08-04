@@ -52,3 +52,6 @@
 * "react": "^0.14.2",
 * "react-dom": "^0.14.2",
 * "react-router": "2.0.1"
+* "react-modal"
+* "faker"
+* "rails_12factor"
