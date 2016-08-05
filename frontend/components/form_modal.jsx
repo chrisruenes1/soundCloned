@@ -15,15 +15,15 @@ const FormModal = React.createClass({
     this.setState({modalIsOpen: false});
   },
   render(){
-    
+
     //clone children with closeModal callback
     var newChildren = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, { close: this.closeModal });
     });
-    
+
     return(
       <div>
-        <button onClick={this.openModal}>{this.props.buttonText}</button>
+        <button className={this.props.className} onClick={this.openModal}>{this.props.buttonText}</button>
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
