@@ -5,6 +5,7 @@ const UserActions = require('../actions/user_actions');
 
 const Profile = React.createClass({
   getInitialState(){
+    this.listeners = [];
     return {user: UserStore.user()};
   },
   render(){
@@ -12,9 +13,17 @@ const Profile = React.createClass({
       <ProfileHeader user={this.state.user} customUrl={this.props.params.customUrl}/>
     );
   },
+  componentWillReceiveProps(newProps){
+    UserActions.fetchUser(newProps.params.customUrl);
+  },
   componentDidMount(){
-    UserStore.addListener(this._onUserChange);
+    this.listeners.push(UserStore.addListener(this._onUserChange));
     UserActions.fetchUser(this.props.params.customUrl);
+  },
+  componentWillUnmount(){
+    this.listeners.forEach(function(listener){
+      listener.remove();
+    });
   },
   _onUserChange(){
     this.setState({user: UserStore.user()});
