@@ -1,7 +1,8 @@
 const React = require('react');
 import { Link } from 'react-router';
-const LoginFormModal = require('./login_form_modal');
-const SignupFormModal = require('./signup_form_modal');
+const FormModal = require('./form_modal');
+const LoginForm = require('./login_form');
+const SignupForm = require('./signup_form');
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 
@@ -20,9 +21,9 @@ const Navbar = React.createClass({
 
       :
       <div>
-        <li className="navbar-element navbar-button reactive-navbar-button login"><LoginFormModal /></li>
+        <li className="navbar-element navbar-button reactive-navbar-button login"><FormModal buttonText="Sign In"><LoginForm /></FormModal></li>
         <li className="navbar-element navbar-minor">or</li>
-        <li className="navbar-element navbar-button signup"><SignupFormModal /></li>
+        <li className="navbar-element navbar-button signup"><FormModal buttonText="Create account"><SignupForm /></FormModal></li>
       </div>;
 
     return(

@@ -12,7 +12,7 @@
 #  city            :string           default("New York City"), not null
 #  state           :string
 #  bio             :text
-#  custom_url      :string
+#  custom_url      :string           not null
 #
 
 class User < ActiveRecord::Base
