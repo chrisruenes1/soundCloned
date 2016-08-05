@@ -21,10 +21,10 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
   - [ ] Adequate seed data to demonstrate the site's features
   - [ ] Adequate CSS styling
   - [ ] Realtime 'playback' of comments based on where in song they were created
-- [ ] User pages with profile information and user's uploaded tracks
-  - [ ] Smooth, bug-free navigation
-  - [ ] Adequate seed data to demonstrate the site's features
-  - [ ] Adequate CSS styling
+- [x] User pages with profile information
+  - [x] Smooth, bug-free navigation
+  - [x] Adequate seed data to demonstrate the site's features
+  - [x] Adequate CSS styling
 - [ ] Continuous Playback
 
 ## Design Docs
@@ -59,18 +59,17 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [x] style signin/signup components
 - [x] seed users
 
-### Phase 2: Profiles (1 day, W2 Th 6pm)
+### Phase 2: Profiles (1 day, W1 Th 6pm)
 
 **Objective:** Users can create CRU profiles
 
 - build out API, Flux loop, and components for:
-  - [ ] creating a profile
-  - [ ] displaying a user's tracks
-  - [ ] profiles and associated tracks are only editable by owner
-- [ ] Style new elements
-- [ ] Seed profiles
+  - [x] creating a profile
+  - [x] profiles are only editable by owner
+- [x] Style new elements
+- [x] Seed profiles
 
-### Phase 3: Tracks Model, API, and CRUD components (2 day, W1 F 6pm)
+### Phase 3: Tracks Model, API, and CRUD components (2 day, W2 M 6pm)
 
 **Objective:** Tracks can be created, read (played), edited and destroyed through the API. Users can start or stop the song by clicking a play/pause button
 
@@ -94,9 +93,10 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] it can (optionally) keep track of elapsed time of the track using setTimeout
 (supposedly it is non-trivial to fetch elapsed time from Web Audio)
 - [ ] given these, all tracks can be in multiple states of play status and position at the same time   
+- [ ] displaying a user's tracks
 
 
-### Phase 4: Continuous Playback (1 Day, W2 M 6pm)
+### Phase 4: Continuous Playback (1 Day, W2 T 6pm)
 
 **Objective:** a currentTrack component allows users to navigate around site while track plays and control playback
 
@@ -115,7 +115,7 @@ SoundCloned is a web application inspired by SoundCloud that will be built using
 - [ ] Style currentTrack footer component
 
 
-### Phase 5: Comments (2 day, W2 W 6pm)
+### Phase 5: Comments (2 day, W2 T 6pm)
 
 **Objective:** Comments belong to tracks and to users. As a bonus, they are played at a particular position in the song
 
