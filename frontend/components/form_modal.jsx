@@ -62,7 +62,7 @@ let getStyles = function(){
       top                        : '40%',
       transform                  : "translate(-50%, -50%)",
       border                     : '1px solid rgba(240, 238, 238, 1)',
-      background                 : 'rgba(51, 51, 51, 0.85)',
+      background                 : '#fff',
       overflow                   : 'auto',
       WebkitOverflowScrolling    : 'touch',
       borderRadius               : '4px',

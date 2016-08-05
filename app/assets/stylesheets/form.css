@@ -1,8 +1,16 @@
-/**widths of various modal forms**/
+/**helps to keep forms and text centered in modal**/
 
-.profile-form {
-  width:850px;
+.form-container {
+  min-width:500px;
 }
+
+/**does anyone ever want textareas to resize?**/
+
+form textarea {
+  resize:none;
+}
+
+/**widths of various modal forms**/
 
 .login-form {
   width:400px;
@@ -11,21 +19,11 @@
 .signup-form {
   width:400px;
 }
-
-.form-container {
-  min-width:500px;
+.profile-form {
+  width:850px;
 }
 
-.modal-form-input {
-  border:1px #999 solid;
-  color: black;
-}
-
-.modal-form-submit {
-  background-color: #f50;
-  border:none;
-  color:#fff;
-}
+/**general styling and positioning of form in relation to modal**/
 
 .modal-form {
   height:200px;
@@ -34,19 +32,47 @@
   margin-top:25%;
 }
 
-.modal-form-text-spacer {
-  height:15px;
-  line-height:15px;
-  width:400px;
-  color:#fff;
-  margin-bottom:10px;
-  font-size:20px;
-}
+/**styling for the elements in the form**/
 
 .modal-form-element {
   height:50px;
   width:400px;
   font-size:20px;
-  margin-bottom:7px;
   border-radius:5px;
+}
+.modal-form-input {
+  margin-bottom:7px;
+  border:1px #999 solid;
+  color: black;
+  display:block;
+}
+
+.modal-form-submit {
+  background-color: #f50;
+  border:none;
+  color:#fff;
+}
+
+.modal-form-title {
+  font-size: 20px;
+}
+
+.modal-form-label {
+  font-size: 15px;
+  display:block;
+}
+
+.fixed-width-label {
+  width:15px;
+}
+
+/**for small words**/
+
+.modal-form-text-spacer {
+  height:15px;
+  line-height:15px;
+  width:400px;
+  color:black;
+  margin-bottom:10px;
+  font-size:20px;
 }

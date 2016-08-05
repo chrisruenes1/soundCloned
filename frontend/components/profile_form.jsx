@@ -78,82 +78,104 @@ const ProfileForm = React.createClass({
           }
         </ul>
 
-        <form className="profile-form" onSubmit={this.handleSubmit}>
+        <div className="form-container">
 
-          <h1>Edit your Profile</h1>
-          <hr/>
+          <form className="profile-form" onSubmit={this.handleSubmit}>
 
-          <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
+            <h1 className="modal-form-title">Edit your Profile</h1>
+            <hr/>
 
-          <article className="profile-form-text-info" >
+            <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
 
-            <section className="profile-form-section group-and-url">
+            <article className="profile-form-text-info" >
 
-              <input className="modal-form-input profile-long"
-                type="text"
-                defaultValue={this.state.groupName}
-                onBlur={this.update.bind(null, "group_name")}
-                placeholder="group name"
-              ></input>
+              <section className="profile-form-section">
+                <label className="modal-form-label">Display name
+                  <input className="modal-form-element modal-form-input profile-long"
+                    type="text"
+                    defaultValue={this.state.groupName}
+                    onBlur={this.update.bind(null, "group_name")}
+                    placeholder="group name"
+                  ></input>
+                </label>
 
-              <input className="modal-form-input profile-small"
-                type="text"
-                defaultValue={this.state.customUrl}
-                onBlur={this.update.bind(null, "custom_url")}
-                placeholder="Custom Url"
-              ></input>
+              </section>
+
+              <section className="profile-form-section">
+                <label className="modal-form-label">Your url (e.g. soundcloud.com/we_can_find_you_here)
+                  <input className="modal-form-element modal-form-input profile-long"
+                    type="text"
+                    defaultValue={this.state.customUrl}
+                    onBlur={this.update.bind(null, "custom_url")}
+                    placeholder="Custom Url"
+                  ></input>
+                </label>
+              </section>
+
+              <section className="profile-form-section">
+                <label className="modal-form-label">First name
+                  <input className="modal-form-element modal-form-input profile-short"
+                      type="text"
+                      defaultValue={this.state.fname}
+                      onBlur={this.update.bind(null, "fname")}
+                      placeholder="first name"
+                    ></input>
+                </label>
+
+                <label className="modal-form-label">City
+                  <input className="modal-form-element modal-form-input profile-short"
+                    type="text"
+                    defaultValue={this.state.city}
+                    onBlur={this.update.bind(null, "city")}
+                    placeholder="city"
+                    ></input>
+                </label>
+
+              </section>
+
+              <section className="profile-form-section">
+
+                <label className="modal-form-label">Last Name
+                  <input className="modal-form-element modal-form-input profile-short"
+                      type="text"
+                      defaultValue={this.state.lname}
+                      onBlur={this.update.bind(null, "lname")}
+                      placeholder="last name"
+                    ></input>
+                </label>
+
+                <label className="modal-form-label">State
+                  <input className="modal-form-element modal-form-input profile-short"
+                      type="text"
+                      defaultValue={this.state.state}
+                      onBlur={this.update.bind(null, "state")}
+                      placeholder="state"
+                    ></input>
+                </label>
+
+              </section>
+
+              <label className="modal-form-label">Your bio!
+                <textarea className="modal-form-element modal-form-input profile-textarea"
+                  defaultValue={this.state.bio}
+                  onBlur={this.update.bind(null, "bio")}
+                  placeholder="bio"
+                ></textarea>
+              </label>
+
+              <section className="profile-form-section submit-container">
+
+                <input className="modal-form-element modal-form-submit profile-submit"
+                  type="submit"
+                  value="Update Profile"
+                ></input>
 
             </section>
 
-          <section className="profile-form-section name">
+            </article>
 
-            <input className="modal-form-input profile-medium"
-                type="text"
-                defaultValue={this.state.fname}
-                onBlur={this.update.bind(null, "fname")}
-                placeholder="first name"
-              ></input>
-
-            <input className="modal-form-input profile-medium"
-                type="text"
-                defaultValue={this.state.lname}
-                onBlur={this.update.bind(null, "lname")}
-                placeholder="last name"
-              ></input>
-
-          </section>
-
-          <section className="profile-form-section city-and-state">
-
-            <input className="modal-form-input profile-medium"
-              type="text"
-              defaultValue={this.state.city}
-              onBlur={this.update.bind(null, "city")}
-              placeholder="city"
-              ></input>
-
-            <input className="modal-form-input profile-medium"
-                type="text"
-                defaultValue={this.state.state}
-                onBlur={this.update.bind(null, "state")}
-                placeholder="state"
-              ></input>
-
-          </section>
-
-          <textarea className="modal-form-input"
-            defaultValue={this.state.bio}
-            onBlur={this.update.bind(null, "bio")}
-            placeholder="bio"
-          ></textarea>
-
-          <input className="modal-form-element modal-form-submit"
-            type="submit"
-            value="Update Profile"
-          ></input>
-        </article>
-
-        </form>
+          </form>
+        </div>
       </div>
     );
   },
