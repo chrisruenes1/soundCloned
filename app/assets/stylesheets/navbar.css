@@ -30,6 +30,10 @@
   border:1px #e5e5e5 solid;
 }
 
+.reactive-navbar-text:hover{
+  color:green;
+}
+
 .logout{
   width:75px;
 }

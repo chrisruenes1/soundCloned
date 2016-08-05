@@ -18,12 +18,12 @@ const Navbar = React.createClass({
     let sessionButtons = SessionStore.isUserLoggedIn() ?
       <div>
         <li className="navbar-element">
-          Hello, <Link to={`users/url/${currentUser.custom_url}`}>
+          Hello, <u><Link className="reactive-navbar-text" to={`users/url/${currentUser.custom_url}`}>
             {currentUser.username}!
-          </Link></li>
+          </Link></u></li>
         <button className="navbar-element navbar-button reactive-navbar-button logout" onClick={this.handleLogoutSubmit}>Log Out</button>
       </div>
-      
+
 
       :
       <div>
