@@ -61,12 +61,9 @@ form textarea {
 .modal-form-label {
   font-size: 15px;
   display:block;
+  float:left;
+  width: 263px;
 }
-
-.fixed-width-label {
-  width:15px;
-}
-
 /**for small words**/
 
 .modal-form-text-spacer {

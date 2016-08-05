@@ -66,6 +66,10 @@
   margin-bottom:5px;
 }
 
+.multi-input-section {
+  width: 550px;
+}
+
 .profile-form-text-info {
   margin-top:20px;
   float: right;
