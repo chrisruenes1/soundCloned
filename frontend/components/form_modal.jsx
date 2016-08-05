@@ -23,7 +23,13 @@ const FormModal = React.createClass({
 
     return(
       <div>
-        <button className={this.props.className} onClick={this.openModal}>{this.props.buttonText}</button>
+        <button
+          className={this.props.className}
+          onClick={this.openModal}>
+
+          {this.props.buttonText}
+          
+        </button>
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
