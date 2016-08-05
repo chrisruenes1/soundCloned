@@ -45,32 +45,35 @@ const SignupForm = React.createClass({
           }
         </ul>
 
-        <form className="modal-form" onSubmit={this.handleSubmit}>
+        <div className="form-container" >
 
-          <input className="modal-form-element modal-form-input"
-            type="text"
-            value={this.state.username}
-            onChange={this.usernameChange}
-            placeholder="username"
-            ></input>
+          <form className="modal-form signup-form" onSubmit={this.handleSubmit}>
 
-          <br></br>
+            <input className="modal-form-element modal-form-input"
+              type="text"
+              value={this.state.username}
+              onChange={this.usernameChange}
+              placeholder="username"
+              ></input>
 
-          <input className="modal-form-element modal-form-input"
-            type="password"
-            value={this.state.password}
-            onChange={this.passwordChange}
-            placeholder="password"
-            ></input>
+            <br></br>
 
-          <br></br>
+            <input className="modal-form-element modal-form-input"
+              type="password"
+              value={this.state.password}
+              onChange={this.passwordChange}
+              placeholder="password"
+              ></input>
 
-          <input className="modal-form-element modal-form-submit"
-            type="submit"
-            value="Sign Up!"
-            ></input>
+            <br></br>
 
-        </form>
+            <input className="modal-form-element modal-form-submit"
+              type="submit"
+              value="Sign Up!"
+              ></input>
+
+          </form>
+        </div>
       </div>
     );
   },

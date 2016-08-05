@@ -1,3 +1,21 @@
+/**widths of various modal forms**/
+
+.profile-form {
+  width:850px;
+}
+
+.login-form {
+  width:400px;
+}
+
+.signup-form {
+  width:400px;
+}
+
+.form-container {
+  min-width:500px;
+}
+
 .modal-form-input {
   border:1px #999 solid;
   color: black;
@@ -11,7 +29,6 @@
 
 .modal-form {
   height:200px;
-  width:400px;
   text-align:center;
   margin:0 auto;
   margin-top:25%;

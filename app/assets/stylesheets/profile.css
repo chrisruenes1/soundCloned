@@ -22,12 +22,21 @@
   float: right;
 }
 
+.profile-form-text-info {
+  float: right;
+}
+
 .profile-large {
   font-size:35px;
 }
 
 .profile-small {
   font-size:25px;
+}
+
+
+.group-and-url {
+
 }
 
 .profile-user-info {

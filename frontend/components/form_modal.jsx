@@ -28,7 +28,7 @@ const FormModal = React.createClass({
           onClick={this.openModal}>
 
           {this.props.buttonText}
-          
+
         </button>
         <Modal
           className='modal'
@@ -56,7 +56,6 @@ let getStyles = function(){
       backgroundColor   : 'rgba(255, 255, 255, 0.75)'
     },
     content : {
-      width                      : '500px',
       height                     : '500px',
       position                   : 'absolute',
       left                       : '50%',

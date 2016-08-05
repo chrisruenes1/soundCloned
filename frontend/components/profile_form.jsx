@@ -78,55 +78,80 @@ const ProfileForm = React.createClass({
           }
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="profile-form" onSubmit={this.handleSubmit}>
 
-          <input className="modal-form-input profile-long"
-            type="text"
-            defaultValue={this.state.groupName}
-            onBlur={this.update.bind(null, "group_name")}
-            placeholder="group name"
-          ></input>
+          <h1>Edit your Profile</h1>
+          <hr/>
 
-        <input className="modal-form-input profile-medium"
-            type="text"
-            defaultValue={this.state.fname}
-            onBlur={this.update.bind(null, "fname")}
-            placeholder="first name"
-          ></input>
-        <input className="modal-form-input profile-medium"
-            type="text"
-            defaultValue={this.state.lname}
-            onBlur={this.update.bind(null, "lname")}
-            placeholder="last name"
-          ></input>
-        <input className="modal-form-input profile-medium"
-            type="text"
-            defaultValue={this.state.state}
-            onBlur={this.update.bind(null, "state")}
-            placeholder="state"
-          ></input>
-        <input className="modal-form-input profile-medium"
-            type="text"
-            defaultValue={this.state.city}
-            onBlur={this.update.bind(null, "city")}
-            placeholder="city"
-          ></input>
-        <input className="modal-form-input profile-small"
-            type="text"
-            defaultValue={this.state.customUrl}
-            onBlur={this.update.bind(null, "custom_url")}
-            placeholder="Custom Url"
-          ></input>
+          <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
+
+          <article className="profile-form-text-info" >
+
+            <section className="profile-form-section group-and-url">
+
+              <input className="modal-form-input profile-long"
+                type="text"
+                defaultValue={this.state.groupName}
+                onBlur={this.update.bind(null, "group_name")}
+                placeholder="group name"
+              ></input>
+
+              <input className="modal-form-input profile-small"
+                type="text"
+                defaultValue={this.state.customUrl}
+                onBlur={this.update.bind(null, "custom_url")}
+                placeholder="Custom Url"
+              ></input>
+
+            </section>
+
+          <section className="profile-form-section name">
+
+            <input className="modal-form-input profile-medium"
+                type="text"
+                defaultValue={this.state.fname}
+                onBlur={this.update.bind(null, "fname")}
+                placeholder="first name"
+              ></input>
+
+            <input className="modal-form-input profile-medium"
+                type="text"
+                defaultValue={this.state.lname}
+                onBlur={this.update.bind(null, "lname")}
+                placeholder="last name"
+              ></input>
+
+          </section>
+
+          <section className="profile-form-section city-and-state">
+
+            <input className="modal-form-input profile-medium"
+              type="text"
+              defaultValue={this.state.city}
+              onBlur={this.update.bind(null, "city")}
+              placeholder="city"
+              ></input>
+
+            <input className="modal-form-input profile-medium"
+                type="text"
+                defaultValue={this.state.state}
+                onBlur={this.update.bind(null, "state")}
+                placeholder="state"
+              ></input>
+
+          </section>
+
           <textarea className="modal-form-input"
             defaultValue={this.state.bio}
             onBlur={this.update.bind(null, "bio")}
             placeholder="bio"
           ></textarea>
 
-          <input className="modal-form-input modal-form-submit"
-              type="submit"
-              value="Update Profile"
+          <input className="modal-form-element modal-form-submit"
+            type="submit"
+            value="Update Profile"
           ></input>
+        </article>
 
         </form>
       </div>
