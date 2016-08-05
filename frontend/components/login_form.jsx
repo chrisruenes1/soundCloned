@@ -71,7 +71,7 @@ const LoginForm = React.createClass({
 
               <input className="modal-form-element modal-form-submit"
                 type="submit"
-                value="Log In!"
+                value="Sign In!"
                 ></input>
 
             </div>
