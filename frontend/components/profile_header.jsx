@@ -8,7 +8,13 @@ const ProfileHeader = React.createClass({
 
   render(){
     let editInfo = this.props.user.id === SessionStore.currentUser().id ?
-      <FormModal className="navbar-button reactive-navbar-button edit-button" buttonText="Edit Profile"><ProfileForm /></FormModal>
+      <FormModal
+        className="navbar-button reactive-navbar-button edit-button"
+        buttonText="Edit Profile">
+
+        <ProfileForm customUrl={this.props.customUrl}/>
+
+      </FormModal>
       :
       <div></div>;
     return(

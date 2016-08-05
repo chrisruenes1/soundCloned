@@ -10,27 +10,34 @@ import { hashHistory } from 'react-router';
 
 const ProfileForm = React.createClass({
   getInitialState(){
+    let user = UserStore.user();
     this.listeners = [];
-    return {user: UserStore.user(), errors:[]};
+    return {
+      userId: user.id,
+      fname: user.fname,
+      lname: user.lname,
+      groupName: user.group_name,
+      customUrl: user.custom_url,
+      city: user.city,
+      state: user.state,
+      bio: user.bio,
+      errors:[]};
   },
   update(field, e){
     let newValue = e.target.value;
-    let update = {};
-    update[field] = newValue;
-    update.id = this.state.user.id;
-    UserActions.editUser(update);
+    let updateObject = {};
+    updateObject[field] = newValue;
+    this.setState( updateObject );
   },
   handleSubmit(e){
     e.preventDefault();
     let submitData = {};
-    for (let key in this.state.user){
-      if (this.state.user[key]){
-        submitData[key] = this.state.user[key];
+    for (let key in this.state){
+      if (this.state[key]){
+        submitData[key] = this.state[key];
       }
     }
-    if (!submitData.custom_url){
-      submitData[custom_url] = user.custom_url;
-    }
+    submitData.id = this.state.userId;
     UserActions.editUser(submitData);
   },
   render(){
@@ -40,11 +47,11 @@ const ProfileForm = React.createClass({
       current_error_key++;
       return <ErrorListItem key={current_error_key} error={error} />;
     });
-    
-    if (!this.state.user.id){
+
+    if (!this.state.userId){
       return <div></div>;
     }
-    
+
     return(
       <div>
 
@@ -53,57 +60,57 @@ const ProfileForm = React.createClass({
             errorMessages
           }
         </ul>
-      
+
         <form onSubmit={this.handleSubmit}>
-          
+
           <input className="modal-form-input profile-long"
             type="text"
-            defaultValue={this.state.user.group_name}
+            defaultValue={this.state.groupName}
             onBlur={this.update.bind(null, "group_name")}
             placeholder="group name"
           ></input>
-        
+
         <input className="modal-form-input profile-medium"
             type="text"
-            defaultValue={this.state.user.fname}
+            defaultValue={this.state.fname}
             onBlur={this.update.bind(null, "fname")}
             placeholder="first name"
           ></input>
         <input className="modal-form-input profile-medium"
             type="text"
-            defaultValue={this.state.user.lname}
+            defaultValue={this.state.lname}
             onBlur={this.update.bind(null, "lname")}
             placeholder="last name"
           ></input>
         <input className="modal-form-input profile-medium"
             type="text"
-            defaultValue={this.state.user.state}
+            defaultValue={this.state.state}
             onBlur={this.update.bind(null, "state")}
             placeholder="state"
           ></input>
         <input className="modal-form-input profile-medium"
             type="text"
-            defaultValue={this.state.user.city}
+            defaultValue={this.state.city}
             onBlur={this.update.bind(null, "city")}
             placeholder="city"
           ></input>
         <input className="modal-form-input profile-small"
             type="text"
-            defaultValue={this.state.user.custom_url}
+            defaultValue={this.state.customUrl}
             onBlur={this.update.bind(null, "custom_url")}
             placeholder="Custom Url"
           ></input>
           <textarea className="modal-form-input"
-            defaultValue={this.state.user.bio}
+            defaultValue={this.state.bio}
             onBlur={this.update.bind(null, "bio")}
             placeholder="bio"
           ></textarea>
-          
+
           <input className="modal-form-input modal-form-submit"
               type="submit"
               value="Update Profile"
           ></input>
-             
+
         </form>
       </div>
     );
@@ -111,7 +118,13 @@ const ProfileForm = React.createClass({
   componentDidMount(){
     this.listeners.push(UserStore.addListener(this._onUserChange));
     this.listeners.push(ErrorStore.addListener(this._onErrorChange));
-    UserActions.fetchUser(this.props.params.customUrl);
+    //this will make sure that the state of the modal is only affected by
+    //fetches that need to happen. If the user specified in the props
+    //customUrl does not match the customUrl we fetched from the store,
+    //we need to fetch the user again.
+    if (this.props.customUrl != this.state.customUrl){
+      UserActions.fetchUser(this.props.customUrl);
+    }
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
@@ -119,9 +132,29 @@ const ProfileForm = React.createClass({
     });
   },
   _onUserChange(){
+    //little bit of handling to make sure modal stays open on initial refresh
+    let shouldClose = false;
+    if (this.state.userId){
+      shouldClose = true;
+    }
+
     let user = UserStore.user();
     hashHistory.push(`/users/url/${user.custom_url}`);
-    this.setState({user:UserStore.user()});
+    this.setState({
+      userId: user.id,
+      fname: user.fname,
+      lname: user.lname,
+      groupName: user.group_name,
+      customUrl: user.custom_url,
+      city: user.city,
+      state: user.state,
+      bio: user.bio
+    });
+
+    if (shouldClose){
+      this.props.close();
+    }
+
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.USER_PROFILE)});

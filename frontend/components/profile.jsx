@@ -9,7 +9,7 @@ const Profile = React.createClass({
   },
   render(){
     return(
-      <ProfileHeader user={this.state.user}/>
+      <ProfileHeader user={this.state.user} customUrl={this.props.params.customUrl}/>
     );
   },
   componentDidMount(){
