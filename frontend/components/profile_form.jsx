@@ -10,6 +10,7 @@ import { hashHistory } from 'react-router';
 
 const ProfileForm = React.createClass({
   getInitialState(){
+    this.listeners = [];
     return {user: UserStore.user(), errors:[]};
   },
   update(field, e){
@@ -108,9 +109,14 @@ const ProfileForm = React.createClass({
     );
   },
   componentDidMount(){
-    UserStore.addListener(this._onUserChange);
-    ErrorStore.addListener(this._onErrorChange);
+    this.listeners.push(UserStore.addListener(this._onUserChange));
+    this.listeners.push(ErrorStore.addListener(this._onErrorChange));
     UserActions.fetchUser(this.props.params.customUrl);
+  },
+  componentWillUnmount(){
+    this.listeners.forEach(function(listener){
+      listener.remove();
+    });
   },
   _onUserChange(){
     let user = UserStore.user();
