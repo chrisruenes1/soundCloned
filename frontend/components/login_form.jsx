@@ -39,15 +39,15 @@ const LoginForm = React.createClass({
 
       <div>
 
-        <ul>
-          {
-            errorMessages
-          }
-        </ul>
-
         <div className="form-container">
 
           <form className="modal-form login-form" onSubmit={this.handleSubmit}>
+
+            <ul>
+              {
+                errorMessages
+              }
+            </ul>
 
             <div className="input-container">
 
