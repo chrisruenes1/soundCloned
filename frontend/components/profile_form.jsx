@@ -26,7 +26,24 @@ const ProfileForm = React.createClass({
   update(field, e){
     let newValue = e.target.value;
     let updateObject = {};
+
+    //make sure there are no '?' in custom url,
+    //this would cause limitless pain!
+
+    if (field === "custom_url"){
+      let safe_characters = [];
+      for (let i = 0; i <= newValue.length; i++) {
+        if (newValue[i] !== '?'){
+          safe_characters.push(newValue[i]);
+        }
+      }
+      newValue = safe_characters.join("");
+    }
+
     updateObject[field] = newValue;
+
+
+
     this.setState( updateObject );
   },
   handleSubmit(e){
