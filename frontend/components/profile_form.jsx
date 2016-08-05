@@ -6,57 +6,43 @@ const ErrorStore = require('../stores/error_store');
 const ErrorListItem = require("../components/error_list_item");
 const ErrorConstants = require("../constants/error_constants");
 
+import { hashHistory } from 'react-router';
+
 const ProfileForm = React.createClass({
   getInitialState(){
-    let user = UserStore.user();
-    return {
-      groupName: user.group_name,
-      fname: user.fname,
-      lname: user.lname,
-      customUrl: user.custom_url,
-      city: user.city,
-      state: user.state,
-      bio: user.bio,
-      errors: []
-    };
+    return {user: UserStore.user(), errors:[]};
   },
-  groupNameChange(e){
-    let newGroupName = e.target.value;
-    this.setState({groupName: newGroupName});
+  update(field, e){
+    let newValue = e.target.value;
+    let update = {};
+    update[field] = newValue;
+    update.id = this.state.user.id;
+    UserActions.editUser(update);
   },
-  fnameChange(e){
-    let newFName = e.target.value;
-    this.setState({fname: newFName});
-  },
-  lnameChange(e){
-    let newLName = e.target.value;
-    this.setState({lName: newLName});
-  },
-  customUrlChange(e){
-    let newCustomUrl = e.target.value;
-    this.setState({customUrl: newCustomUrl});
-  },
-  cityChange(e){
-    let newCity = e.target.value;
-    this.setState({city: newCity});
-  },
-  stateChange(e){
-    let newState = e.target.value;
-    this.setState({stateName: newState});
-  },
-  bioChange(e){
-    let newBio = e.target.value;
-    this.setState({bio: newBio});
+  handleSubmit(e){
+    e.preventDefault();
+    let submitData = {};
+    for (let key in this.state.user){
+      if (this.state.user[key]){
+        submitData[key] = this.state.user[key];
+      }
+    }
+    if (!submitData.custom_url){
+      submitData[custom_url] = user.custom_url;
+    }
+    UserActions.editUser(submitData);
   },
   render(){
-    
     //error_stuff
-    
     let current_error_key = 0;
     let errorMessages = this.state.errors.map( (error) => {
       current_error_key++;
       return <ErrorListItem key={current_error_key} error={error} />;
     });
+    
+    if (!this.state.user.id){
+      return <div></div>;
+    }
     
     return(
       <div>
@@ -67,66 +53,56 @@ const ProfileForm = React.createClass({
           }
         </ul>
       
-        <form>
-          <input className="modal-form-input"
+        <form onSubmit={this.handleSubmit}>
+          
+          <input className="modal-form-input profile-long"
             type="text"
-            value={this.state.groupName}
-            onChange={this.groupNameChange}
+            defaultValue={this.state.user.group_name}
+            onBlur={this.update.bind(null, "group_name")}
             placeholder="group name"
           ></input>
-            
-          <br></br>
-      
-          <input className="modal-form-input"
+        
+        <input className="modal-form-input profile-medium"
             type="text"
-            value={this.state.fname}
-            onChange={this.fnameChange}
+            defaultValue={this.state.user.fname}
+            onBlur={this.update.bind(null, "fname")}
             placeholder="first name"
           ></input>
-        
-          <br></br>
-          
-          <input className="modal-form-input"
+        <input className="modal-form-input profile-medium"
             type="text"
-            value={this.state.lname}
-            onChange={this.lanmeChange}
+            defaultValue={this.state.user.lname}
+            onBlur={this.update.bind(null, "lname")}
             placeholder="last name"
           ></input>
-        
-          <br></br>
-          
-          <input className="modal-form-input"
+        <input className="modal-form-input profile-medium"
             type="text"
-            value={this.state.customUrl}
-            onChange={this.customUrlChange}
-            placeholder="profile url"
-          ></input>
-        
-          <br></br>
-          
-          <input className="modal-form-input"
-            type="text"
-            value={this.state.city}
-            onChange={this.cityChange}
-            placeholder="city"
-          ></input>
-        
-          <br></br>
-          
-          <input className="modal-form-input"
-            type="text"
-            value={this.state.state}
-            onChange={this.stateChange}
+            defaultValue={this.state.user.state}
+            onBlur={this.update.bind(null, "state")}
             placeholder="state"
           ></input>
-        
-          <br></br>
-          
-          <textarea
-            value={this.state.bio}
-            onChange={this.bioChange}
-            placeholder="your bio here"
+        <input className="modal-form-input profile-medium"
+            type="text"
+            defaultValue={this.state.user.city}
+            onBlur={this.update.bind(null, "city")}
+            placeholder="city"
+          ></input>
+        <input className="modal-form-input profile-small"
+            type="text"
+            defaultValue={this.state.user.custom_url}
+            onBlur={this.update.bind(null, "custom_url")}
+            placeholder="Custom Url"
+          ></input>
+          <textarea className="modal-form-input"
+            defaultValue={this.state.user.bio}
+            onBlur={this.update.bind(null, "bio")}
+            placeholder="bio"
           ></textarea>
+          
+          <input className="modal-form-input modal-form-submit"
+              type="submit"
+              value="Update Profile"
+          ></input>
+             
         </form>
       </div>
     );
@@ -137,7 +113,9 @@ const ProfileForm = React.createClass({
     UserActions.fetchUser(this.props.params.customUrl);
   },
   _onUserChange(){
-    this.setState({user: UserStore.user()});
+    let user = UserStore.user();
+    hashHistory.push(`/users/url/${user.custom_url}`);
+    this.setState({user:UserStore.user()});
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.USER_PROFILE)});

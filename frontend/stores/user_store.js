@@ -22,10 +22,10 @@ const _removeUser = function(){
 UserStore.__onDispatch = (payload) => {
   switch(payload.actionType){
     case UserConstants.RECEIVE_USER:
-      this.resetUser(payload.user);
+      _resetUser(payload.user);
       break;
     case UserConstants.REMOVE_USER:
-      this.removeUser();
+      _removeUser();
       break;
   }
 };

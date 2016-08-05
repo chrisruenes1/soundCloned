@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804151900) do
+ActiveRecord::Schema.define(version: 20160804201555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160804151900) do
     t.string "group_name",      default: "The Peaches",   null: false
     t.string "city",            default: "New York City", null: false
     t.string "state"
-    t.text   "bio"
-    t.string "custom_url"
+    t.text   "bio",             default: ""
+    t.string "custom_url",                                null: false
   end
 
   add_index "users", ["city"], name: "index_users_on_city", using: :btree
