@@ -39,15 +39,15 @@ const SignupForm = React.createClass({
 
       <div>
 
-        <ul>
-          {
-            errorMessages
-          }
-        </ul>
-
         <div className="form-container" >
 
           <form className="modal-form signup-form" onSubmit={this.handleSubmit}>
+
+            <ul>
+              {
+                errorMessages
+              }
+            </ul>
 
             <input className="modal-form-element modal-form-input"
               type="text"
