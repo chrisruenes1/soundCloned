@@ -9,23 +9,37 @@
 }
 
 .profile-element {
-  background-color:#333;
-  color:#fff;
-  display:block;
-  width: 200px;
+  background-color: #333;
+  color: #fff;
+  display: block;
+  width: auto;
+  margin-bottom: 3px;
+  float: left;
+  padding:3px;
+}
+
+.edit-button {
+  float: right;
+}
+
+.profile-large {
+  font-size:35px;
+}
+
+.profile-small {
+  font-size:25px;
 }
 
 .profile-user-info {
   padding-left: 250px;
   padding-top:30px;
   font-size: 25px;
+  width:300px;
 }
-
-.profile
 
 .profile-header-image {
   background:linear-gradient( to bottom right, #f50, #fff);
-  margin-left:40px;
-  margin-right:40px;
+  margin-left:100px;
+  margin-right:100px;
   height:260px;
 }
