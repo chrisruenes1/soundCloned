@@ -6,12 +6,19 @@ const SignupForm = require('./signup_form');
 const ProfileForm = require('./profile_form');
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
+const SessionConstants = require('../constants/session_constants');
+const ErrorStore = require('../stores/error_store');
+const hashHistory = require('react-router').hashHistory;
 
 const Navbar = React.createClass({
-
   handleLogoutSubmit(e){
     e.preventDefault();
     SessionActions.logout();
+  },
+  guestLogin(e){
+    e.preventDefault();
+    let submitData = SessionConstants.GUEST_CREDENTIALS;
+    SessionActions.login(submitData);
   },
   render(){
     let currentUser = SessionStore.currentUser();
@@ -24,9 +31,10 @@ const Navbar = React.createClass({
         <button className="navbar-element navbar-button reactive-navbar-button logout" onClick={this.handleLogoutSubmit}>Log Out</button>
       </div>
 
-
       :
+
       <div>
+        <li><button className="navbar-element navbar-button signup" onClick={this.guestLogin}>Guest Login</button></li>
         <li className="navbar-element navbar-button reactive-navbar-button login"><FormModal buttonText="Sign In"><LoginForm /></FormModal></li>
         <li className="navbar-element navbar-minor">or</li>
         <li className="navbar-element navbar-button signup"><FormModal buttonText="Create account"><SignupForm /></FormModal></li>
@@ -41,6 +49,21 @@ const Navbar = React.createClass({
         </ul>
       </nav>
     );
-  }
+  },
+  componentDidMount(){
+    this.listeners = [];
+    this.listeners.push(SessionStore.addListener(this._onSessionChange));
+    this.listeners.push(ErrorStore.addListener(this._onErrorChange));
+  },
+  componentWillUnmount(){
+    this.listeners.forEach((listener) => {
+      listener.remove();
+    });
+  },
+  _onSessionChange(){
+    if (SessionStore.isUserLoggedIn()){
+      hashHistory.push("/");
+    }
+  },
 });
 module.exports = Navbar;

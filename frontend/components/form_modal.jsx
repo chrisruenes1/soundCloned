@@ -56,10 +56,11 @@ let getStyles = function(){
       backgroundColor   : 'rgba(255, 255, 255, 0.75)'
     },
     content : {
-      height                     : '500px',
+      maxHeight                  : '500px',
+      height                     : '50%',
       position                   : 'absolute',
       left                       : '50%',
-      top                        : '40%',
+      top                        : '50%',
       transform                  : "translate(-50%, -50%)",
       border                     : '1px solid rgba(240, 238, 238, 1)',
       background                 : '#fff',
