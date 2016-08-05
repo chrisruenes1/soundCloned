@@ -7,7 +7,6 @@ const ProfileForm = require('./profile_form');
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const SessionConstants = require('../constants/session_constants');
-const ErrorStore = require('../stores/error_store');
 const hashHistory = require('react-router').hashHistory;
 
 const Navbar = React.createClass({
@@ -53,7 +52,6 @@ const Navbar = React.createClass({
   componentDidMount(){
     this.listeners = [];
     this.listeners.push(SessionStore.addListener(this._onSessionChange));
-    this.listeners.push(ErrorStore.addListener(this._onErrorChange));
   },
   componentWillUnmount(){
     this.listeners.forEach((listener) => {
