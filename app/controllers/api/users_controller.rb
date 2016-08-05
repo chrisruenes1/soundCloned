@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status:422
     end
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -34,7 +34,7 @@ class Api::UsersController < ApplicationController
       render json: ["Sorry, we couldn't find that user!"], status:404
     end
   end
-  
+
   def update_by_url
     @user = User.find_by(custom_url: params[:custom_url])
     if @user.update(user_params)
