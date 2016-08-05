@@ -35,7 +35,7 @@ const FormModal = React.createClass({
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          style={getStyles()}
+          style={getStyles.bind(this)()}
         >
         {newChildren}
         </Modal>
@@ -46,6 +46,26 @@ const FormModal = React.createClass({
 });
 
 let getStyles = function(){
+
+  let height;
+  let maxHeight;
+  let width;
+  let maxWidth;
+
+  if (this.props.big){
+    height = '85%';
+    maxHeight = '535px';
+    maxWidth='920px';
+    width='60%';
+  }
+
+  else {
+    height = '55%';
+    maxHeight = '500px';
+    width = "auto";
+    maxWidth = "auto";
+  }
+
   return {
     overlay : {
       position          : 'fixed',
@@ -56,8 +76,10 @@ let getStyles = function(){
       backgroundColor   : 'rgba(255, 255, 255, 0.75)'
     },
     content : {
-      maxHeight                  : '500px',
-      height                     : '50%',
+      width                      : width,
+      maxWidth                   : maxWidth,
+      maxHeight                  : maxHeight,
+      height                     : height,
       position                   : 'absolute',
       left                       : '50%',
       top                        : '50%',
