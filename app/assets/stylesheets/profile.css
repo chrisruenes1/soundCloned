@@ -1,0 +1,31 @@
+.profile-picture {
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  float:left;
+  position:absolute;
+  margin-left:35px;
+  margin-top:20px;
+}
+
+.profile-element {
+  background-color:#333;
+  color:#fff;
+  display:block;
+  width: 200px;
+}
+
+.profile-user-info {
+  padding-left: 250px;
+  padding-top:30px;
+  font-size: 25px;
+}
+
+.profile
+
+.profile-header-image {
+  background:linear-gradient( to bottom right, #f50, #fff);
+  margin-left:40px;
+  margin-right:40px;
+  height:260px;
+}
