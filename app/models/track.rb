@@ -11,5 +11,4 @@ class Track < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :composer_id
   )
-
 end
