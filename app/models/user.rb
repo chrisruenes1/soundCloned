@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :ensure_custom_url
 
+  has_many(
+    :tracks,
+    class_name: "Track",
+    primary_key: :id,
+    foreign_key: :composer_id
+  )
+
   def self.generate_session_token
     session_token = SecureRandom::urlsafe_base64(16)
     while User.exists?(session_token: session_token)
@@ -36,7 +43,7 @@ class User < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end
-  
+
   def ensure_custom_url
     self.custom_url ||= self.username
   end
