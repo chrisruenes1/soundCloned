@@ -49,43 +49,6 @@
 
 /**profile form classes**/
 
-.profile-long {
-  width:520px;
-  height:40px
-}
-
-.profile-short {
-  width:255px;
-  height:25px;
-  margin-right:5px;
-}
-
-.profile-form-section {
-  display:block;
-  float:left;
-  margin-bottom:5px;
-}
-
-.multi-input-section {
-  width: 550px;
-}
-
-.profile-form-text-info {
-  margin-top:20px;
-  float: right;
-  width:525px;
-}
-
-.profile-textarea {
-  width:515px;
-  height:100px;
-  margin-bottom:5px;
-}
-
-.submit-container {
-  width:500px;
-}
-
 .profile-submit {
   margin: 0 auto;
   margin-top:5px;

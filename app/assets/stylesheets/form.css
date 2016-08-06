@@ -64,6 +64,43 @@ form textarea {
   float:left;
   width: 263px;
 }
+
+.modal-input-long {
+  width:520px;
+  height:40px
+}
+
+.modal-input-short {
+  width:255px;
+  height:25px;
+  margin-right:5px;
+}
+
+.multi-input-section {
+  width: 550px;
+}
+
+.modal-form-text-info {
+  margin-top:20px;
+  float: right;
+  width:525px;
+}
+
+.modal-form-section {
+  display:block;
+  float:left;
+  margin-bottom:5px;
+}
+
+.moda-form-textarea {
+  width:515px;
+  height:100px;
+  margin-bottom:5px;
+}
+
+.submit-container {
+  width:500px;
+}
 /**for small words**/
 
 .modal-form-text-spacer {

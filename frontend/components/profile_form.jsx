@@ -88,68 +88,68 @@ const ProfileForm = React.createClass({
 
             <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
 
-            <article className="profile-form-text-info" >
+            <article className="modal-form-text-info" >
 
-              <section className="profile-form-section">
+              <section className="modal-form-section">
                 <label className="modal-form-label">Display name
-                  <input className="modal-form-element modal-form-input profile-long"
+                  <input className="modal-form-element modal-form-input modal-input-long"
                     type="text"
                     defaultValue={this.state.groupName}
-                    onBlur={this.update.bind(null, "group_name")}
+                    onChange={this.update.bind(null, "group_name")}
                     placeholder="group name"
                   ></input>
                 </label>
 
               </section>
 
-              <section className="profile-form-section">
+              <section className="modal-form-section">
                 <label className="modal-form-label">Your url (e.g. soundcloud.com/we_can_find_you_here)
-                  <input className="modal-form-element modal-form-input profile-long"
+                  <input className="modal-form-element modal-form-input modal-input-long"
                     type="text"
                     defaultValue={this.state.customUrl}
-                    onBlur={this.update.bind(null, "custom_url")}
+                    onChange={this.update.bind(null, "custom_url")}
                     placeholder="Custom Url"
                   ></input>
                 </label>
               </section>
 
-              <section className="profile-form-section multi-input-section">
+              <section className="modal-form-section multi-input-section">
                 <label className="modal-form-label">First name
-                  <input className="modal-form-element modal-form-input profile-short"
+                  <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"
                       defaultValue={this.state.fname}
-                      onBlur={this.update.bind(null, "fname")}
+                      onChange={this.update.bind(null, "fname")}
                       placeholder="first name"
                     ></input>
                 </label>
 
                 <label className="modal-form-label">Last Name
-                  <input className="modal-form-element modal-form-input profile-short"
+                  <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"
                       defaultValue={this.state.lname}
-                      onBlur={this.update.bind(null, "lname")}
+                      onChange={this.update.bind(null, "lname")}
                       placeholder="last name"
                     ></input>
                 </label>
 
               </section>
 
-              <section className="profile-form-section multi-input-section">
+              <section className="modal-form-section multi-input-section">
 
                 <label className="modal-form-label">City
-                  <input className="modal-form-element modal-form-input profile-short"
+                  <input className="modal-form-element modal-form-input modal-input-short"
                     type="text"
                     defaultValue={this.state.city}
-                    onBlur={this.update.bind(null, "city")}
+                    onChange={this.update.bind(null, "city")}
                     placeholder="city"
                     ></input>
                 </label>
 
                 <label className="modal-form-label">State
-                  <input className="modal-form-element modal-form-input profile-short"
+                  <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"
                       defaultValue={this.state.state}
-                      onBlur={this.update.bind(null, "state")}
+                      onChange={this.update.bind(null, "state")}
                       placeholder="state"
                     ></input>
                 </label>
@@ -157,14 +157,14 @@ const ProfileForm = React.createClass({
               </section>
 
               <label className="modal-form-label">Your bio!
-                <textarea className="modal-form-element modal-form-input profile-textarea"
+                <textarea className="modal-form-element modal-form-input modal-form-textarea"
                   defaultValue={this.state.bio}
-                  onBlur={this.update.bind(null, "bio")}
+                  onChange={this.update.bind(null, "bio")}
                   placeholder="bio"
                 ></textarea>
               </label>
 
-              <section className="profile-form-section submit-container">
+              <section className="modal-form-section submit-container">
 
                 <input className="modal-form-element modal-form-submit profile-submit"
                   type="submit"
