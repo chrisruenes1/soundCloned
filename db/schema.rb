@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806192519) do
+ActiveRecord::Schema.define(version: 20160806235528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tracks", force: :cascade do |t|
-    t.string   "title",                   null: false
-    t.integer  "composer_id",             null: false
+    t.string   "title",                                  null: false
+    t.integer  "composer_id",                            null: false
     t.string   "album"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -28,10 +28,15 @@ ActiveRecord::Schema.define(version: 20160806192519) do
     t.string   "audio_file_content_type"
     t.integer  "audio_file_file_size"
     t.datetime "audio_file_updated_at"
+    t.text     "description"
+    t.boolean  "public",                  default: true
+    t.string   "genre"
   end
 
   add_index "tracks", ["album"], name: "index_tracks_on_album", using: :btree
   add_index "tracks", ["composer_id"], name: "index_tracks_on_composer_id", using: :btree
+  add_index "tracks", ["genre"], name: "index_tracks_on_genre", using: :btree
+  add_index "tracks", ["public"], name: "index_tracks_on_public", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string "fname"

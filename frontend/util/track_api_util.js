@@ -21,22 +21,26 @@ module.exports = {
       }
     });
   },
-  createTrack: function(track, success, error){
+  createTrack: function(formData, success, error){
     $.ajax({
       url:`api/tracks`,
       type:"POST",
-      data: { track: track },
+      data: formData,
+      contentType: false,
+      processData: false,
       success,
       error: function(xhr){
         error(ErrorConstants.CREATE_TRACK, xhr.responseJSON);
       }
     });
   },
-  editTrack: function(track, success, error){
+  editTrack: function(formData, success, error){
     $.ajax({
       url:`api/tracks/${track.id}`,
       type:"PATCH",
-      data: { track: track },
+      data: formData,
+      contentType: false,
+      processData: false,
       success,
       error: function(xhr){
         error(ErrorConstants.UPDATE_TRACK, xhr.responseJSON);

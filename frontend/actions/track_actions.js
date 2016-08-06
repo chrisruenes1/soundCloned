@@ -8,16 +8,16 @@ module.exports = {
     TrackAPIUtil.fetchAllTracks(this.receiveAllTracks);
   },
   fetchTrack(id){
-    TrackApiUtil.fetchTrack(id, this.receiveSingleTrack);
+    TrackAPIUtil.fetchTrack(id, this.receiveSingleTrack);
   },
   createTrack(track){
-    TrackApiUtil.createTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
+    TrackAPIUtil.createTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
   },
   editTrack(track){
-    TrackApiUtil.updateTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
+    TrackAPIUtil.updateTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
   },
   deleteTrack(track){
-    TrackApiUtil.deleteTrack(track, this.removeTrack);
+    TrackAPIUtil.deleteTrack(track, this.removeTrack);
   },
   receiveAllTracks(tracks){
     AppDispatcher.dispatch({

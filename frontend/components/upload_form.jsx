@@ -1,18 +1,29 @@
 const React = require('react');
 const ErrorListItem = require('./error_list_item');
+const TrackActions = require('../actions/track_actions');
 
 const UploadForm = React.createClass({
   getInitialState(){
     return {
-      public:false,
+      public:true,
       title:"",
       genre:"",
       description:"",
+      imageFile: null,
+      imageUrl: null,
       errors:[]
     };
   },
   handleSubmit(e){
-    console.log("handleSubmitCalled");
+    e.preventDefault();
+    var formData = new FormData();
+
+    formData.append("track[public]", this.state.public);
+    formData.append("track[genre]", this.state.genre);
+    formData.append("track[description]", this.state.description);
+    formData.append("track[image]", this.state.imageFile);
+
+    TrackActions.createTrack(formData);
   },
   update(field, e){
     let newValue = e.target.value;
@@ -23,10 +34,25 @@ const UploadForm = React.createClass({
     this.setState( updateObject );
   },
 
+  updateImageFile: function (e) {
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ imageFile: file, imageUrl: fileReader.result} );
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  },
+
   render(){
-    let errorMessages = this.state.errors.map(function(error){
-      return <ErrorListItem error={error} />;
+    //error_stuff
+    let current_error_key = 0;
+    let errorMessages = this.state.errors.map( (error) => {
+      current_error_key++;
+      return <ErrorListItem key={current_error_key} error={error} />;
     });
+
     return(
       <div>
 
@@ -43,25 +69,23 @@ const UploadForm = React.createClass({
             <h1 className="modal-form-title">Upload to SoundCloned</h1>
             <hr/>
 
-            <img className="profile-picture" src="http://assets9.classicfm.com/2015/51/danny-elfman-1450780658-article-0.jpg" />
+            <img className="track-image" src={this.state.imageUrl}/>
 
             <label>Public
               <input
                 type="radio"
-                name="visibility"
-                value="public"
+                name="privacy"
                 checked={this.state.public}
-                onChange={this.update}
+                onChange={this.update.bind(null, "public")}
               ></input>
             </label>
 
             <label>Private
               <input
                 type="radio"
-                name="visibility"
-                value="private"
+                name="privacy"
                 checked={!this.state.public}
-                onChange={this.update}
+                onChange={this.update.bind(null, "public")}
                 ></input>
             </label>
 
@@ -88,8 +112,15 @@ const UploadForm = React.createClass({
                       placeholder="genre"
                     ></input>
                 </label>
-              </section>
 
+                <label className="modal-form-label">Track Image
+                  <input className="modal-form-element modal-form-input"
+                    type="file"
+                    onChange={this.updateImageFile}
+                    ></input>
+                </label>
+
+              </section>
 
               <label className="modal-form-label">Description
                 <textarea className="modal-form-element modal-form-input modal-form-textarea"
@@ -106,7 +137,7 @@ const UploadForm = React.createClass({
                   value="Save"
                 ></input>
 
-            </section>
+              </section>
 
             </article>
 
