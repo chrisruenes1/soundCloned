@@ -50,9 +50,7 @@ const ProfileForm = React.createClass({
     e.preventDefault();
     let submitData = {};
     for (let key in this.state){
-      if (this.state[key]){
-        submitData[key] = this.state[key];
-      }
+      submitData[key] = this.state[key];
     }
     submitData.id = this.state.userId;
     UserActions.editUser(submitData);
@@ -76,15 +74,14 @@ const ProfileForm = React.createClass({
 
           <form className="profile-form" onSubmit={this.handleSubmit}>
 
+            <h1 className="modal-form-title">Edit your Profile</h1>
+            <hr/>
 
             <ul>
               {
                 errorMessages
               }
             </ul>
-
-            <h1 className="modal-form-title">Edit your Profile</h1>
-            <hr/>
 
             <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
 
