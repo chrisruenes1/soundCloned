@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file name="NoMoreHeroes-NineToLife_vbr_mp3.zip" source="derivative">
+    <format>VBR ZIP</format>
+    <original>NoMoreHeroes-NineToLife.mp3</original>
+    <md5>f78e312f3115166a99fd76eaf566a8e3</md5>
+    <mtime>1239741455</mtime>
+    <size>3951186</size>
+    <crc32>17673015</crc32>
+    <sha1>2cf713efe64641225f6d5bc154428dbccdb4f3be</sha1>
+    <length>246.95</length>
+    <height>0</height>
+    <width>0</width>
+  </file>
+  <file name="NoMoreHeroes-NineToLife.ogg" source="derivative">
+    <format>Ogg Vorbis</format>
+    <original>NoMoreHeroes-NineToLife.mp3</original>
+    <md5>1dcb227cfc215ed10ed1b85f153a1340</md5>
+    <mtime>1239741455</mtime>
+    <size>4206122</size>
+    <crc32>45d470cc</crc32>
+    <sha1>04097fa7bd07cbf2bc92cc22a2b0081c8bcf8320</sha1>
+    <length>245.51</length>
+    <height>0</height>
+    <width>0</width>
+  </file>
+  <file name="NoMoreHeroes-NineToLife.mp3" source="original">
+    <title>NO MORE HEROES - NINE TO LIFE</title>
+    <format>VBR MP3</format>
+    <md5>1908deb97b1f28133cec7b3b230440a5</md5>
+    <mtime>1239741371</mtime>
+    <size>3951000</size>
+    <crc32>e62188cf</crc32>
+    <sha1>391a4e6b9d53f8de991b0e227608a7efa3ff254d</sha1>
+    <length>246.94</length>
+    <height>0</height>
+    <width>0</width>
+  </file>
+  <file name="NoMoreHeroes-NineToLife_vbr.m3u" source="derivative">
+    <format>VBR M3U</format>
+    <original>NoMoreHeroes-NineToLife.mp3</original>
+    <md5>66ad88e234e40b2622f27aba0a799f1d</md5>
+    <mtime>1239741455</mtime>
+    <size>84</size>
+    <crc32>eb9ea859</crc32>
+    <sha1>c7d4bc6da0506406bc3e03116492ff467ff72df7</sha1>
+    <length>0</length>
+    <height>0</height>
+    <width>0</width>
+  </file>
+  <file name="NoMoreHeroes-NineToLife_spectrogram.png" source="derivative">
+    <format>Spectrogram</format>
+    <original>NoMoreHeroes-NineToLife.mp3</original>
+    <mtime>1416703568</mtime>
+    <size>308353</size>
+    <md5>ad9b6fcc5270021b0456a8cc1f8ba479</md5>
+    <crc32>d4af3e65</crc32>
+    <sha1>ead0aa43238f54dbd8d98d8b3252e3fbe6ad040c</sha1>
+  </file>
+  <file name="NoMoreHeroes-NineToLife.png" source="derivative">
+    <format>PNG</format>
+    <original>NoMoreHeroes-NineToLife.mp3</original>
+    <mtime>1416703564</mtime>
+    <size>5114</size>
+    <md5>7c7571e81e3a17f2fa68d97ff4f52aad</md5>
+    <crc32>a75deb36</crc32>
+    <sha1>8163d205458799f697d6e4cd1680e58863984f51</sha1>
+  </file>
+  <file name="NoMoreHeroes-NineToLife_meta.xml" source="original">
+    <format>Metadata</format>
+    <mtime>1466852108</mtime>
+    <size>666</size>
+    <md5>3f040048ad6900340777ff58c7e1b751</md5>
+    <crc32>c1fe376e</crc32>
+    <sha1>723beadc19c2c145eea9abc23cfe87bc92b71d3c</sha1>
+  </file>
+  <file name="NoMoreHeroes-NineToLife_archive.torrent" source="metadata">
+    <btih>f6b91e86329bfbb5082b0500c63a46e0f51acd4e</btih>
+    <mtime>1466852109</mtime>
+    <size>2632</size>
+    <md5>d46b940e91d45be06d67f0401a7eb111</md5>
+    <crc32>7f429ed9</crc32>
+    <sha1>551859e3be4523c6adda534e5e11d90a96ddb4f5</sha1>
+    <format>Archive BitTorrent</format>
+  </file>
+  <file name="NoMoreHeroes-NineToLife_files.xml" source="original">
+    <format>Metadata</format>
+    <md5>cd3433eab4685a1c41c8b03060b4dde9</md5>
+  </file>
+</files>
