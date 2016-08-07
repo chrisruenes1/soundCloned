@@ -14,10 +14,13 @@ const TrackIndexItem = React.createClass({
     );
   },
   playTrack(){
+    console.log("play called");
     let audio = new Audio(this.props.track.audio_file_url);
-      audio.load();
-      audio.play();
-  }
+      audio.addEventListener("canplaythrough", function(){
+        audio.play();
+        setInterval(function(){console.log(audio.currentTime);}, 1000);
+      });
+    }
 });
 
 module.exports = TrackIndexItem;
