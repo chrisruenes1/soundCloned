@@ -121,6 +121,11 @@ const UploadForm = React.createClass({
       return <ErrorListItem key={current_error_key} error={error} />;
     });
 
+    let image = this.state.imageUrl ?
+      <img className="upload-form-image" src={this.state.imageUrl}/>
+      :
+      <header className="upload-form-image image-placeholder" />;
+
     return(
       <div>
 
@@ -138,27 +143,7 @@ const UploadForm = React.createClass({
               }
             </ul>
 
-            <img className="upload-form-image" src={this.state.imageUrl}/>
-
-            <label>Public
-              <input
-                type="radio"
-                name="privacy"
-                value="public"
-                checked={this.state.public}
-                onChange={this.update.bind(null, "public")}
-              ></input>
-            </label>
-
-            <label>Private
-              <input
-                type="radio"
-                name="privacy"
-                value="private"
-                checked={!this.state.public}
-                onChange={this.update.bind(null, "public")}
-                ></input>
-            </label>
+            {image}
 
             <article className="modal-form-text-info" >
 
@@ -174,7 +159,29 @@ const UploadForm = React.createClass({
 
               </section>
 
-              <section className="modal-form-section multi-input-section">
+              <section className="modal-form-section">
+                <label>Public
+                  <input
+                    type="radio"
+                    name="privacy"
+                    value="public"
+                    checked={this.state.public}
+                    onChange={this.update.bind(null, "public")}
+                    ></input>
+                </label>
+
+                <label>Private
+                  <input
+                    type="radio"
+                    name="privacy"
+                    value="private"
+                    checked={!this.state.public}
+                    onChange={this.update.bind(null, "public")}
+                    ></input>
+                </label>
+              </section>
+
+              <section className="modal-form-section">
                 <label className="modal-form-label">Genre
                   <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"

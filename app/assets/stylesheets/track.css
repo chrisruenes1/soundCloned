@@ -6,10 +6,16 @@
 .upload-form-image {
   width: 260px;
   height: 260px;
-  background-image:linear-gradient(to bottom right, red, blue));
+  float:left;
+  position:absolute;
 }
 
 .upload-form-input-long {
   width:470px;
   height: 25px;
+}
+
+.image-placeholder {
+
+  background-image: linear-gradient(135deg,#846170,#70929c)
 }
