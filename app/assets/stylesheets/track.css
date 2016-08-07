@@ -114,3 +114,22 @@
   height: 130px;
   line-height: 20px
 }
+
+.upload-submit {
+  color:#fff;
+  background-color:#f50;
+  border-radius: 3px;
+  float:right;
+  height:25px;
+  padding:2px 11px 2px 10px;
+}
+
+.horizontal-radio-button-container {
+  width:100%;
+  position:relative;
+}
+
+.radio-buttons {
+  position:absolute;
+  left:0;
+}
