@@ -17,7 +17,8 @@ const UploadForm = React.createClass({
       imageUrl: null,
       trackFile: null,
       trackUrl: null,
-      errors:[]
+      errors:[],
+      success_message:""
     };
   },
   handleSubmit(e){
@@ -107,137 +108,155 @@ const UploadForm = React.createClass({
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name) });
+      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name), success_message: `Successfully uploaded "${file.name}"` });
     };
     if (file) {
       fileReader.readAsDataURL(file);
     }
   },
+
+  triggerImageFileInput: function(e) {
+    e.preventDefault();
+    $("#image-file-input").trigger('click');
+  },
+
+  triggerTrackFileInput: function(e) {
+    e.preventDefault();
+    $("#track-file-input").trigger('click');
+  },
+
   render(){
-    //error_stuff
+
     let current_error_key = 0;
     let errorMessages = this.state.errors.map( (error) => {
       current_error_key++;
       return <ErrorListItem key={current_error_key} error={error} />;
     });
 
-    let image = this.state.imageUrl ?
-      <img className="upload-form-image" src={this.state.imageUrl}/>
-      :
-      <header className="upload-form-image image-placeholder" />;
+    let errors =
+    <ul>
+      {
+        errorMessages
+      }
+    </ul>;
 
-    return(
-      <div>
+    let success = <span className="success">{this.state.success_message}</span>;
 
-        <div className="form-container">
+    let messages =
+      <div className="message-container">
+        {errors}
+        {success}
+      </div>;
 
-          <form className="upload-form" onSubmit={this.handleSubmit}>
+    let image = this.state.imageUrl ? <img className="upload-form-image" src={this.state.imageUrl} /> : <div></div>;
 
+    let imageWithButton = <header className="upload-form-image image-placeholder">
+      <div className="image-overlay">
+        {image}
+        <div className="image-button-positioner">
+          <div className="image-button-container">
+            <button onClick={this.triggerImageFileInput} className="image-button">Update image</button>
+            <input type="file" className="hidden-file-input" id="image-file-input" onChange={this.updateImageFile} />
+          </div>
+        </div>
+      </div>
+    </header>;
+
+    let textInfo =
+      <article className = "upload-modal-form-text-info">
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Title<span className="required">*</span>
+            <input className="modal-form-element modal-form-input upload-form-input upload-form-input-long"
+              type="text"
+              value={this.state.title}
+              onChange={this.update.bind(null, "title")}
+              placeholder="title"
+              ></input>
+          </label>
+        </section>
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Genre
+            <input className="modal-form-element modal-form-input upload-form-input upload-form-input-short"
+              type="text"
+              value={this.state.genre}
+              onChange={this.update.bind(null, "genre")}
+              placeholder="genre"
+              ></input>
+          </label>
+        </section>
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Description
+            <textarea className="modal-form-input upload-form-input upload-form-textarea"
+              value={this.state.description}
+              onChange={this.update.bind(null, "description")}
+              placeholder="Describe your track"
+              ></textarea>
+          </label>
+        </section>
+
+        <section className="modal-form-section">
+          <div className="horizontal-radio-button-container">
+            <span className="radio-buttons">Track will be
+              <label htmlFor="public-radio"> public </label>
+                <input
+                  id="public-radio"
+                  type="radio"
+                  name="privacy"
+                  value="public"
+                  checked={this.state.public}
+                  onChange={this.update.bind(null, "public")}
+                ></input>
+
+
+              <label htmlFor="private-radio"> private </label>
+                <input
+                  id="private-radio"
+                  type="radio"
+                  name="privacy"
+                  value="private"
+                  checked={!this.state.public}
+                  onChange={this.update.bind(null, "public")}
+                ></input>
+            </span>
+            <input className="upload-submit"
+              type="submit"
+              value="Save"
+            ></input>
+          </div>
+        </section>
+
+      </article>;
+
+
+    return (
+      <div className="form-container">
+
+        <form className="upload-form" onSubmit={this.handleSubmit}>
+
+          <div className="upload-form-header-container">
 
             <h1 className="modal-form-title">Upload to SoundCloned</h1>
-            <hr/>
 
-            <ul>
-              {
-                errorMessages
-              }
-            </ul>
-
-            <div className='upload-form-content-container'>
-
-              <div className="upload-image-container">
-                {image}
-                <section className="image-chooser">
-                  <button>chooseAnImage</button>
-                </section>
-              </div>
-
-
-              <article className="upload-modal-form-text-info" >
-
-                <section className="modal-form-section">
-                  <label className="upload-modal-form-label">Title<span className="required">*</span>
-                    <input className="modal-form-element modal-form-input upload-form-input-long"
-                      type="text"
-                      value={this.state.title}
-                      onChange={this.update.bind(null, "title")}
-                      placeholder="title"
-                      ></input>
-                  </label>
-
-                </section>
-
-                <section className="modal-form-section">
-                  <label>Public
-                    <input
-                      type="radio"
-                      name="privacy"
-                      value="public"
-                      checked={this.state.public}
-                      onChange={this.update.bind(null, "public")}
-                      ></input>
-                  </label>
-
-                  <label>Private
-                    <input
-                      type="radio"
-                      name="privacy"
-                      value="private"
-                      checked={!this.state.public}
-                      onChange={this.update.bind(null, "public")}
-                      ></input>
-                  </label>
-                </section>
-
-                <section className="modal-form-section">
-                  <label className="upload-modal-form-label">Genre
-                    <input className="modal-form-element modal-form-input modal-input-short"
-                      type="text"
-                      value={this.state.genre}
-                      onChange={this.update.bind(null, "genre")}
-                      placeholder="genre"
-                      ></input>
-                  </label>
-
-                  <label className="upload-modal-form-label">Track Image
-                    <input className="modal-form-element modal-form-input"
-                      type="file"
-                      onChange={this.updateImageFile}
-                      ></input>
-                  </label>
-
-                  <label className="upload-modal-form-label">Track
-                    <input className="modal-form-element modal-form-input"
-                      type="file"
-                      onChange={this.updateTrackFile}
-                      ></input>
-                  </label>
-
-                </section>
-
-                <label className="upload-modal-form-label">Description
-                  <textarea className="modal-form-element modal-form-input modal-form-textarea"
-                    value={this.state.description}
-                    onChange={this.update.bind(null, "description")}
-                    placeholder="description"
-                    ></textarea>
-                </label>
-
-                <section className="modal-form-section submit-container">
-
-                  <input className="modal-form-element modal-form-submit upload-submit"
-                    type="submit"
-                    value="Save"
-                    ></input>
-
-                </section>
-
-              </article>
-
+            <div className="track-button-container">
+              <button onClick={this.triggerTrackFileInput} className="track-button">Choose a file to upload</button>
+              <input type="file" className="hidden-file-input" id="track-file-input" onChange={this.updateTrackFile} />
             </div>
 
-          </form>
-        </div>
+          </div>
+
+          <hr/>
+
+          {messages}
+
+          <div className="group upload-form-content-container">
+              {imageWithButton}
+              {textInfo}
+          </div>
+
+        </form>
       </div>
     );
   },

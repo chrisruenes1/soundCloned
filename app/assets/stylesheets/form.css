@@ -93,6 +93,7 @@ form textarea {
   display:block;
   float:left;
   margin-bottom:5px;
+  width:100%;
 }
 
 .modal-form-textarea {
@@ -139,7 +140,6 @@ form h1 {
 }
 
 .success {
-  color:#f50;
   display:block;
 
 }
