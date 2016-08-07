@@ -181,16 +181,6 @@ const UploadForm = React.createClass({
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.CREATE_TRACK)});
-  },
-  resetForm(){
-    this.setState({
-      public:true,
-      title:"",
-      genre:"",
-      description:"",
-      imageFile: null,
-      imageUrl: null
-    });
   }
 });
 
