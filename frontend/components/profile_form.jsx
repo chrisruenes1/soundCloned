@@ -54,6 +54,7 @@ const ProfileForm = React.createClass({
     }
     submitData.id = this.state.userId;
     UserActions.editUser(submitData);
+    this.resetForm();
   },
   render(){
     //error_stuff
@@ -220,6 +221,18 @@ const ProfileForm = React.createClass({
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.USER_PROFILE)});
+  },
+  reset_form(){
+    this.setState({
+      userId: "",
+      fname: "",
+      lname: "",
+      groupName: "",
+      customUrl: "",
+      city: "",
+      state: "",
+      bio: ""
+    });
   }
 });
 
