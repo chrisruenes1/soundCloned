@@ -33,8 +33,23 @@ const UploadForm = React.createClass({
     this.resetForm();
   },
   update(field, e){
-    let newValue = e.target.value;
     let updateObject = {};
+    let newValue;
+
+
+    //parse radio buttons as booleans
+    if (field === "public"){
+      if (e.target.value === "public"){
+        newValue = true;
+      }
+      else {
+        newValue = false;
+      }
+    }
+
+    else {
+      newValue = e.target.value;
+    }
 
     updateObject[field] = newValue;
 
@@ -83,6 +98,7 @@ const UploadForm = React.createClass({
               <input
                 type="radio"
                 name="privacy"
+                value="public"
                 checked={this.state.public}
                 onChange={this.update.bind(null, "public")}
               ></input>
@@ -92,6 +108,7 @@ const UploadForm = React.createClass({
               <input
                 type="radio"
                 name="privacy"
+                value="private"
                 checked={!this.state.public}
                 onChange={this.update.bind(null, "public")}
                 ></input>
