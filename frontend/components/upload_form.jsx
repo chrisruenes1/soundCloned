@@ -1,9 +1,12 @@
 const React = require('react');
 const ErrorListItem = require('./error_list_item');
 const TrackActions = require('../actions/track_actions');
+const SessionStore = require('../stores/session_store');
+const ErrorStore = require('../stores/error_store');
 
 const UploadForm = React.createClass({
   getInitialState(){
+    this.listeners = [];
     return {
       public:true,
       title:"",
@@ -18,12 +21,14 @@ const UploadForm = React.createClass({
     e.preventDefault();
     var formData = new FormData();
 
+    formData.append("track[title]", this.state.title);
+    formData.append("track[composer_id]", SessionStore.currentUser().id);
     formData.append("track[public]", this.state.public);
     formData.append("track[genre]", this.state.genre);
     formData.append("track[description]", this.state.description);
     formData.append("track[image]", this.state.imageFile);
 
-    TrackActions.createTrack(formData);
+    TrackActions.createTrack(formData, this.props.close);
   },
   update(field, e){
     let newValue = e.target.value;
@@ -145,6 +150,17 @@ const UploadForm = React.createClass({
         </div>
       </div>
     );
+  },
+  componentDidMount(){
+    this.listeners.push(ErrorStore.addListener(this._onErrorChange));
+  },
+  componentWillUnmount(){
+    this.listeners.forEach(function(listener){
+      listener.remove();
+    });
+  },
+  _onErrorChange(){
+    this.setState({errors:ErrorStore.errors(ErrorConstants.CREATE_TRACK)});
   }
 });
 
