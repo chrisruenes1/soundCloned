@@ -12,7 +12,7 @@ class Api::TracksController < ApplicationController
     if @track.save
       render 'api/tracks/show'
     else
-      render json: @track.errors.full_messages
+      render json: @track.errors.full_messages, status: 422
     end
   end
 
@@ -21,7 +21,7 @@ class Api::TracksController < ApplicationController
     if @track.update(track_params)
       render 'api/tracks/show'
     else
-      render json: @track.errors.full_messages
+      render json: @track.errors.full_messages, status: 422
     end
   end
 
@@ -30,7 +30,7 @@ class Api::TracksController < ApplicationController
     if @track.destroy
       render 'api/tracks/show'
     else
-      render json: @track.errors.full_messages
+      render json: @track.errors.full_messages, status: 422
     end
   end
 

@@ -3,6 +3,7 @@ const ErrorListItem = require('./error_list_item');
 const TrackActions = require('../actions/track_actions');
 const SessionStore = require('../stores/session_store');
 const ErrorStore = require('../stores/error_store');
+const ErrorConstants = require('../constants/error_constants');
 
 const UploadForm = React.createClass({
   getInitialState(){
@@ -65,14 +66,15 @@ const UploadForm = React.createClass({
 
           <form className="upload-form" onSubmit={this.handleSubmit}>
 
+
+            <h1 className="modal-form-title">Upload to SoundCloned</h1>
+            <hr/>
+
             <ul>
               {
                 errorMessages
               }
             </ul>
-
-            <h1 className="modal-form-title">Upload to SoundCloned</h1>
-            <hr/>
 
             <img className="track-image" src={this.state.imageUrl}/>
 
