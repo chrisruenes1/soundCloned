@@ -15,6 +15,8 @@ const UploadForm = React.createClass({
       description:"",
       imageFile: null,
       imageUrl: null,
+      trackFile: null,
+      trackUrl: null,
       errors:[]
     };
   },
@@ -28,9 +30,9 @@ const UploadForm = React.createClass({
     formData.append("track[genre]", this.state.genre);
     formData.append("track[description]", this.state.description);
     formData.append("track[image]", this.state.imageFile);
+    formData.append("track[audio_file]", this.state.trackFile);
 
     TrackActions.createTrack(formData, this.props.close);
-    this.resetForm();
   },
   update(field, e){
     let updateObject = {};
@@ -67,6 +69,16 @@ const UploadForm = React.createClass({
     }
   },
 
+  updateTrackFile: function (e) {
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ trackFile: file, trackUrl: fileReader.result} );
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  },
   render(){
     //error_stuff
     let current_error_key = 0;
@@ -142,6 +154,13 @@ const UploadForm = React.createClass({
                   <input className="modal-form-element modal-form-input"
                     type="file"
                     onChange={this.updateImageFile}
+                    ></input>
+                  </label>
+
+                <label className="modal-form-label">Track
+                  <input className="modal-form-element modal-form-input"
+                    type="file"
+                    onChange={this.updateTrackFile}
                     ></input>
                 </label>
 
