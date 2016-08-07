@@ -138,7 +138,7 @@ const UploadForm = React.createClass({
               }
             </ul>
 
-            <img className="track-image" src={this.state.imageUrl}/>
+            <img className="upload-form-image" src={this.state.imageUrl}/>
 
             <label>Public
               <input
@@ -164,7 +164,7 @@ const UploadForm = React.createClass({
 
               <section className="modal-form-section">
                 <label className="modal-form-label">Title
-                  <input className="modal-form-element modal-form-input modal-input-long"
+                  <input className="modal-form-element modal-form-input upload-form-input-long"
                     type="text"
                     value={this.state.title}
                     onChange={this.update.bind(null, "title")}
