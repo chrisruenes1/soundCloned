@@ -69,11 +69,45 @@ const UploadForm = React.createClass({
     }
   },
 
+  parseName(name){
+    let niceName = "";
+    let dot_indices = [];
+    //go through and make sure there is only the file extension dot,
+    //to avoid cutting out early
+    for (let i = 0; i < name.length; i++) {
+      if (name[i] === "."){
+        dot_indices.push(i);
+      }
+    }
+
+    //push every character until final ".", unless it would be
+    //best rendered as whitespace.
+
+    const whitespace_characters = ["_"];
+
+    for (let i = 0; i < dot_indices[dot_indices.length - 1]; i++){
+      let character = name[i];
+      if ( (whitespace_characters.indexOf(character) > -1) ) {
+        niceName = niceName.concat(" ");
+      }
+      //Also check to see if file name is written in camelCase,
+      //and add a space before next capital if it is
+      else if ( character === character.toUpperCase() && i > 0 && i-1 != " " ){
+        niceName = niceName.concat(" ").concat(name[i]);
+      }
+      else {
+        niceName = niceName.concat(name[i]);
+      }
+    }
+
+    return niceName;
+  },
+
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ trackFile: file, trackUrl: fileReader.result} );
+      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name) });
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -132,7 +166,7 @@ const UploadForm = React.createClass({
                 <label className="modal-form-label">Title
                   <input className="modal-form-element modal-form-input modal-input-long"
                     type="text"
-                    defaultValue={this.state.title}
+                    value={this.state.title}
                     onChange={this.update.bind(null, "title")}
                     placeholder="title"
                   ></input>
@@ -144,7 +178,7 @@ const UploadForm = React.createClass({
                 <label className="modal-form-label">Genre
                   <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"
-                      defaultValue={this.state.genre}
+                      value={this.state.genre}
                       onChange={this.update.bind(null, "genre")}
                       placeholder="genre"
                     ></input>
@@ -168,7 +202,7 @@ const UploadForm = React.createClass({
 
               <label className="modal-form-label">Description
                 <textarea className="modal-form-element modal-form-input modal-form-textarea"
-                  defaultValue={this.state.description}
+                  value={this.state.description}
                   onChange={this.update.bind(null, "description")}
                   placeholder="description"
                 ></textarea>
