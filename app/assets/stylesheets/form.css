@@ -111,3 +111,21 @@ form textarea {
   margin-bottom:10px;
   font-size:20px;
 }
+
+.required {
+  color: #f50;
+  font-size: 15px;
+  margin-left:2px;
+}
+
+.image-button {
+  position: absolute;
+  height: 20%;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.image-chooser {
+  height: 100%;
+}

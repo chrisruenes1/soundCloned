@@ -143,88 +143,98 @@ const UploadForm = React.createClass({
               }
             </ul>
 
-            {image}
+            <div className='upload-form-content-container'>
 
-            <article className="modal-form-text-info" >
+              <div className="upload-image-container">
+                {image}
+                <section className="image-chooser">
+                  <button>chooseAnImage</button>
+                </section>
+              </div>
 
-              <section className="modal-form-section">
-                <label className="modal-form-label">Title
-                  <input className="modal-form-element modal-form-input upload-form-input-long"
-                    type="text"
-                    value={this.state.title}
-                    onChange={this.update.bind(null, "title")}
-                    placeholder="title"
-                  ></input>
-                </label>
 
-              </section>
+              <article className="upload-modal-form-text-info" >
 
-              <section className="modal-form-section">
-                <label>Public
-                  <input
-                    type="radio"
-                    name="privacy"
-                    value="public"
-                    checked={this.state.public}
-                    onChange={this.update.bind(null, "public")}
-                    ></input>
-                </label>
+                <section className="modal-form-section">
+                  <label className="upload-modal-form-label">Title<span className="required">*</span>
+                    <input className="modal-form-element modal-form-input upload-form-input-long"
+                      type="text"
+                      value={this.state.title}
+                      onChange={this.update.bind(null, "title")}
+                      placeholder="title"
+                      ></input>
+                  </label>
 
-                <label>Private
-                  <input
-                    type="radio"
-                    name="privacy"
-                    value="private"
-                    checked={!this.state.public}
-                    onChange={this.update.bind(null, "public")}
-                    ></input>
-                </label>
-              </section>
+                </section>
 
-              <section className="modal-form-section">
-                <label className="modal-form-label">Genre
-                  <input className="modal-form-element modal-form-input modal-input-short"
+                <section className="modal-form-section">
+                  <label>Public
+                    <input
+                      type="radio"
+                      name="privacy"
+                      value="public"
+                      checked={this.state.public}
+                      onChange={this.update.bind(null, "public")}
+                      ></input>
+                  </label>
+
+                  <label>Private
+                    <input
+                      type="radio"
+                      name="privacy"
+                      value="private"
+                      checked={!this.state.public}
+                      onChange={this.update.bind(null, "public")}
+                      ></input>
+                  </label>
+                </section>
+
+                <section className="modal-form-section">
+                  <label className="upload-modal-form-label">Genre
+                    <input className="modal-form-element modal-form-input modal-input-short"
                       type="text"
                       value={this.state.genre}
                       onChange={this.update.bind(null, "genre")}
                       placeholder="genre"
-                    ></input>
-                </label>
-
-                <label className="modal-form-label">Track Image
-                  <input className="modal-form-element modal-form-input"
-                    type="file"
-                    onChange={this.updateImageFile}
-                    ></input>
+                      ></input>
                   </label>
 
-                <label className="modal-form-label">Track
-                  <input className="modal-form-element modal-form-input"
-                    type="file"
-                    onChange={this.updateTrackFile}
-                    ></input>
+                  <label className="upload-modal-form-label">Track Image
+                    <input className="modal-form-element modal-form-input"
+                      type="file"
+                      onChange={this.updateImageFile}
+                      ></input>
+                  </label>
+
+                  <label className="upload-modal-form-label">Track
+                    <input className="modal-form-element modal-form-input"
+                      type="file"
+                      onChange={this.updateTrackFile}
+                      ></input>
+                  </label>
+
+                </section>
+
+                <label className="upload-modal-form-label">Description
+                  <textarea className="modal-form-element modal-form-input modal-form-textarea"
+                    value={this.state.description}
+                    onChange={this.update.bind(null, "description")}
+                    placeholder="description"
+                    ></textarea>
                 </label>
 
-              </section>
+                <section className="modal-form-section submit-container">
 
-              <label className="modal-form-label">Description
-                <textarea className="modal-form-element modal-form-input modal-form-textarea"
-                  value={this.state.description}
-                  onChange={this.update.bind(null, "description")}
-                  placeholder="description"
-                ></textarea>
-              </label>
+                  <input className="modal-form-element modal-form-submit upload-submit"
+                    type="submit"
+                    value="Save"
+                    ></input>
 
-              <section className="modal-form-section submit-container">
+                </section>
 
-                <input className="modal-form-element modal-form-submit upload-submit"
-                  type="submit"
-                  value="Save"
-                ></input>
+              </article>
 
-              </section>
-
-            </article>
+            </div>
 
           </form>
         </div>
