@@ -56,6 +56,8 @@ form textarea {
 
 .modal-form-title {
   font-size: 20px;
+  width: 300px;
+  float: left;
 }
 
 .modal-form-label {
@@ -92,9 +94,9 @@ form textarea {
   margin-bottom:5px;
 }
 
-.moda-form-textarea {
+.modal-form-textarea {
   width:515px;
-  height:100px;
+  height:130px;
   margin-bottom:5px;
 }
 

@@ -9,13 +9,23 @@
   float:left;
 }
 
+.upload-form-input {
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 100;
+}
+
 .upload-form-input-long {
-  width:470px;
   height: 25px;
+  width: 470px;
+}
+
+.upload-form-input-short {
+  height: 25px;
+  width:230px;
 }
 
 .image-placeholder {
-
   background-image: linear-gradient(135deg,#846170,#70929c)
 }
 
@@ -23,6 +33,10 @@
   position:relative;
   width:100%;
   height:100%;
+}
+
+.upload-form-header-container {
+  height:25px;
 }
 
 .image-overlay {
@@ -46,14 +60,26 @@
 .image-button {
   text-align:center;
   height:26px;
-  margin-left:15%;
-  width:70%;
   top:0;
+  margin-left:25%;
   position:absolute;
   border: 1px solid #e5e5e5;
-  background-color:#fff;
-  border-radius:3px;
+  background-color: #fff;
+  border-radius: 3px;
   font-weight: 100;
+  font-size: 14px;
+  line-height: 20px;
+  width:50%;
+}
+
+.track-button {
+  text-align: center;
+  height: 25px;
+  border-radius: 3px;
+  background-color: #f50;
+  color: #fff;
+  padding: 0px 3px;
+  float: right;
 }
 
 .hidden-file-input {
@@ -63,7 +89,7 @@
 }
 
 .upload-modal-form-text-info {
-  width: 525px;
+  width: 475px;
   margin-left: 25px;
   float: left;
 }
@@ -77,4 +103,10 @@
   display:block;
   float:left;
   width: 263px;
+}
+
+.upload-form-textarea {
+  width: 470px;
+  height: 130px;
+  line-height: 20px
 }
