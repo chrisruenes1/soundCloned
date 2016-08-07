@@ -10,8 +10,8 @@ module.exports = {
   fetchTrack(id){
     TrackAPIUtil.fetchTrack(id, this.receiveSingleTrack);
   },
-  createTrack(track){
-    TrackAPIUtil.createTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
+  createTrack(track, modal_close_callback){
+    TrackAPIUtil.createTrack(track, this.receiveSingleTrackAndCloseModal.bind(null, modal_close_callback), ErrorActions.setErrors);
   },
   editTrack(track){
     TrackAPIUtil.updateTrack(track, this.receiveSingleTrack, ErrorActions.setErrors);
@@ -30,6 +30,13 @@ module.exports = {
       actionType:TrackConstants.RECEIVE_SINGLE_TRACK,
       track:track
     });
+  },
+  receiveSingleTrackAndCloseModal(modal_close_callback, track){
+    AppDispatcher.dispatch({
+      actionType: TrackConstants.RECEIVE_SINGLE_TRACK,
+      track: track
+    });
+    modal_close_callback();
   },
   removeTrack(track){
     AppDispatcher.dispatch({
