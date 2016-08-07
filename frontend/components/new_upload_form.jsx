@@ -108,7 +108,7 @@ const UploadForm = React.createClass({
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name) });
+      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name), success_message: `Successfully uploaded "${file.name}"` });
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -126,11 +126,27 @@ const UploadForm = React.createClass({
   },
 
   render(){
+
     let current_error_key = 0;
     let errorMessages = this.state.errors.map( (error) => {
       current_error_key++;
       return <ErrorListItem key={current_error_key} error={error} />;
     });
+
+    let errors =
+    <ul>
+      {
+        errorMessages
+      }
+    </ul>;
+
+    let success = <span className="success">{this.state.success_message}</span>;
+
+    let messages =
+      <div className="message-container">
+        {errors}
+        {success}
+      </div>;
 
     let image = this.state.imageUrl ? <img className="upload-form-image" src={this.state.imageUrl} /> : <div></div>;
 
@@ -202,11 +218,7 @@ const UploadForm = React.createClass({
 
           <hr/>
 
-          <ul>
-            {
-              errorMessages
-            }
-          </ul>
+          {messages}
 
           <div className="group upload-form-content-container">
               {imageWithButton}

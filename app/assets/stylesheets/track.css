@@ -95,7 +95,11 @@
 }
 
 .upload-form-content-container {
-  margin-top: 25px;
+  margin-top: 5px;
+}
+
+.message-container {
+  min-height:20px;
 }
 
 .upload-modal-form-label {
