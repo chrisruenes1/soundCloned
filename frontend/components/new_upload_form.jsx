@@ -17,7 +17,8 @@ const UploadForm = React.createClass({
       imageUrl: null,
       trackFile: null,
       trackUrl: null,
-      errors:[]
+      errors:[],
+      success_message:""
     };
   },
   handleSubmit(e){
@@ -114,9 +115,14 @@ const UploadForm = React.createClass({
     }
   },
 
-  triggerFileInput: function(e) {
+  triggerImageFileInput: function(e) {
     e.preventDefault();
-    $("#file-input").trigger('click');
+    $("#image-file-input").trigger('click');
+  },
+
+  triggerTrackFileInput: function(e) {
+    e.preventDefault();
+    $("#track-file-input").trigger('click');
   },
 
   render(){
@@ -126,29 +132,56 @@ const UploadForm = React.createClass({
       return <ErrorListItem key={current_error_key} error={error} />;
     });
 
-    let image = this.state.imageUrl ?
-    <header className="upload-form-image image-placeholder">
+    let image = this.state.imageUrl ? <img className="upload-form-image" src={this.state.imageUrl} /> : <div></div>;
+
+    let imageWithButton = <header className="upload-form-image image-placeholder">
       <div className="image-overlay">
-        <img className="upload-form-image" src={this.state.imageUrl} />
+        {image}
         <div className="image-button-positioner">
           <div className="image-button-container">
-            <button onClick={this.triggerFileInput} className="image-button">Update image</button>
-            <input type="file" className="hidden-file-input" id="file-input" onChange={this.updateImageFile} />
+            <button onClick={this.triggerImageFileInput} className="image-button">Update image</button>
+            <input type="file" className="hidden-file-input" id="image-file-input" onChange={this.updateImageFile} />
           </div>
         </div>
       </div>
-    </header>
-      :
-      <header className="upload-form-image image-placeholder">
-        <div className="image-overlay">
-          <div className="image-button-positioner">
-            <div className="image-button-container">
-              <button onClick={this.triggerFileInput} className="image-button">Update image</button>
-              <input type="file" className="hidden-file-input" id="file-input" onChange={this.updateImageFile} />
-            </div>
-          </div>
-        </div>
-      </header>;
+    </header>;
+
+    let textInfo =
+      <article className = "upload-modal-form-text-info">
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Title<span className="required">*</span>
+            <input className="modal-form-element modal-form-input upload-form-input upload-form-input-long"
+              type="text"
+              value={this.state.title}
+              onChange={this.update.bind(null, "title")}
+              placeholder="title"
+              ></input>
+          </label>
+        </section>
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Genre
+            <input className="modal-form-element modal-form-input upload-form-input upload-form-input-short"
+              type="text"
+              value={this.state.genre}
+              onChange={this.update.bind(null, "genre")}
+              placeholder="genre"
+              ></input>
+          </label>
+        </section>
+
+        <section className="modal-form-section">
+          <label className="upload-modal-form-label">Description
+            <textarea className="modal-form-input upload-form-input upload-form-textarea"
+              value={this.state.description}
+              onChange={this.update.bind(null, "description")}
+              placeholder="Describe your track"
+              ></textarea>
+          </label>
+        </section>
+
+      </article>;
 
 
     return (
@@ -156,7 +189,17 @@ const UploadForm = React.createClass({
 
         <form className="upload-form" onSubmit={this.handleSubmit}>
 
-          <h1 className="modal-form-title">Upload to SoundCloned</h1>
+          <div className="upload-form-header-container">
+
+            <h1 className="modal-form-title">Upload to SoundCloned</h1>
+
+            <div className="track-button-container">
+              <button onClick={this.triggerTrackFileInput} className="track-button">Choose a file to upload</button>
+              <input type="file" className="hidden-file-input" id="track-file-input" onChange={this.updateTrackFile} />
+            </div>
+
+          </div>
+
           <hr/>
 
           <ul>
@@ -166,7 +209,8 @@ const UploadForm = React.createClass({
           </ul>
 
           <div className="group upload-form-content-container">
-              {image}
+              {imageWithButton}
+              {textInfo}
           </div>
 
         </form>
