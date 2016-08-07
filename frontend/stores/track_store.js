@@ -5,7 +5,7 @@ const TrackConstants = require('../constants/track_constants');
 
 let _tracks = {};
 
-TrackStore.tracks = function(){
+TrackStore.all = function(){
   let allTracks = [];
   for (let key in _tracks){
     allTracks.push(_tracks[key]);
@@ -39,13 +39,15 @@ const _removeTrack = function(track){
 TrackStore.__onDispatch = (payload) => {
   switch (payload.actionType){
     case TrackConstants.RECEIVE_ALL_TRACKS:
-      this._resetTracks(payload.tracks);
+      _resetTracks(payload.tracks);
       break;
     case TrackConstants.RECEIVE_SINGLE_TRACK:
-      this._addTrack(payload.track);
+      _addTrack(payload.track);
       break;
     case TrackConstants.REMOVE_TRACK:
-      this._removeTrack(payload.track);
+      _removeTrack(payload.track);
       break;
   }
 };
+
+module.exports = TrackStore;
