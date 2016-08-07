@@ -30,6 +30,7 @@ const UploadForm = React.createClass({
     formData.append("track[image]", this.state.imageFile);
 
     TrackActions.createTrack(formData, this.props.close);
+    this.resetForm();
   },
   update(field, e){
     let newValue = e.target.value;
@@ -163,6 +164,16 @@ const UploadForm = React.createClass({
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.CREATE_TRACK)});
+  },
+  resetForm(){
+    this.setState({
+      public:true,
+      title:"",
+      genre:"",
+      description:"",
+      imageFile: null,
+      imageUrl: null
+    });
   }
 });
 
