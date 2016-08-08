@@ -4,6 +4,13 @@ const TrackStore = new Store(AppDispatcher);
 const TrackConstants = require('../constants/track_constants');
 
 let _tracks = {};
+let _playQueue = [];
+
+TrackStore.getCurrentTrack = function(){
+  if (_playQueue.length > 0){
+    return _playQueue.shift();
+  }
+};
 
 TrackStore.all = function(){
   let allTracks = [];
@@ -21,6 +28,7 @@ const _resetTracks = function(tracks){
   _tracks = {};
   tracks.forEach(function(track){
     _tracks[track.id] = track;
+    _playQueue.push(track);
   });
   TrackStore.__emitChange();
 
