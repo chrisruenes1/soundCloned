@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: tracks
+#
+#  id                      :integer          not null, primary key
+#  title                   :string           not null
+#  composer_id             :integer          not null
+#  album                   :string
+#  image_file_name         :string
+#  image_content_type      :string
+#  image_file_size         :integer
+#  image_updated_at        :datetime
+#  audio_file_file_name    :string
+#  audio_file_content_type :string
+#  audio_file_file_size    :integer
+#  audio_file_updated_at   :datetime
+#  description             :text
+#  public                  :boolean          default(TRUE)
+#  genre                   :string
+#
+
 class Track < ActiveRecord::Base
   has_attached_file :image, default_url: "/images/danny-elfman.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
