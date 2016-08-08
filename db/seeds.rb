@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-include ActionView::Helpers
 
 User.destroy_all
+puts "destroyed users"
 Track.destroy_all
+
+puts "destroyed tracks"
+
 
 users = []
 10.times do
@@ -37,6 +40,7 @@ demo_user = {
 
 users.push(demo_user)
 
+
 chance = {
   group_name: "Chance the Rapper",
   city: "Chicago",
@@ -50,41 +54,43 @@ users.push(chance);
 User.create!(
   users
 );
+puts "created users"
 
 chance_id = User.find_by(username: "chance3").id;
 
+puts "found chnace"
+
 Track.create!([
   {
+    title: "Summer Friends",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/summer_friends.mp3",
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
+    title: "No Problem",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/no_problem.mp3",
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
+    title: "Same Drugs",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/same_drugs.mp3",
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
     title: "All We Got",
-    image: File.open("cover_art.jpg"),
-    audio_file: File.open("Chance The Rapper - Coloring Book/01 - All We Got (feat Kanye West Chicago Childrens Choir).mp3"),
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/all_we_got.mp3",
     composer_id: chance_id,
     album: "Coloring Book",
     public: true
   }
 ]);
-#   {
-#     title: "No Problem",
-#     image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
-#     audio_file: File.new("public/Chance The Rapper - Coloring Book/02 - No Problem (feat Lil Wayne 2 Chainz).mp3"),
-#     composer_id: chance_id,
-#     album: "Coloring Book",
-#     public: true
-#   },
-#   {
-#     title: "Summer Friends",
-#     image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
-#     audio_file: File.new("public/Chance The Rapper - Coloring Book/03 - Summer Friends (feat Jeremih Francis The Lights).mp3"),
-#     composer_id: chance_id,
-#     album: "Coloring Book",
-#     public: true
-#   },
-#   {
-#     title: "Same Drugs",
-#     image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
-#     audio_file: File.new("public/Chance The Rapper - Coloring Book/06 - Same Drugs.mp3"),
-#     composer_id: chance_id,
-#     album: "Coloring Book",
-#     public: true
-#   },
-# ]);
