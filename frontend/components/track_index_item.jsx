@@ -2,17 +2,35 @@ const React = require('react');
 import {Link} from 'react-router';
 
 const TrackIndexItem = React.createClass({
+  getInitialState(){
+    return {playing: false, audio: null};
+  },
   playTrack(e){
     e.preventDefault();
-    let audio = new Audio(this.props.track.audio_file_url);
-    audio.addEventListener("canplaythrough", function(){
+    let audio = this.state.audio || new Audio(this.props.track.audio_file_url);
+    if (audio.currentTime === 0){
+      //make sure that the track has loaded enough if it is starting at the beginning
+      audio.addEventListener("canplaythrough", () => {
+        audio.play();
+        this.setState({playing:true, audio: audio});
+      });
+    }
+    else {
       audio.play();
-      setInterval(function(){console.log(audio.currentTime);}, 1000);
-    });
+      this.setState({playing: true});
+    }
+  },
+  pauseTrack(e){
+    e.preventDefault();
+    this.state.audio.pause();
+    this.setState({playing: false});
   },
   render(){
     let composer = this.props.track.composer;
     let composerURL = `users/url/${composer.custom_url}`;
+    let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
+    let playOrPauseFunc = this.state.playing ? this.pauseTrack : this.playTrack;
+
     return(
     <li>
       <div className="track-index-item-container">
@@ -21,7 +39,7 @@ const TrackIndexItem = React.createClass({
 
             <img className="track-list-item-element track-image" src={this.props.track.image_url} />
             <div className="track-list-item-element">
-              <button className="play-button" onClick={this.playTrack}><div className="play-button-image" /></button>
+              <button className="play-button" onClick={playOrPauseFunc}><div className={buttonImageClass} /></button>
             </div>
 
             <div className="track-list-item-element">

@@ -13,7 +13,7 @@ const TracksIndex = React.createClass({
       <ul>
         {
           this.state.tracks.map(function(track){
-            return <TrackIndexItem track={track} key={track.id}/>;
+            return <TrackIndexItem className="track-index-item" track={track} key={track.id}/>;
           })
         }
       </ul>

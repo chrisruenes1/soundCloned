@@ -20,7 +20,7 @@ const _ensureLoggedIn = function(nextState, replace){
 const appRouter = (
   <Router history={hashHistory}>
     <Route path="/" component={ App } >
-      <IndexRoute component = { TracksIndex } onEnter={ _ensureLoggedIn }/>
+      <IndexRoute component = { TracksIndex }/>
       <Route path="/login" component={ LoginPlaceholder }/>
       <Route path="/users/url/:customUrl" component={ UserProfile } onEnter={ _ensureLoggedIn}/>
     </ Route>
