@@ -9,6 +9,9 @@ const TrackIndexItem = React.createClass({
     e.preventDefault();
     let audio = this.state.audio || new Audio(this.props.track.audio_file_url);
     if (audio.currentTime === 0){
+      audio.addEventListener("ended", () => {
+        this.setState({playing: false, audio: null});
+      });
       //make sure that the track has loaded enough if it is starting at the beginning
       audio.addEventListener("canplaythrough", () => {
         audio.play();
