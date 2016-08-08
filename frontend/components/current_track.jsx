@@ -8,7 +8,7 @@ const CurrentTrack = React.createClass({
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
   render(){
-    let buttonImageClass = this.state.playing ? "footer-pause-button-image" : "footer-play-button-image";
+    let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
 
     return(
       <footer className="group footer">
@@ -49,6 +49,7 @@ const CurrentTrack = React.createClass({
       this.setState({ currentTrack: currentTrack });
       if (currentTrack.playing) {
         this.audio.setAttribute('src', currentTrack.audio_file_url); //change soruce to current track
+        this.audio.currentTime = currentTrack.elapsedTime;
         this.audio.load();
         this.audio.play();
       }
