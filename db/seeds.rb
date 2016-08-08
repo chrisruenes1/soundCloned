@@ -33,6 +33,53 @@ demo_user = {
 
 users.push(demo_user)
 
+chance = {
+  group_name: "Chance the Rapper",
+  city: "Chicago",
+  state: "Illinois",
+  username: "chance3",
+  password: "coloringbook"
+}
+
+users.push(chance);
+
 User.create!(
   users
 );
+
+chance_id = User.find_by(username: "chance3").id;
+
+Track.create!([
+  {
+    title: "All We Got",
+    image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
+    audio_file: File.new("public/Chance The Rapper - Coloring Book/01 - All We Got (feat Kanye West  Chicago Childrens Choir).mp3"),
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
+    title: "No Problem",
+    image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
+    audio_file: File.new("public/Chance The Rapper - Coloring Book/02 - No Problem (feat Lil Wayne 2 Chainz).mp3"),
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
+    title: "Summer Friends",
+    image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
+    audio_file: File.new("public/Chance The Rapper - Coloring Book/03 - Summer Friends (feat Jeremih Francis The Lights).mp3"),
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+  {
+    title: "Same Drugs",
+    image: File.new("public/Chance The Rapper - Coloring Book/00 - Chance_The_rapper_Chance_3-front-large.jpg"),
+    audio_file: File.new("public/Chance The Rapper - Coloring Book/06 - Same Drugs.mp3"),
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true
+  },
+]);

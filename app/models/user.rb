@@ -11,7 +11,7 @@
 #  group_name      :string           default("The Peaches"), not null
 #  city            :string           default("New York City"), not null
 #  state           :string
-#  bio             :text
+#  bio             :text             default("")
 #  custom_url      :string           not null
 #
 
