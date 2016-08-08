@@ -26,7 +26,6 @@ TrackStore.find = function(id){
 const _resetTracks = function(tracks){
   _tracks = {};
   tracks.forEach(function(track){
-    track.elapsedTime = 0;
     track.playing = false;
     _tracks[track.id] = track;
     _playQueue.push(track.id);
@@ -54,8 +53,8 @@ const _setCurrentTrack = function(id){
   TrackStore.__emitChange();
 };
 
-const _pauseCurrentTrack = function(currentTime){
-  _tracks[_currentTrack].elapsedTime = currentTime;
+const _pauseCurrentTrack = function(){
+  _tracks[_currentTrack].playing = false;
   TrackStore.__emitChange();
 };
 
@@ -93,7 +92,7 @@ TrackStore.__onDispatch = (payload) => {
       _setCurrentTrack(payload.id);
       break;
     case TrackConstants.PAUSE_CURRENT_TRACK:
-      _pauseCurrentTrack(payload.currentTime);
+      _pauseCurrentTrack();
       break;
     case TrackConstants.PLAY_NEXT_TRACK:
       _playNextTrack();

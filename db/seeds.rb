@@ -8,7 +8,6 @@
 
 
 User.destroy_all
-puts "destroyed users"
 Track.destroy_all
 
 puts "destroyed tracks"
