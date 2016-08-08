@@ -1,10 +1,12 @@
 const React = require('react');
 const TrackStore = require('../stores/track_store');
+const TrackActions = require('../actions/track_actions');
 
 const CurrentTrack = React.createClass({
   getInitialState(){
     this.listeners = [];
     this.audio = new Audio();
+    this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
   render(){
@@ -49,9 +51,14 @@ const CurrentTrack = React.createClass({
       this.setState({ currentTrack: currentTrack });
       if (currentTrack.playing) {
         this.audio.setAttribute('src', currentTrack.audio_file_url); //change soruce to current track
-        this.audio.currentTime = currentTrack.elapsedTime;
+        let currentTime = this.elapsedTimes[currentTrack.id] || 0;
+        this.audio.currentTime = currentTime;
         this.audio.load();
         this.audio.play();
+      }
+      else {
+        this.audio.pause();
+        this.elapsedTimes[currentTrack.id] = this.audio.currentTime;
       }
     }
   }

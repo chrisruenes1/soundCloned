@@ -51,15 +51,11 @@ module.exports = {
       id: id
     });
   },
-  //this method is for the sake of persistence when switching between tracks;
-  //realtime play and pause will be handled by the DOM Audio object
-  pauseCurrentTrack(currentTime){
+  pauseCurrentTrack(){
     AppDispatcher.dispatch({
-      actionType: TrackConstants.PAUSE_CURRENT_TRACK,
-      currentTime: currentTime
+      actionType: TrackConstants.PAUSE_CURRENT_TRACK
     });
   },
-
   playNextTrack(){
     AppDispatcher.dispatch({
       actionType: TrackConstants.PLAY_NEXT_TRACK
