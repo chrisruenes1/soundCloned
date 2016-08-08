@@ -52,7 +52,7 @@ const CurrentTrack = React.createClass({
       if (newCurrentTrack.playing) {
 
         if (newCurrentTrack.id !== this.state.currentTrack.id){
-          //pause the current track to save location
+          //pause the current track and save location
           this.audio.pause();
           this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
         }
@@ -63,6 +63,7 @@ const CurrentTrack = React.createClass({
         this.audio.load();
         this.audio.play();
       }
+      //in case this is a pause message
       else {
         this.audio.pause();
         this.elapsedTimes[newCurrentTrack.id] = this.audio.currentTime;
