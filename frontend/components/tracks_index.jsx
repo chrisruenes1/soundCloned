@@ -39,7 +39,7 @@ const TracksIndex = React.createClass({
 });
 
 const trackIndexItemStyles = {
-  
+
 };
 
 module.exports = TracksIndex;

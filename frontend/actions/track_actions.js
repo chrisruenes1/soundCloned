@@ -43,5 +43,32 @@ module.exports = {
       actionType:TrackConstants.REMOVE_TRACK,
       track:track
     });
+  },
+  //currentTrack methods; do not require calls to TrackAPIUtil
+  setCurrentTrack(id){
+    AppDispatcher.dispatch({
+      actionType: TrackConstants.SET_CURRENT_TRACK,
+      id: id
+    });
+  },
+  //this method is for the sake of persistence when switching between tracks;
+  //realtime play and pause will be handled by the DOM Audio object
+  pauseCurrentTrack(currentTime){
+    AppDispatcher.dispatch({
+      actionType: TrackConstants.PAUSE_CURRENT_TRACK,
+      currentTime: currentTime
+    });
+  },
+
+  playNextTrack(){
+    AppDispatcher.dispatch({
+      actionType: TrackConstants.PLAY_NEXT_TRACK
+    });
+  },
+
+  playPreviousTrack(){
+    AppDispatcher.dispatch({
+      actionType: TrackConstants.PLAY_PREVIOUS_TRACK
+    });
   }
 };
