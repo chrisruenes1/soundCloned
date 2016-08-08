@@ -1,5 +1,6 @@
 const React = require('react');
 const Navbar = require('./navbar');
+const CurrentTrack = require('./current_track');
 
 const App = React.createClass({
   render(){
@@ -7,6 +8,7 @@ const App = React.createClass({
       <div>
         <Navbar/>
         {this.props.children}
+        <CurrentTrack/>
       </div>
     );
   }

@@ -1,0 +1,60 @@
+.footer {
+  position: absolute;
+  bottom: 0px;
+  height: 46px;
+  width: 100%;
+  background-color:#f2f2f2;
+  border: 1px solid #999;
+}
+
+.playback-control-buttons {
+  height: 100%;
+  width: 250px;
+  float: left;
+}
+
+.playback-button {
+  width: 46px;
+  height: 46px;
+}
+
+.footer-playback-control-button {
+  background-color: transparent;
+  width: 46px;
+  height: 46px;
+  float: left;
+  margin-left: 10px;
+}
+
+.footer-play-button-image {
+  background-color: #333;
+  width:50%;
+  height:50%;
+
+  /*crop to correct shape*/
+  -webkit-clip-path: polygon(0px 0px, 18px 9px, 0px 18px);
+  clip-path: polygon(0px 0px, 18px 9px, 0px 18px);
+}
+.footer-pause-button-image {
+
+}
+
+.rewind {
+  background-color: #333;
+  width:50%;
+  height:50%;
+
+  /*crop to correct shape*/
+  -webkit-clip-path: polygon(2px 2px, 2px 16px, 3px 16px, 3px 9px, 16px 16px, 16px 2px, 3px 9px, 3px 2px, 2px 2px);
+  clip-path: polygon(2px 2px, 2px 16px, 3px 16px, 3px 9px, 16px 16px, 16px 2px, 3px 9px, 3px 2px, 2px 2px);
+}
+
+.fastforward {
+  background-color: #333;
+  width:50%;
+  height:50%;
+
+  /*crop to correct shape*/
+  -webkit-clip-path: polygon(2px 2px, 15px 9px, 15px 2px, 16px 2px, 16px 16px, 15px 16px, 15px 9px, 2px 16px, 2px 2px);
+  clip-path: polygon(2px 2px, 15px 9px, 15px 2px, 16px 2px, 16px 16px, 15px 16px, 15px 9px, 2px 16px, 2px 2px);
+}

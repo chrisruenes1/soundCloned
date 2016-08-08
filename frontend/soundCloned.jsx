@@ -22,9 +22,7 @@ const appRouter = (
     <Route path="/" component={ App } >
       <IndexRoute component = { TracksIndex }/>
       <Route path="/login" component={ LoginPlaceholder }/>
-      <Route path="/users/url/:customUrl" component={ UserProfile } onEnter={ _ensureLoggedIn}>
-        <Route path="users/url/:customUrl/tracks" component={ TracksIndex } />
-      </ Route>
+      <Route path="/users/url/:customUrl" component={ UserProfile } onEnter={ _ensureLoggedIn} />
     </ Route>
   </Router>
 );
