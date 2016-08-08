@@ -5,11 +5,10 @@ const TrackConstants = require('../constants/track_constants');
 
 let _tracks = {};
 let _playQueue = [];
+let _currentTrack = null;
 
 TrackStore.getCurrentTrack = function(){
-  if (_playQueue.length > 0){
-    return _playQueue.shift();
-  }
+  return Object.assign({}, _tracks[_currentTrack]);
 };
 
 TrackStore.all = function(){
@@ -27,8 +26,10 @@ TrackStore.find = function(id){
 const _resetTracks = function(tracks){
   _tracks = {};
   tracks.forEach(function(track){
+    track.elapsedTime = 0;
+    track.playing = false;
     _tracks[track.id] = track;
-    _playQueue.push(track);
+    _playQueue.push(track.id);
   });
   TrackStore.__emitChange();
 
@@ -41,7 +42,39 @@ const _addTrack = function(track){
 
 const _removeTrack = function(track){
   delete _tracks[track.id];
-  TrackStore.__emitChage();
+  TrackStore.__emitChange();
+};
+
+const _setCurrentTrack = function(id){
+  if (_currentTrack){
+    _tracks[_currentTrack].playing = false;
+  }
+  _currentTrack = id;
+  _tracks[id].playing = true;
+  TrackStore.__emitChange();
+};
+
+const _pauseCurrentTrack = function(currentTime){
+  _tracks[_currentTrack].elapsedTime = currentTime;
+  TrackStore.__emitChange();
+};
+
+const _playNextTrack = function(){
+  let currentTrackIdx = playQueue.indexOf(_currentTrack);
+  let nextTrackId = playQueue[currentTrackIdx+1];
+  if (nextTrackId){
+    _setCurrentTrack(nextTrackId);
+  }
+  TrackStore.__emitChange();
+};
+
+const _playPreviousTrack = function(){
+  let currentTrackIdx = playQueue.indexOf(_currentTrack);
+  let previousTrackId = playQueue[currentTrackIdx-1];
+  if (previousTrackId){
+    _setCurrentTrack(previousTrackId);
+  }
+  TrackStore.__emitChange();
 };
 
 TrackStore.__onDispatch = (payload) => {
@@ -54,6 +87,19 @@ TrackStore.__onDispatch = (payload) => {
       break;
     case TrackConstants.REMOVE_TRACK:
       _removeTrack(payload.track);
+      break;
+
+    case TrackConstants.SET_CURRENT_TRACK:
+      _setCurrentTrack(payload.id);
+      break;
+    case TrackConstants.PAUSE_CURRENT_TRACK:
+      _pauseCurrentTrack(payload.currentTime);
+      break;
+    case TrackConstants.PLAY_NEXT_TRACK:
+      _playNextTrack();
+      break;
+    case TrackConstants.PLAY_PREVIOUS_TRACK:
+      _playPreviousTrack();
       break;
   }
 };

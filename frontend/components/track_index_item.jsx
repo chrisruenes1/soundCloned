@@ -1,5 +1,7 @@
 const React = require('react');
+const TrackActions = require('../actions/track_actions');
 import {Link} from 'react-router';
+
 
 const TrackIndexItem = React.createClass({
   getInitialState(){
@@ -7,21 +9,24 @@ const TrackIndexItem = React.createClass({
   },
   playTrack(e){
     e.preventDefault();
-    let audio = this.state.audio || new Audio(this.props.track.audio_file_url);
-    if (audio.currentTime === 0){
-      audio.addEventListener("ended", () => {
-        this.setState({playing: false, audio: null});
-      });
-      //make sure that the track has loaded enough if it is starting at the beginning
-      audio.addEventListener("canplaythrough", () => {
-        audio.play();
-        this.setState({playing:true, audio: audio});
-      });
-    }
-    else {
-      audio.play();
-      this.setState({playing: true});
-    }
+    TrackActions.setCurrentTrack(this.props.track.id);
+
+    //PLAY LOGIC BELONGS IN CURRENT TRACK
+    // let audio = this.state.audio || new Audio(this.props.track.audio_file_url);
+    // if (audio.currentTime === 0){
+    //   audio.addEventListener("ended", () => {
+    //     this.setState({playing: false, audio: null});
+    //   });
+    //   //make sure that the track has loaded enough if it is starting at the beginning
+    //   audio.addEventListener("canplaythrough", () => {
+    //     audio.play();
+    //     this.setState({playing:true, audio: audio});
+    //   });
+    // }
+    // else {
+    //   audio.play();
+    //   this.setState({playing: true});
+    // }
   },
   pauseTrack(e){
     e.preventDefault();
