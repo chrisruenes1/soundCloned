@@ -46,20 +46,28 @@ const CurrentTrack = React.createClass({
     });
   },
   _onChange(){
-    let currentTrack = TrackStore.getCurrentTrack();
-    if (currentTrack){
-      this.setState({ currentTrack: currentTrack });
-      if (currentTrack.playing) {
-        this.audio.setAttribute('src', currentTrack.audio_file_url); //change soruce to current track
-        let currentTime = this.elapsedTimes[currentTrack.id] || 0;
+    let newCurrentTrack = TrackStore.getCurrentTrack();
+    if (newCurrentTrack){
+
+      if (newCurrentTrack.playing) {
+
+        if (newCurrentTrack.id !== this.state.currentTrack.id){
+          //pause the current track to save location
+          this.audio.pause();
+          this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
+        }
+
+        this.audio.setAttribute('src', newCurrentTrack.audio_file_url); //change soruce to current track
+        let currentTime = this.elapsedTimes[newCurrentTrack.id] || 0;
         this.audio.currentTime = currentTime;
         this.audio.load();
         this.audio.play();
       }
       else {
         this.audio.pause();
-        this.elapsedTimes[currentTrack.id] = this.audio.currentTime;
+        this.elapsedTimes[newCurrentTrack.id] = this.audio.currentTime;
       }
+      this.setState({ currentTrack: newCurrentTrack });
     }
   }
 });
