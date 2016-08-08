@@ -1,26 +1,41 @@
 const React = require('react');
+import {Link} from 'react-router';
 
 const TrackIndexItem = React.createClass({
+  playTrack(e){
+    e.preventDefault();
+    let audio = new Audio(this.props.track.audio_file_url);
+    audio.addEventListener("canplaythrough", function(){
+      audio.play();
+      setInterval(function(){console.log(audio.currentTime);}, 1000);
+    });
+  },
   render(){
+    let composer = this.props.track.composer;
+    let composerURL = `users/url/${composer.custom_url}`;
     return(
     <li>
-      <img className='track-image' src={this.props.track.image_url} />
-      <section>
-        {this.props.track.title}
-        <button onClick={this.playTrack}>Play!</button>
-      </section>
+      <div className="track-index-item-container">
+        <div className="track-index-item">
+          <div className="track-content-container group">
+
+            <img className="track-list-item-element track-image" src={this.props.track.image_url} />
+            <div className="track-list-item-element">
+              <button className="play-button" onClick={this.playTrack}><div className="play-button-image" /></button>
+            </div>
+
+            <div className="track-list-item-element">
+              <Link className="track-artist-link" to={composerURL}>{composer.group_name}</Link>
+              <span className="track-title">{this.props.track.title}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </li>
     );
-  },
-  playTrack(){
-    console.log("play called");
-    let audio = new Audio(this.props.track.audio_file_url);
-      audio.addEventListener("canplaythrough", function(){
-        audio.play();
-        setInterval(function(){console.log(audio.currentTime);}, 1000);
-      });
-    }
+  }
 });
 
 module.exports = TrackIndexItem;

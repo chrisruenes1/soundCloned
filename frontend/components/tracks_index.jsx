@@ -20,9 +20,8 @@ const TracksIndex = React.createClass({
     );
   },
   componentDidMount(){
-    TrackStore.addListener(this._onChange);
+    this.listeners.push(TrackStore.addListener(this._onChange));
     TrackActions.fetchAllTracks();
-
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
