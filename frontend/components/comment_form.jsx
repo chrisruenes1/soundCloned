@@ -14,8 +14,7 @@ const CommentForm = React.createClass({
     let comment = this.state;
     comment.author_id = SessionStore.currentUser().id;
     let track_id = this.props.trackId;
-    //switch this out with real time code!!
-    comment.elapsed_time = 23.3323521;
+    comment.elapsed_time = this.props.currentTime;
     CommentActions.createComment(comment, track_id);
     this.setState({ content: "" });
   },
