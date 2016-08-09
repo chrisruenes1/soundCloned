@@ -38,8 +38,7 @@ const UploadForm = React.createClass({
   update(field, e){
     let updateObject = {};
     let newValue;
-
-
+    
     //parse radio buttons as booleans
     if (field === "public"){
       if (e.target.value === "public"){

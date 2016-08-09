@@ -4,8 +4,8 @@ const AppDispatcher = require('../dispatcher/dispatcher');
 const CommentConstants = require('../constants/comment_constants');
 
 module.exports = {
-  createComment(commment, trackId){
-    CommentAPIUtil.createComment(comment, track, this.receiveTrack, ErrorActions.setErrors);
+  createComment(comment, track_id){
+    CommentAPIUtil.createComment(comment, track_id, this.receiveTrack, ErrorActions.setErrors);
   },
   editComment(comment){
     CommmentAPIUtil.ediComent(comment, this.receiveTrack, ErrorActions.setErrors);
