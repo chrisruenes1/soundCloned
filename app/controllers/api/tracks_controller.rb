@@ -8,7 +8,6 @@ class Api::TracksController < ApplicationController
   end
 
   def create
-    debugger
     @track = Track.new(track_params)
     if @track.save
       render 'api/tracks/show'
