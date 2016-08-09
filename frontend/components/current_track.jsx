@@ -27,6 +27,9 @@ const CurrentTrack = React.createClass({
       TrackActions.playPreviousTrack();
     }
   },
+  resetPlayback(){
+    this.audio.currentTime = 0;
+  },
   render(){
     if (this.state.currentTrack.id){
       let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
@@ -69,9 +72,10 @@ const CurrentTrack = React.createClass({
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
     this.audio.addEventListener("ended", () => {
-      this.elapsedTimes[this.state.currentTrack.id] = 0;
-      this.playNextTrack();
-    });
+        this.resetPlayback();
+        this.playNextTrack();
+      }
+    );
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
@@ -84,8 +88,10 @@ const CurrentTrack = React.createClass({
       if (newCurrentTrack.playing) {
         if (newCurrentTrack.id !== this.state.currentTrack.id){
           //pause the current track and save location
-          this.audio.pause();
-          this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
+          if (this.state.currentTrack.id){
+            this.audio.pause();
+            this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
+          }
           //change soruce to current track
           this.audio.setAttribute('src', newCurrentTrack.audio_file_url);
           this.audio.currentTime = this.elapsedTimes[newCurrentTrack.id] ?

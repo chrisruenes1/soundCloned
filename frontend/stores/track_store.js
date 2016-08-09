@@ -33,7 +33,8 @@ TrackStore.find = function(id){
 
 const _updateTracks = function(tracks){
   tracks.forEach(function(track){
-    if (!_tracks[track.id]){      
+    //for now, only update tracks if they are not already in the store
+    if (!_tracks[track.id]){
       track.playing = false;
       _tracks[track.id] = track;
       _playQueue.push(track.id);
@@ -44,7 +45,14 @@ const _updateTracks = function(tracks){
 };
 
 const _addTrack = function(track){
+  if (_tracks[track.id]){
+    track.playing = _tracks[track.id].playing;
+  }
+  else {
+    track.playing = false;
+  }
   _tracks[track.id] = track;
+  _playQueue.push(track.id);
   TrackStore.__emitChange();
 };
 
