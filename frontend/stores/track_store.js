@@ -81,6 +81,9 @@ const _playNextTrack = function(){
   if (nextTrackId){
     _setCurrentTrack(nextTrackId);
   }
+  else {
+    _currentTrack = null;
+  }
   TrackStore.__emitChange();
 };
 
