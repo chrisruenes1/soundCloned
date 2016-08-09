@@ -11,6 +11,10 @@ const SessionActions = require('./actions/session_actions');
 const SessionStore = require('./stores/session_store');
 import { Router, Route, IndexRoute, hashHistory} from "react-router";
 
+//***********************************************
+window.CommentApiUtil = require('./util/comment_api_util');
+//***********************************************
+
 const _ensureLoggedIn = function(nextState, replace){
   if (!SessionStore.isUserLoggedIn()){
     replace("/login");

@@ -28,9 +28,16 @@ class User < ActiveRecord::Base
 
   has_many(
     :tracks,
+    dependent: :destroy,
     class_name: "Track",
     primary_key: :id,
     foreign_key: :composer_id
+  )
+
+  has_many(
+    :comments,
+    through: :tracks,
+    source: :comments
   )
 
   def self.generate_session_token
