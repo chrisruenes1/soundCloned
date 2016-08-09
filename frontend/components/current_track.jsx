@@ -15,6 +15,17 @@ const CurrentTrack = React.createClass({
   pauseTrack(){
     TrackActions.pauseCurrentTrack();
   },
+  fastforward(){
+    TrackActions.playNextTrack();
+  },
+  rewind(){
+    if (this.audio.currentTime > 2){
+      this.audio.currentTime = 0;
+    }
+    else {
+      TrackActions.playPreviousTrack();
+    }
+  },
   render(){
     let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
     let playOrPauseFunc = this.state.currentTrack.playing ? this.pauseTrack : this.playTrack;
@@ -35,7 +46,7 @@ const CurrentTrack = React.createClass({
           </li>
 
           <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={this.fastfowrward}>
+            <button className="playback-button" onClick={this.fastforward}>
               <div className="fastforward" />
             </button>
           </li>
