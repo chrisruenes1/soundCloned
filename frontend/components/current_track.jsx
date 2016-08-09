@@ -72,13 +72,18 @@ const CurrentTrack = React.createClass({
           //pause the current track and save location
           this.audio.pause();
           this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
-        }
+          //change soruce to current track
+          this.audio.setAttribute('src', newCurrentTrack.audio_file_url);
+          this.audio.currentTime = this.elapsedTimes[newCurrentTrack.id] ?
+            this.elapsedTimes[newCurrentTrack.id] :
+            0;
 
-        this.audio.setAttribute('src', newCurrentTrack.audio_file_url); //change soruce to current track
-        let currentTime = this.elapsedTimes[newCurrentTrack.id] || 0;
-        this.audio.currentTime = currentTime;
-        this.audio.load();
-        this.audio.play();
+          this.audio.load();
+        }
+        //if it's not a track switch and it's playing, let it play
+        if (this.audio.paused){
+          this.audio.play();
+        }
       }
       //in case this is a pause message
       else {
