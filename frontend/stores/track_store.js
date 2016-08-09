@@ -31,12 +31,13 @@ TrackStore.find = function(id){
   return _tracks[id] ? tracks[id] : {};
 };
 
-const _resetTracks = function(tracks){
-  _tracks = {};
+const _updateTracks = function(tracks){
   tracks.forEach(function(track){
-    track.playing = false;
-    _tracks[track.id] = track;
-    _playQueue.push(track.id);
+    if (!_tracks[track.id]){      
+      track.playing = false;
+      _tracks[track.id] = track;
+      _playQueue.push(track.id);
+    }
   });
   TrackStore.__emitChange();
 
@@ -87,7 +88,7 @@ const _playPreviousTrack = function(){
 TrackStore.__onDispatch = (payload) => {
   switch (payload.actionType){
     case TrackConstants.RECEIVE_ALL_TRACKS:
-      _resetTracks(payload.tracks);
+      _updateTracks(payload.tracks);
       break;
     case TrackConstants.RECEIVE_SINGLE_TRACK:
       _addTrack(payload.track);
