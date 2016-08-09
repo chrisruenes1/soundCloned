@@ -8,9 +8,21 @@ import {Link} from 'react-router';
 
 const TrackIndexItem = React.createClass({
   getInitialState(){
-    debugger
+    //sort comments to be able to play through them in correct order
+    let sortedComments = this.props.track.comments.sort(function(a, b){
+      return a.elapsed_time - b.elapsed_time;
+    });
+
     this.listeners = [];
-    return {playing: TrackStore.isTrackPlaying(this.props.track.id), elapsedTime: 0};
+
+    return {
+      playing: TrackStore.isTrackPlaying(this.props.track.id),
+      elapsedTime: 0,
+      //the first comment may be well into the song, so we want
+      //it to start as the NEXT comment rather than current comment
+      currentCommentIdx: -1,
+      comments: sortedComments
+    };
   },
   playTrack(e){
     e.preventDefault();
@@ -25,6 +37,10 @@ const TrackIndexItem = React.createClass({
     let composerURL = `users/url/${composer.custom_url}`;
     let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
     let playOrPauseFunc = this.state.playing ? this.pauseTrack : this.playTrack;
+    let currentComment =
+      this.state.comments[this.state.currentCommentIdx] ?
+      this.state.comments[this.state.currentCommentIdx].content :
+      "";
 
     return(
     <li>
@@ -43,6 +59,8 @@ const TrackIndexItem = React.createClass({
             </div>
 
             <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
+
+            <section>{currentComment}</section>
 
           </div>
         </div>
@@ -71,7 +89,18 @@ const TrackIndexItem = React.createClass({
   },
   _onTimeChange(){
     if (TrackStore.isTrackPlaying(this.props.track.id)){
-      this.setState( {elapsedTime: TimeStore.getCurrentTime() } );
+
+      let currentTime = TimeStore.getCurrentTime();
+
+      let nextCommentIdx = this.state.currentCommentIdx + 1;
+      let nextComment = this.state.comments[nextCommentIdx];
+
+      let commentIdx =
+        nextComment && nextComment.elapsed_time <= currentTime ?
+        nextCommentIdx :
+        this.state.currentCommentIdx;
+
+      this.setState( { elapsedTime: currentTime, currentCommentIdx: commentIdx } );
     }
   }
 });
