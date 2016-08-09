@@ -6,6 +6,9 @@ const CurrentTrack = React.createClass({
   getInitialState(){
     this.listeners = [];
     this.audio = new Audio();
+    this.audio.addEventListener("ended", () => {
+      this.playNextTrack();
+    });
     this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
@@ -15,10 +18,10 @@ const CurrentTrack = React.createClass({
   pauseTrack(){
     TrackActions.pauseCurrentTrack();
   },
-  fastforward(){
+  playNextTrack(){
     TrackActions.playNextTrack();
   },
-  rewind(){
+  playPreviousTrack(){
     if (this.audio.currentTime > 2){
       this.audio.currentTime = 0;
     }
@@ -34,7 +37,7 @@ const CurrentTrack = React.createClass({
         <ul className="group playback-control-buttons">
 
           <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={this.rewind}>
+            <button className="playback-button" onClick={this.playPreviousTrack}>
               <div className="rewind" />
             </button>
           </li>
@@ -46,7 +49,7 @@ const CurrentTrack = React.createClass({
           </li>
 
           <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={this.fastforward}>
+            <button className="playback-button" onClick={this.playNextTrack}>
               <div className="fastforward" />
             </button>
           </li>
