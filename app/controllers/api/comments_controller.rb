@@ -13,6 +13,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      render "api/comments/show"
+    else
+      render json: @comment.errors.full_messages, status: 422
+    end
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
@@ -24,8 +33,5 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :author_id, :track_id, :elapsed_time)
-
-
-
-
+  end
 end
