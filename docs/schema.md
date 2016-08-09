@@ -6,8 +6,8 @@ column name   | data type   | details
 id            | integer     | not null, primary key
 title         | string      | not null
 composer_id   | integer     | not null, foreign key (references users), indexed
-image_id      | integer     | not null, foreign key (ref to fetch from AWS)
-audio_file_id | integer     | not null, foreign key (references to fetch from AWS)
+image         | file        | not null
+audio_file    | file        | not null
 album_title   | string      |
 
 
@@ -18,7 +18,7 @@ id            | integer     | not null, primary key
 author_id     | integer     | not null, foreign key (references users), indexed
 track_id      | integer     | not null, foreign key (references tracks), indexed
 content       | string      | not null
-song_location | timestamp   | not null
+song_location | float       | not null
 
 ## users
 column name   | data type   | details
