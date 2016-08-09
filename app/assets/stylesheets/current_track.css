@@ -77,3 +77,14 @@
   margin-top: 10%;
   outline: none;
 }
+
+.footer-track-text-container {
+  margin-top: 5px;
+  width:200px;
+  height: 100%;
+  float: right;
+}
+
+.footer-track-text {
+  display: block;
+}
