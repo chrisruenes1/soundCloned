@@ -9,9 +9,15 @@ const CurrentTrack = React.createClass({
     this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
+  playTrack(){
+    TrackActions.setCurrentTrack(this.state.currentTrack.id);
+  },
+  pauseTrack(){
+    TrackActions.pauseCurrentTrack();
+  },
   render(){
     let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
-
+    let playOrPauseFunc = this.state.currentTrack.playing ? this.pauseTrack : this.playTrack;
     return(
       <footer className="group footer">
         <ul className="group playback-control-buttons">
@@ -23,7 +29,7 @@ const CurrentTrack = React.createClass({
           </li>
 
           <li className="footer-playback-control-button">
-            <button className="playback-button">
+            <button className="playback-button" onClick={playOrPauseFunc}>
               <div className={buttonImageClass} />
             </button>
           </li>

@@ -11,6 +11,14 @@ TrackStore.getCurrentTrack = function(){
   return Object.assign({}, _tracks[_currentTrack]);
 };
 
+TrackStore.isTrackPlaying = function(trackId){
+  let track = _tracks[trackId];
+  if (track){
+    return track.playing;
+  }
+  return false;
+};
+
 TrackStore.all = function(){
   let allTracks = [];
   for (let key in _tracks){
