@@ -1,7 +1,7 @@
 const React = require('react');
 const TrackStore = require('../stores/track_store');
 const TrackActions = require('../actions/track_actions');
-import Link from 'react-router';
+const Link = require('react-router').Link;
 
 const CurrentTrack = React.createClass({
   getInitialState(){
@@ -19,7 +19,7 @@ const CurrentTrack = React.createClass({
   playNextTrack(){
     TrackActions.playNextTrack();
   },
-  playPreviousTrack(){  
+  playPreviousTrack(){
     TrackActions.playPreviousTrack();
   },
   resetPlayback(){
@@ -52,9 +52,16 @@ const CurrentTrack = React.createClass({
               </button>
             </li>
 
+            <li className="footer-track-text-container">
+              <Link className = "footer-track-text" to="/">Playing from your stream</Link>
+              <Link className = "footer-track-text" to={composerShowLink}>{this.state.currentTrack.title}</Link>
+            </li>
+
             <li className="footer-track-info">
               <img className="footer-track-image" src={this.state.currentTrack.image_url} />
             </li>
+
+
 
           </ul>
         </footer>
