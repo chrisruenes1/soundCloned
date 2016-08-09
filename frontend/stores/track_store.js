@@ -67,8 +67,8 @@ const _pauseCurrentTrack = function(){
 };
 
 const _playNextTrack = function(){
-  let currentTrackIdx = playQueue.indexOf(_currentTrack);
-  let nextTrackId = playQueue[currentTrackIdx+1];
+  let currentTrackIdx = _playQueue.indexOf(_currentTrack);
+  let nextTrackId = _playQueue[currentTrackIdx+1];
   if (nextTrackId){
     _setCurrentTrack(nextTrackId);
   }
@@ -76,8 +76,8 @@ const _playNextTrack = function(){
 };
 
 const _playPreviousTrack = function(){
-  let currentTrackIdx = playQueue.indexOf(_currentTrack);
-  let previousTrackId = playQueue[currentTrackIdx-1];
+  let currentTrackIdx = _playQueue.indexOf(_currentTrack);
+  let previousTrackId = _playQueue[currentTrackIdx-1];
   if (previousTrackId){
     _setCurrentTrack(previousTrackId);
   }
