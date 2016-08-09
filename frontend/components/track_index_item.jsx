@@ -1,6 +1,7 @@
 const React = require('react');
 const TrackActions = require('../actions/track_actions');
 const TrackStore = require('../stores/track_store');
+const CommentForm = require('./comment_form');
 import {Link} from 'react-router';
 
 
@@ -38,6 +39,8 @@ const TrackIndexItem = React.createClass({
               <Link className="track-artist-link" to={composerURL}>{composer.group_name}</Link>
               <span className="track-title">{this.props.track.title}</span>
             </div>
+
+            <CommentForm trackId={this.props.track.id} />
 
           </div>
         </div>

@@ -1,9 +1,9 @@
 const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
-  createComment(comment, trackId, success, error){
+  createComment(comment, track_id, success, error){
     $.ajax({
-      url:`api/tracks/${trackId}/comments`,
+      url:`api/tracks/${track_id}/comments`,
       type: 'POST',
       data: { comment: comment },
       success,
@@ -15,7 +15,7 @@ module.exports = {
 
   editComment(comment, success, error){
     $.ajax({
-      url:`api/tracks/${comment.trackId}/comments/${comment.id}`,
+      url:`api/tracks/${comment.track_id}/comments/${comment.id}`,
       type: 'PATCH',
       data: { comment: comment },
       success,
@@ -27,7 +27,7 @@ module.exports = {
 
   deleteComment(comment, success, error){
     $.ajax({
-      url:`api/tracks/${comment.trackId}/comments/${comment.id}`,
+      url:`api/tracks/${comment.track_id}/comments/${comment.id}`,
       type: 'DELETE',
       success,
       error: function(xhr){
