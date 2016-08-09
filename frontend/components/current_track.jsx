@@ -78,6 +78,10 @@ const CurrentTrack = React.createClass({
         this.playNextTrack();
       }
     );
+    this.audio.addEventListener("timeupdate", () => {
+      //~around 500ms precision
+      
+    });
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
