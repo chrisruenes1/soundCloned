@@ -1,6 +1,8 @@
 const React = require('react');
 const TrackStore = require('../stores/track_store');
+const TimeStore = require('../stores/time_store');
 const TrackActions = require('../actions/track_actions');
+const TimeActions = require('../actions/time_actions');
 const Link = require('react-router').Link;
 
 const CurrentTrack = React.createClass({
@@ -80,7 +82,7 @@ const CurrentTrack = React.createClass({
     );
     this.audio.addEventListener("timeupdate", () => {
       //~around 500ms precision
-      
+      TimeActions.reset_timer(this.audio.currentTime);
     });
   },
   componentWillUnmount(){

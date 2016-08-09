@@ -1,6 +1,7 @@
 const React = require('react');
 const TrackActions = require('../actions/track_actions');
 const TrackStore = require('../stores/track_store');
+const TimeStore = require('../stores/time_store');
 const CommentForm = require('./comment_form');
 import {Link} from 'react-router';
 
@@ -8,7 +9,7 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     this.listeners = [];
-    return {playing: TrackStore.isTrackPlaying(this.props.track.id)};
+    return {playing: TrackStore.isTrackPlaying(this.props.track.id), elapsedTime: 0};
   },
   playTrack(e){
     e.preventDefault();
@@ -40,7 +41,7 @@ const TrackIndexItem = React.createClass({
               <span className="track-title">{this.props.track.title}</span>
             </div>
 
-            <CommentForm trackId={this.props.track.id} />
+            <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
 
           </div>
         </div>
@@ -50,14 +51,15 @@ const TrackIndexItem = React.createClass({
     );
   },
   componentDidMount(){
-    this.listeners.push(TrackStore.addListener(this._onChange));
+    this.listeners.push(TrackStore.addListener(this._onTrackChange));
+    this.listeners.push(TimeStore.addListener(this._onTimeChange));
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
       listener.remove();
     });
   },
-  _onChange(){
+  _onTrackChange(){
     let currentTrack = TrackStore.getCurrentTrack();
     if (currentTrack.id === this.props.track.id && currentTrack.playing ){
       this.setState({playing: true});
@@ -65,6 +67,9 @@ const TrackIndexItem = React.createClass({
     else {
       this.setState({playing: false});
     }
+  },
+  _onTimeChange(){
+    this.setState( {elapsedTime: TimeStore.getCurrentTime() } );
   }
 });
 

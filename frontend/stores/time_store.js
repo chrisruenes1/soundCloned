@@ -9,7 +9,7 @@ TimeStore.getCurrentTime =function() {
   return _currentTime;
 };
 
-_resetCurrentTime = function(time) {
+const _resetCurrentTime = function(time) {
   _currentTime = time;
   TimeStore.__emitChange();
 };
