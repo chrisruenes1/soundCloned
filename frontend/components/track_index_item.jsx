@@ -8,6 +8,7 @@ import {Link} from 'react-router';
 
 const TrackIndexItem = React.createClass({
   getInitialState(){
+    debugger
     this.listeners = [];
     return {playing: TrackStore.isTrackPlaying(this.props.track.id), elapsedTime: 0};
   },
@@ -69,7 +70,9 @@ const TrackIndexItem = React.createClass({
     }
   },
   _onTimeChange(){
-    this.setState( {elapsedTime: TimeStore.getCurrentTime() } );
+    if (TrackStore.isTrackPlaying(this.props.track.id)){
+      this.setState( {elapsedTime: TimeStore.getCurrentTime() } );
+    }
   }
 });
 
