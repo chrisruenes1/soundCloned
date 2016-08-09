@@ -34,4 +34,12 @@ class Track < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :composer_id
   )
+
+  has_many(
+    :comments,
+    dependent: :destroy,
+    class_name: "Comment",
+    primary_key: :id,
+    foreign_key: :track_id
+  )
 end
