@@ -1,14 +1,12 @@
 const React = require('react');
 const TrackStore = require('../stores/track_store');
 const TrackActions = require('../actions/track_actions');
+import Link from 'react-router';
 
 const CurrentTrack = React.createClass({
   getInitialState(){
     this.listeners = [];
     this.audio = new Audio();
-    this.audio.addEventListener("ended", () => {
-      this.playNextTrack();
-    });
     this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
@@ -30,35 +28,50 @@ const CurrentTrack = React.createClass({
     }
   },
   render(){
-    let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
-    let playOrPauseFunc = this.state.currentTrack.playing ? this.pauseTrack : this.playTrack;
-    return(
-      <footer className="group footer">
-        <ul className="group playback-control-buttons">
+    if (this.state.currentTrack.id){
+      let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
+      let playOrPauseFunc = this.state.currentTrack.playing ? this.pauseTrack : this.playTrack;
+      let composerShowLink = `users/url/${this.state.currentTrack.composer.custom_url}`;
+      return(
+        <footer className="group footer">
+          <ul className="group playback-control-buttons">
 
-          <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={this.playPreviousTrack}>
-              <div className="rewind" />
-            </button>
-          </li>
+            <li className="footer-playback-control-button">
+              <button className="playback-button" onClick={this.playPreviousTrack}>
+                <div className="rewind" />
+              </button>
+            </li>
 
-          <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={playOrPauseFunc}>
-              <div className={buttonImageClass} />
-            </button>
-          </li>
+            <li className="footer-playback-control-button">
+              <button className="playback-button" onClick={playOrPauseFunc}>
+                <div className={buttonImageClass} />
+              </button>
+            </li>
 
-          <li className="footer-playback-control-button">
-            <button className="playback-button" onClick={this.playNextTrack}>
-              <div className="fastforward" />
-            </button>
-          </li>
-        </ul>
-      </footer>
-    );
+            <li className="footer-playback-control-button">
+              <button className="playback-button" onClick={this.playNextTrack}>
+                <div className="fastforward" />
+              </button>
+            </li>
+
+            <li className="footer-track-info">
+              <img className="footer-track-image" src={this.state.currentTrack.image_url} />
+            </li>
+
+          </ul>
+        </footer>
+      );
+    }
+    else {
+      return <div></div>;
+    }
   },
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
+    this.audio.addEventListener("ended", () => {
+      this.elapsedTimes[this.state.currentTrack.id] = 0;
+      this.playNextTrack();
+    });
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
@@ -68,9 +81,7 @@ const CurrentTrack = React.createClass({
   _onChange(){
     let newCurrentTrack = TrackStore.getCurrentTrack();
     if (newCurrentTrack){
-
       if (newCurrentTrack.playing) {
-
         if (newCurrentTrack.id !== this.state.currentTrack.id){
           //pause the current track and save location
           this.audio.pause();
