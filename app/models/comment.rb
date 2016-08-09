@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id           :integer          not null, primary key
+#  content      :text             not null
+#  author_id    :integer          not null
+#  track_id     :integer          not null
+#  elapsed_time :float            not null
+#
+
 class Comment < ActiveRecord::Base
   validates :content, :author_id, :track_id, :elapsed_time, presence: true
 
