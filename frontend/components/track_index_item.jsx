@@ -7,7 +7,7 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     this.listeners = [];
-    return {playing: false, audio: null};
+    return {playing: TrackStore.isTrackPlaying(this.props.track.id), audio: null};
   },
   playTrack(e){
     e.preventDefault();
