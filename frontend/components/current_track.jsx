@@ -19,13 +19,8 @@ const CurrentTrack = React.createClass({
   playNextTrack(){
     TrackActions.playNextTrack();
   },
-  playPreviousTrack(){
-    if (this.audio.currentTime > 2){
-      this.audio.currentTime = 0;
-    }
-    else {
-      TrackActions.playPreviousTrack();
-    }
+  playPreviousTrack(){  
+    TrackActions.playPreviousTrack();
   },
   resetPlayback(){
     this.audio.currentTime = 0;
