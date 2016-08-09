@@ -80,11 +80,25 @@
 
 .footer-track-text-container {
   margin-top: 5px;
-  width:200px;
+  min-width:200px;
   height: 100%;
   float: right;
+  font-size: 11px;
 }
 
 .footer-track-text {
   display: block;
+  line-height: 16px
+}
+
+.footer-track-text:hover{
+  color:#000;
+}
+
+.light-gray-text {
+  color: #999;
+}
+
+.dark-gary-text {
+  color: #666;
 }

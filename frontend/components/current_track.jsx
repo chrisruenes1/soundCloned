@@ -53,8 +53,8 @@ const CurrentTrack = React.createClass({
             </li>
 
             <li className="footer-track-text-container">
-              <Link className = "footer-track-text" to="/">Playing from your stream</Link>
-              <Link className = "footer-track-text" to={composerShowLink}>{this.state.currentTrack.title}</Link>
+              <Link className = "footer-track-text light-gray-text" to="/">Playing from your stream</Link>
+              <Link className = "footer-track-text dark-gary-text" to={composerShowLink}>{this.state.currentTrack.title}</Link>
             </li>
 
             <li className="footer-track-info">
