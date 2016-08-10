@@ -2,7 +2,7 @@ const React = require('react');
 const LoginPlaceholder = React.createClass({
   render(){
     return(
-      <marquee>🤓 Whoops! You gotta sign in to see this content!😝 Just look up!🤓</marquee>
+      <h1>You need to be logged in to see this page!</h1>
     );
   }
 });
