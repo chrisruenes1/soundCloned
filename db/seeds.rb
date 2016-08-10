@@ -27,6 +27,7 @@ users = []
   users.push(user)
 end
 
+
 demo_user = {
   fname: "Chris",
   lname: "Ruenes",
@@ -52,12 +53,15 @@ users.push(chance);
 
 User.create!(
   users
-);
+)
 puts "created users"
+
+users = User.all
+
 
 chance_id = User.find_by(username: "chance3").id;
 
-puts "found chnace"
+puts "found chance"
 
 Track.create!([
   {
@@ -93,3 +97,21 @@ Track.create!([
     public: true
   }
 ]);
+
+tracks = Track.all
+
+comments= [];
+10.times do
+  comment = {
+    content: Faker::Hipster.sentence,
+    track_id: tracks.sample.id,
+    author_id: users.sample.id,
+    elapsed_time: (180) * Random.rand()
+  }
+  comments.push(comment)
+end
+
+Comment.create!(
+comments
+)
+puts "created comments"

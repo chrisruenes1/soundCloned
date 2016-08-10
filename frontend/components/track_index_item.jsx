@@ -4,6 +4,7 @@ const TrackStore = require('../stores/track_store');
 const TimeStore = require('../stores/time_store');
 const CommentStore = require('../stores/comment_store');
 const CommentForm = require('./comment_form');
+const CommentIndex = require('./comment_index');
 import {Link} from 'react-router';
 
 
@@ -53,31 +54,33 @@ const TrackIndexItem = React.createClass({
         this.clearWipeoutTimer();
       }, this.commentShowLength);
     }
-
     return(
     <li>
-      <div className="track-index-item-container">
-        <div className="track-index-item">
-          <div className="track-content-container group">
+      <div className="track-index-item group">
 
-            <img className="track-list-item-element track-image" src={this.props.track.image_url} />
-            <div className="track-list-item-element">
-              <button className="play-button" onClick={playOrPauseFunc}><div className={buttonImageClass} /></button>
-            </div>
+        <img className="track-image" src={this.props.track.image_url} />
+
+        <div className="track-content-container">
+
+          <div className="track-play-buttons">
+            <button className="play-button track-list-item-element" onClick={playOrPauseFunc}><div className={buttonImageClass} /></button>
 
             <div className="track-list-item-element">
               <Link className="track-artist-link" to={composerURL}>{composer.group_name}</Link>
               <span className="track-title">{this.props.track.title}</span>
             </div>
-
-            <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
-
-            <section>{currentComment}</section>
-
           </div>
+
+          <div className="playback-container">
+            <CommentIndex comments={this.state.comments}/>
+          </div>
+
+          <div className="comment-form-container">
+            <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
+          </div>
+          <section>{currentComment}</section>
         </div>
       </div>
-
     </li>
     );
   },
