@@ -10,7 +10,8 @@ const CommentForm = React.createClass({
     let newContent = e.currentTarget.value;
     this.setState({content: newContent});
   },
-  handleSubmit(){
+  handleSubmit(e){
+    e.preventDefault();
     let comment = this.state;
     comment.author_id = SessionStore.currentUser().id;
     let track_id = this.props.trackId;
