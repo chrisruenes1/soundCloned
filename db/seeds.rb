@@ -70,7 +70,8 @@ Track.create!([
     audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/summer_friends.mp3",
     composer_id: chance_id,
     album: "Coloring Book",
-    public: true
+    public: true,
+    duration: 290
   },
   {
     title: "No Problem",
@@ -78,7 +79,8 @@ Track.create!([
     audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/no_problem.mp3",
     composer_id: chance_id,
     album: "Coloring Book",
-    public: true
+    public: true,
+    duration: 305
   },
   {
     title: "Same Drugs",
@@ -86,7 +88,8 @@ Track.create!([
     audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/same_drugs.mp3",
     composer_id: chance_id,
     album: "Coloring Book",
-    public: true
+    public: true,
+    duration: 258
   },
   {
     title: "All We Got",
@@ -94,7 +97,8 @@ Track.create!([
     audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/all_we_got.mp3",
     composer_id: chance_id,
     album: "Coloring Book",
-    public: true
+    public: true,
+    duration:204
   }
 ]);
 

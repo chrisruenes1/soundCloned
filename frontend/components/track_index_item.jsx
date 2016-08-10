@@ -72,7 +72,7 @@ const TrackIndexItem = React.createClass({
           </div>
 
           <div className="playback-container">
-            <CommentIndex comments={this.state.comments}/>
+            <CommentIndex comments={this.state.comments} track={this.props.track}/>
           </div>
 
           <div className="comment-form-container">
