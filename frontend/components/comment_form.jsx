@@ -19,22 +19,29 @@ const CommentForm = React.createClass({
     this.setState({ content: "" });
   },
   render(){
-    return(
+    if (SessionStore.isUserLoggedIn()){
+      return(
 
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.content}
-          onChange={this.contentChange}
-          placeholder="Add a comment"
-        ></input>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.content}
+            onChange={this.contentChange}
+            placeholder="Add a comment"
+            ></input>
 
-        <button
-          type="submit"
-        />
+          <button
+            type="submit"
+            />
 
-      </form>
-    );
+        </form>
+      );
+    }
+    else {
+      return(
+        <div></div>
+      );
+    }
   }
 });
 
