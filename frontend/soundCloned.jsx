@@ -11,10 +11,6 @@ const SessionActions = require('./actions/session_actions');
 const SessionStore = require('./stores/session_store');
 import { Router, Route, IndexRoute, hashHistory} from "react-router";
 
-//***********************************************
-window.CommentApiUtil = require('./util/comment_api_util');
-//***********************************************
-
 const _ensureLoggedIn = function(nextState, replace){
   if (!SessionStore.isUserLoggedIn()){
     replace("/login");
@@ -26,7 +22,7 @@ const appRouter = (
     <Route path="/" component={ App } >
       <IndexRoute component={ TracksIndex }/>
       <Route path="/login" component={ LoginPlaceholder }/>
-      <Route path="/users/url/:customUrl" component={ UserProfile } onEnter={ _ensureLoggedIn} />
+      <Route path="/users/url/:customUrl" component={ UserProfile } />
     </ Route>
   </Router>
 );
