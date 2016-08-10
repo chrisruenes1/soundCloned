@@ -1,6 +1,8 @@
 .track-image {
   width:160px;
   height: 160px;
+  float: left;
+  position: absolute;
 }
 
 .upload-form-image {
@@ -134,17 +136,10 @@
   left:0;
 }
 
-.track-index-item-container {
-  position: relative;
-  width: 100%;
-  height: 160px;
-}
-
 .track-index-item {
-  position: absolute;
-  left: 25px;
-  top: 25px;
   width:100%;
+  height: 160px;
+  margin-bottom:15px;
 }
 
 .play-button {
@@ -163,12 +158,22 @@
   min-height: 36px;
 }
 
-.track-index-item {
-  margin-bottom:15px;
+.playback-container {
+  width: 100%;
+  height: 60px;
+  float: left;
+  position: relative;
 }
 
-.track-content-container {
-  position:relative;
+.track-play-buttons {
+  float: left;
+}
+
+.track-content-container{
+  display: block;
+  width: calc(100% - 165px);
+  float: right;
+  height: 100%;
 }
 
 .track-artist-link {
@@ -185,6 +190,24 @@
   line-height: 1.2;
   font-weight: 100;
 
+}
+
+.comment-image-list {
+  height: 10px;
+  position: absolute;
+  width: 100%;
+  background-color: blue;
+  float: left;
+  bottom: 5px;
+}
+
+.comment-form-container {
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+  margin: 1px;
+  float: left;
+  position: relative;
 }
 
 .play-button-image {

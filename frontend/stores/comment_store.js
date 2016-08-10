@@ -30,7 +30,7 @@ const _addComment = function(comment){
   }
 
   CommentStore.__emitChange();
-  
+
 };
 
 const _removeComment = function(comment){

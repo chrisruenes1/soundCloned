@@ -10,6 +10,10 @@
   color:#999;
 }
 
+.underline{
+  text-decoration: underline;
+}
+
 .navbar-element{
   text-align:center;
   float:left;
