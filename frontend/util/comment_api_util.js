@@ -1,6 +1,16 @@
 const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
+  fetchAllComments(success){
+    $.ajax({
+      url: `api/comments`,
+      type: `GET`,
+      success,
+      error: function(xhr){
+        console.log("Error in #commentApiUtil: " + xhr.responseText);
+      }
+    });
+  },
   createComment(comment, track_id, success, error){
     $.ajax({
       url:`api/tracks/${track_id}/comments`,

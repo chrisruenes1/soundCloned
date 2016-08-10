@@ -2,6 +2,7 @@ const React = require('react');
 const TrackActions = require('../actions/track_actions');
 const TrackStore = require('../stores/track_store');
 const TimeStore = require('../stores/time_store');
+const CommentStore = require('../stores/comment_store');
 const CommentForm = require('./comment_form');
 import {Link} from 'react-router';
 
@@ -40,7 +41,7 @@ const TrackIndexItem = React.createClass({
     let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
     let playOrPauseFunc = this.state.playing ? this.pauseTrack : this.playTrack;
     let currentComment =
-      this.state.comments[this.state.currentCommentIdx] && !this.state.hideComments ?
+      this.state.comments[this.state.currentCommentIdx] && !this.state.hideComments &&this.state.playing ?
       this.state.comments[this.state.currentCommentIdx].content :
       "";
 
@@ -83,6 +84,7 @@ const TrackIndexItem = React.createClass({
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onTrackChange));
     this.listeners.push(TimeStore.addListener(this._onTimeChange));
+    this.listeners.push(CommentStore.addListener(this._onCommentChange));
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
@@ -99,7 +101,7 @@ const TrackIndexItem = React.createClass({
     }
   },
   _onTimeChange(){
-    if (TrackStore.isTrackPlaying(this.props.track.id)){
+    if (this.state.playing){
 
       let currentTime = TimeStore.getCurrentTime();
 
@@ -123,6 +125,26 @@ const TrackIndexItem = React.createClass({
 
       this.setState( { elapsedTime: currentTime, currentCommentIdx: commentIdx, hideComments: shouldHide } );
     }
+  },
+  _onCommentChange(){
+    let comments = CommentStore.allCommentsForTrack(this.props.track.id);
+    let sortedComments = comments.sort(function(a, b){
+      return a.elapsed_time - b.elapsed_time;
+    });
+    let currentCommentIdx;
+    if (this.state.currentCommentIdx >= 0 ){
+      let currentCommentUpdatedIdx = comments.indexOf(this.state.comments[this.state.currentCommentIdx]);
+      if (currentCommentUpdatedIdx >= 0){  //make sure comment playback does not restart if currentComment was removed
+        currentCommentIdx = currentCommentUpdatedIdx;
+      }
+      else {
+        currentCommentIdx = this.state.currentCommentIdx;
+      }
+    }
+    else {
+      currentCommentIdx = 0;
+    }
+    this.setState( { comments: comments, currentCommentIdx: currentCommentIdx });
   },
   clearWipeoutTimer(){
     window.clearTimeout(this.hideTimeout);
