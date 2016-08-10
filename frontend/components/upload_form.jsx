@@ -38,7 +38,7 @@ const UploadForm = React.createClass({
   update(field, e){
     let updateObject = {};
     let newValue;
-    
+
     //parse radio buttons as booleans
     if (field === "public"){
       if (e.target.value === "public"){
@@ -105,6 +105,8 @@ const UploadForm = React.createClass({
 
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
+    var tempAudio = new Audio(file);
+    var duration = tempAudio.duration;
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name), success_message: `Successfully uploaded "${file.name}"` });

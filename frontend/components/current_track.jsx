@@ -9,6 +9,7 @@ const CurrentTrack = React.createClass({
   getInitialState(){
     this.listeners = [];
     this.audio = new Audio();
+    window.audio = this.audio;
     this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
@@ -62,9 +63,6 @@ const CurrentTrack = React.createClass({
             <li className="footer-track-info">
               <img className="footer-track-image" src={this.state.currentTrack.image_url} />
             </li>
-
-
-
           </ul>
         </footer>
       );
