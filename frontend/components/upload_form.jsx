@@ -13,12 +13,14 @@ const UploadForm = React.createClass({
       title:"",
       genre:"",
       description:"",
+      duration: 0,
       imageFile: null,
       imageUrl: null,
       trackFile: null,
       trackUrl: null,
       errors:[],
-      success_message:""
+      success_message:"",
+      submitDisabled:true
     };
   },
   handleSubmit(e){
@@ -32,6 +34,7 @@ const UploadForm = React.createClass({
     formData.append("track[description]", this.state.description);
     formData.append("track[image]", this.state.imageFile);
     formData.append("track[audio_file]", this.state.trackFile);
+    formData.append("track[duration]", this.state.duration);
 
     TrackActions.createTrack(formData, this.props.close);
   },
@@ -107,7 +110,19 @@ const UploadForm = React.createClass({
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name), success_message: `Successfully uploaded "${file.name}"` });
+      let audio = new Audio(fileReader.result);
+      audio.addEventListener("loadedmetadata", () => {
+        let duration = audio.duration;
+        this.setState({
+          trackFile: file,
+          duration: duration,
+          trackUrl: fileReader.result,
+          title: this.parseName(file.name),
+          success_message: `Successfully uploaded "${file.name}"`,
+          submitDisabled: false
+        });
+      });
+
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -220,7 +235,8 @@ const UploadForm = React.createClass({
                   onChange={this.update.bind(null, "public")}
                 ></input>
             </span>
-            <input className="upload-submit"
+            <input disabled={this.state.submitDisabled}
+              className="upload-submit"
               type="submit"
               value="Save"
             ></input>
