@@ -18,9 +18,26 @@ const ProfileHeader = React.createClass({
       </FormModal>
       :
       <div></div>;
+
+
+      let image = <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />;
+      let imageWithButton =
+      <div className="profile-picture">
+
+        <div className="profile-picture-overlay">
+          {image}
+          <div className="image-button-positioner">
+            <div className="image-button-container">
+              <button onClick={this.triggerImageFileInput} className="image-button">Update image</button>
+              <input type="file" className="hidden-file-input" id="image-file-input" onChange={this.updateImageFile} />
+            </div>
+          </div>
+        </div>
+      </div>;
     return(
       <header className="group profile-header-image">
-        <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
+
+        {imageWithButton}
         <div className="profile-user-info">
           <span className="profile-element profile-large">{this.props.user.group_name}</span>
           <span className="profile-element profile-small">{this.props.user.fname} {this.props.user.lname}</span>
