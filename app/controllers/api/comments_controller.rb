@@ -1,8 +1,9 @@
 class Api::CommentsController < ApplicationController
 
   def index
-    @comments = Comment.find_by(trackId: params[:track_id])
+    @comments = Comment.all
   end
+  
 
   def create
     @comment = Comment.new(comment_params)
@@ -32,6 +33,12 @@ class Api::CommentsController < ApplicationController
     end
   end
 
+  def fetch_comments_for_track
+    @comments = Comment.find_by(trackId: params[:track_id])
+  end
+    
+  private
+  
   def comment_params
     params.require(:comment).permit(:content, :author_id, :elapsed_time)
   end

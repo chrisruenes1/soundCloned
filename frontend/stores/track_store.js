@@ -2,12 +2,10 @@ const Store = require('flux/utils').Store;
 const AppDispatcher = require('../dispatcher/dispatcher');
 const TrackStore = new Store(AppDispatcher);
 const TrackConstants = require('../constants/track_constants');
-const CommentConstants = require('../constants/comment_constants');
 
 let _tracks = {};
 let _playQueue = [];
 let _currentTrack = null;
-let _comments = {};
 
 TrackStore.all = function(){
   let allTracks = [];
@@ -60,7 +58,6 @@ const _addTrack = function(track){
 
 const _removeTrack = function(track){
   delete _tracks[track.id];
-  delete _comments[track.id];
   let trackIdx = _playQueue.indexOf(track);
   _playQueue.splice(trackIdx, 1);
   TrackStore.__emitChange();
@@ -101,16 +98,6 @@ const _playPreviousTrack = function(){
   TrackStore.__emitChange();
 };
 
-const _addComment = function(comment){
-  _comments[comment.trackId] = comment;
-};
-
-const _removeComment = function(comment){
-  let comments = _comments[comment.trackId];
-  let commentIdx = _comments.indexOf(comment);
-  comments.splice(commentIdx, 1);
-};
-
 TrackStore.__onDispatch = (payload) => {
   switch (payload.actionType){
     case TrackConstants.RECEIVE_ALL_TRACKS:
@@ -135,14 +122,6 @@ TrackStore.__onDispatch = (payload) => {
       break;
     case TrackConstants.PLAY_PREVIOUS_TRACK:
       _playPreviousTrack();
-      break;
-
-    //comments
-    case CommentConstants.RECEIVE_COMMENT:
-      _addComment(payload.comment);
-      break;
-    case CommentConstants.REMOVE_COMMENT:
-      _removeComment(payload.comment);
       break;
   }
 };

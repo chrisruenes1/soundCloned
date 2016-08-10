@@ -2,6 +2,7 @@ const React = require('react');
 const TrackStore = require('../stores/track_store');
 const TrackIndexItem = require('./track_index_item');
 const TrackActions = require('../actions/track_actions');
+const CommentActions = require('../actions/comment_actions');
 
 const TracksIndex = React.createClass({
   getInitialState(){
@@ -27,6 +28,7 @@ const TracksIndex = React.createClass({
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
     TrackActions.fetchAllTracks();
+    CommentActions.fetchAllComments();
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){

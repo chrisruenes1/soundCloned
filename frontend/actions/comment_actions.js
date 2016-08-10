@@ -4,17 +4,26 @@ const AppDispatcher = require('../dispatcher/dispatcher');
 const CommentConstants = require('../constants/comment_constants');
 
 module.exports = {
+  fetchAllComments(){
+    CommentAPIUtil.fetchAllComments(this.receiveAllComments);
+  },
   createComment(comment, track_id){
-    CommentAPIUtil.createComment(comment, track_id, this.receiveTrack, ErrorActions.setErrors);
+    CommentAPIUtil.createComment(comment, track_id, this.receiveComment, ErrorActions.setErrors);
   },
   editComment(comment){
-    CommmentAPIUtil.ediComent(comment, this.receiveTrack, ErrorActions.setErrors);
+    CommmentAPIUtil.ediComent(comment, this.receiveComment, ErrorActions.setErrors);
   },
   deleteComment(comment){
-    CommentAPIUtil.deleteComment(comment, this.removeTrack, ErrorActions.setErrors);
+    CommentAPIUtil.deleteComment(comment, this.removeComment, ErrorActions.setErrors);
+  },
+  receiveAllComments(comments){
+    AppDispatcher.dispatch({
+      actionType: CommentConstants.RECEIVE_ALL_COMMENTS,
+      comments: comments
+    });
   },
   receiveComment(comment){
-    AppDispatcher.disaptch({
+    AppDispatcher.dispatch({
       actionType: CommentConstants.RECEIVE_COMMENT,
       comment: comment
     });
