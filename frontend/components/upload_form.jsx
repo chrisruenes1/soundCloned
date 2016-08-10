@@ -105,8 +105,6 @@ const UploadForm = React.createClass({
 
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
-    var tempAudio = new Audio(file);
-    var duration = tempAudio.duration;
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({ trackFile: file, trackUrl: fileReader.result, title: this.parseName(file.name), success_message: `Successfully uploaded "${file.name}"` });
