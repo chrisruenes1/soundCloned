@@ -4,7 +4,6 @@ class Api::CommentsController < ApplicationController
     @comments = Comment.all
   end
   
-
   def create
     @comment = Comment.new(comment_params)
     @comment.track_id = params[:track_id]
