@@ -11,6 +11,10 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     //sort comments to be able to play through them in correct order
+    let sortedComments = this.props.track.comments.sort(function(a, b){
+     return a.elapsed_time - b.elapsed_time;
+    });
+
     this.commentShowLength = 4000;
 
     this.listeners = [];
@@ -21,7 +25,7 @@ const TrackIndexItem = React.createClass({
       //the first comment may be well into the song, so we want
       //it to start as the NEXT comment rather than current comment
       currentCommentIdx: -1,
-      comments: this.props.track.comments, //sorted by timestamp
+      comments: sortedComments, 
       hideComments: false
     };
   },
@@ -132,7 +136,10 @@ const TrackIndexItem = React.createClass({
     }
   },
   _onCommentChange(){
-    let comments = CommentStore.allCommentsForTrack(this.props.track.id); //sorted by timestamp
+    let comments = CommentStore.allCommentsForTrack(this.props.track.id);
+    let sortedComments = comments.sort(function(a, b){ //the comment create method only returns the added comment, without position info
+      return a.elapsed_time - b.elapsed_time;
+    });
     let currentCommentIdx;
     if (this.state.currentCommentIdx >= 0 ){
       let currentCommentUpdatedIdx = comments.indexOf(this.state.comments[this.state.currentCommentIdx]);
@@ -146,7 +153,7 @@ const TrackIndexItem = React.createClass({
     else {
       currentCommentIdx = 0;
     }
-    this.setState( { comments: comments, currentCommentIdx: currentCommentIdx });
+    this.setState( { comments: sortedComments, currentCommentIdx: currentCommentIdx });
   },
   clearWipeoutTimer(){
     window.clearTimeout(this.hideTimeout);

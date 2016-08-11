@@ -20,7 +20,7 @@ const CommentIndexItem = React.createClass({
     let commentShow = this.state.shouldShowComment ?
 
     <div className="comment-info top-to-bottom">
-      <span className="author-name">{this.props.comment.author_id}</span>
+      <span className="author-name">{this.props.comment.author.username}</span>
       <span className="comment-content">{this.props.comment.content}</span>
     </div>
 
