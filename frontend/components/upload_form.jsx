@@ -62,6 +62,7 @@ const UploadForm = React.createClass({
   },
 
   updateImageFile: function (e) {
+    e.preventDefault();
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -169,7 +170,12 @@ const UploadForm = React.createClass({
         {image}
         <div className="image-button-positioner">
           <div className="image-button-container">
-            <button onClick={this.triggerImageFileInput} className="image-button">Update image</button>
+            <button onClick={this.triggerImageFileInput} className="image-button">
+              <img
+                className='camera-img'
+                src="https://s3.amazonaws.com/SOUND-CLONED-PROD/images/camera.png" />
+              Update image
+            </button>
             <input type="file" className="hidden-file-input" id="image-file-input" onChange={this.updateImageFile} />
           </div>
         </div>

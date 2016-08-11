@@ -4,6 +4,12 @@ const AppDispatcher = require('../dispatcher/dispatcher');
 const CommentConstants = require('../constants/comment_constants');
 
 module.exports = {
+  setCurrentDisplayedComment(comment){
+    AppDispatcher.dispatch({
+      actionType: CommentConstants.SET_CURRENT_COMMENT,
+      comment: comment
+    });
+  },
   fetchAllComments(){
     CommentAPIUtil.fetchAllComments(this.receiveAllComments);
   },
