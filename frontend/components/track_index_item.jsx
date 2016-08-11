@@ -11,7 +11,7 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     //sort comments to be able to play through them in correct order
-    this.commentShowLength = 4000;
+    this.commentShowLength = 400000;
     let sortedComments = this.props.track.comments.sort(function(a, b){
       return a.elapsed_time - b.elapsed_time;
     });

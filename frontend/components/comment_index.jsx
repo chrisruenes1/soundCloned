@@ -6,12 +6,13 @@ const CommentIndex = React.createClass({
     return(
       <ul className='comment-image-list'>
         {
-          this.props.comments.map((comment) => {
+          this.props.comments.map((comment, idx) => {
             return <CommentIndexItem
               comment={comment}
               track={this.props.track}
               currentComment={this.props.currentComment}
               currentTime={this.props.currentTime}
+              idx={idx}
               key={comment.id}/>;
           })
         }

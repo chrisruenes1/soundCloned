@@ -2,11 +2,50 @@
   width:10px;
   height:10px;
   background-color: red;
-  float: left;
   position: absolute;
 }
 
-.just-for-show {
-  color: purple;
-  font-size: 20px;
+.comment-image-list {
+  position:relative;
+  margin-top: 45px;
+}
+
+.author-name {
+  color: #f50;
+  padding-left: 5px;
+}
+
+.comment-content {
+  padding-left: 12px;
+  white-space: nowrap;
+}
+
+.comment-info {
+  position: absolute;
+  height: 22px;
+  top: 10px;
+  width: 300px;
+  max-width:700px;
+  padding-top: 9px;
+  font-size: 12px;
+  border-left: 1px solid black;
+  line-height: 16.8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.top-to-bottom {
+    border-width: 1px;
+    border-style: solid;
+    -webkit-border-image:
+      -webkit-gradient(linear, 0 0, 0 100%, from(#f50), to(#fff)) 1 100%;
+    -webkit-border-image:
+      -webkit-linear-gradient(#f50, #fff) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(#f50, #fff) 1 100%;
+    -o-border-image:
+      -o-linear-gradient(#f50, #fff) 1 100%;
+    border-image:
+      linear-gradient(to bottom, #f50, #fff) 1 100%;
+    border-right: 0;
 }
