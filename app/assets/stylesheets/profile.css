@@ -6,8 +6,29 @@
   border-radius:50%;
   float:left;
   position:absolute;
+}
+
+.modal-profile-picture {
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  float:left;
+  position:absolute;
   margin-left:35px;
   margin-top:20px;
+}
+
+.camera-img{
+  width:15px;
+  height:15px;
+  display:inline;
+  margin-right: 5px;
+}
+
+.profile-picture-overlay {
+  position:relative;
+  height:100%;
+  width:100%;
 }
 
 .profile-element {

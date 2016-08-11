@@ -1,0 +1,7 @@
+.comment-index-item {
+  width:10px;
+  height:10px;
+  background-color: red;
+  float: left;
+  position: absolute;
+}

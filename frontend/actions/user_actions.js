@@ -7,8 +7,8 @@ module.exports = {
   fetchUser(url){
     UserApiUtil.fetchUser(url, this.receiveUser, ErrorActions.setErrors);
   },
-  editUser(user){
-    UserApiUtil.updateUser(user, this.receiveUser, ErrorActions.setErrors);
+  editUser(formData){
+    UserApiUtil.updateUser(formData, this.receiveUser, ErrorActions.setErrors);
   },
   receiveUser(user){
     AppDispatcher.dispatch({
