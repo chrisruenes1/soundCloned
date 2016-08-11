@@ -37,7 +37,6 @@ const TrackIndexItem = React.createClass({
     TrackActions.pauseCurrentTrack();
   },
   render(){
-    console.log("comment called");
     let composer = this.props.track.composer;
     let composerURL = `users/url/${composer.custom_url}`;
     let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
@@ -51,7 +50,6 @@ const TrackIndexItem = React.createClass({
     if (currentComment.id >= 0 && !this.wipeCommentTimeoutSet){
       this.wipeCommentTimeoutSet = true;
       this.hideTimeout = window.setTimeout(() => {
-        console.log("callback called...back");
         this.setState( {hideComments: true });
         this.clearWipeoutTimer();
       }, this.commentShowLength);
