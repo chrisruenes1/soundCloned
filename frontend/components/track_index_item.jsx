@@ -5,6 +5,7 @@ const TimeStore = require('../stores/time_store');
 const CommentStore = require('../stores/comment_store');
 const CommentForm = require('./comment_form');
 const CommentIndex = require('./comment_index');
+const WaveSurferVisualizer = require('./wave_surfer_visualizer');
 import {Link} from 'react-router';
 
 
@@ -25,7 +26,7 @@ const TrackIndexItem = React.createClass({
       //the first comment may be well into the song, so we want
       //it to start as the NEXT comment rather than current comment
       currentCommentIdx: -1,
-      comments: sortedComments, 
+      comments: sortedComments,
       hideComments: false
     };
   },
@@ -74,6 +75,7 @@ const TrackIndexItem = React.createClass({
           </div>
 
           <div className="playback-container">
+            <WaveSurferVisualizer track={this.props.track} progressColor="green"/>
             <CommentIndex
               currentComment={currentComment}
               comments={this.state.comments}

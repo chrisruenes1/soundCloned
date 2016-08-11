@@ -17,6 +17,8 @@
     "react-dom": "^15.3.0",
     "react-modal": "^1.4.0",
     "react-router": "2.6.1",
+    "react-wavesurfer": "^0.5.2",
+    "webaudio": "^2.0.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {},
