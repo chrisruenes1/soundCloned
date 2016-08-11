@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810215427) do
+ActiveRecord::Schema.define(version: 20160811114451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text    "content",      null: false
-    t.integer "author_id",    null: false
-    t.integer "track_id",     null: false
-    t.float   "elapsed_time", null: false
+    t.text     "content",      null: false
+    t.integer  "author_id",    null: false
+    t.integer  "track_id",     null: false
+    t.float    "elapsed_time", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(version: 20160810215427) do
     t.boolean  "public",                  default: true
     t.string   "genre"
     t.float    "duration",                default: 0.0,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "tracks", ["album"], name: "index_tracks_on_album", using: :btree
@@ -64,6 +68,8 @@ ActiveRecord::Schema.define(version: 20160810215427) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["city"], name: "index_users_on_city", using: :btree

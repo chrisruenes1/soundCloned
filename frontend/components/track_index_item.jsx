@@ -11,6 +11,7 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     //sort comments to be able to play through them in correct order
+    this.commentShowLength = 4000;
     let sortedComments = this.props.track.comments.sort(function(a, b){
       return a.elapsed_time - b.elapsed_time;
     });
@@ -36,6 +37,7 @@ const TrackIndexItem = React.createClass({
     TrackActions.pauseCurrentTrack();
   },
   render(){
+    console.log("comment called");
     let composer = this.props.track.composer;
     let composerURL = `users/url/${composer.custom_url}`;
     let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
@@ -43,9 +45,17 @@ const TrackIndexItem = React.createClass({
     let currentComment =
       this.state.comments[this.state.currentCommentIdx] && !this.state.hideComments &&this.state.playing ?
       this.state.comments[this.state.currentCommentIdx] :
-      null;
-      
-      debugger
+      { id: -1 }; //send an empty object with a non-matching id to all comment objects
+
+    //wipe currentComment off screen after a few seconds
+    if (currentComment.id >= 0 && !this.wipeCommentTimeoutSet){
+      this.wipeCommentTimeoutSet = true;
+      this.hideTimeout = window.setTimeout(() => {
+        console.log("callback called...back");
+        this.setState( {hideComments: true });
+        this.clearWipeoutTimer();
+      }, this.commentShowLength);
+    }
 
     return(
     <li>
@@ -66,9 +76,10 @@ const TrackIndexItem = React.createClass({
 
           <div className="playback-container">
             <CommentIndex
-              currentComment={this.state.comments[this.state.currentCommentIdx]}
+              currentComment={currentComment}
               comments={this.state.comments}
               track={this.props.track}
+              currentTime={this.state.elapsedTime}
             />
           </div>
 
