@@ -5,6 +5,22 @@
   position: absolute;
 }
 
+.progress-bar {
+  height:2px;
+  line-height: 10px;
+  background-color:#f50;
+  position: absolute;
+  bottom: 0px;
+}
+
+.footer-progress-bar-container {
+  height: 10px;
+  width: 200px;
+  float: left;
+  background-color: blue;
+  position: relative;
+}
+
 .upload-form-image {
   width: 260px;
   height: 260px;
@@ -216,6 +232,7 @@
   margin: 1px;
   float: left;
   position: relative;
+  padding-top: 50px;
 }
 
 .play-button-image {

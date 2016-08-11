@@ -30,6 +30,7 @@ const TracksIndex = React.createClass({
     this.listeners.push(TrackStore.addListener(this._onChange));
     TrackActions.fetchAllTracks();
     CommentActions.fetchAllComments();
+
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){

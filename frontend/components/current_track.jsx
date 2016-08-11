@@ -33,8 +33,15 @@ const CurrentTrack = React.createClass({
       let buttonImageClass = this.state.currentTrack.playing ? "footer-pause-button-image" : "footer-play-button-image";
       let playOrPauseFunc = this.state.currentTrack.playing ? this.pauseTrack : this.playTrack;
       let composerShowLink = `users/url/${this.state.currentTrack.composer.custom_url}`;
+
+      let progressBarStyle = {
+        width:`calc(100% * ${this.audio.currentTime / this.state.currentTrack.duration })`
+      };
+
       return(
         <footer className="group footer">
+
+
           <ul className="group playback-control-buttons">
 
             <li className="footer-playback-control-button">
@@ -53,6 +60,10 @@ const CurrentTrack = React.createClass({
               <button className="playback-button" onClick={this.playNextTrack}>
                 <div className="fastforward" />
               </button>
+            </li>
+
+            <li className="footer-progress-bar-container">
+              <div className='progress-bar' style={progressBarStyle} />
             </li>
 
             <li className="footer-track-text-container">
