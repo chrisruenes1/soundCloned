@@ -4,6 +4,7 @@ const TimeStore = require('../stores/time_store');
 const TrackActions = require('../actions/track_actions');
 const TimeActions = require('../actions/time_actions');
 const Link = require('react-router').Link;
+// const AudioSourceActions = require('../actions/audio_source_actions');
 
 const CurrentTrack = React.createClass({
   getInitialState(){
@@ -84,6 +85,7 @@ const CurrentTrack = React.createClass({
   },
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
+    // AudioSourceActions.setAudioSource(this.audio); //allow visualizer components to subscribe to the audio source
     this.audio.addEventListener("ended", () => {
         this.resetPlayback();
         this.playNextTrack();
