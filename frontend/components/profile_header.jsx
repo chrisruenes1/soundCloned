@@ -9,7 +9,7 @@ const ProfileHeader = React.createClass({
   getInitialState(){
     return {showEditImageButton: false, imageFile: null, imageUrl: null};
   },
-  
+
   triggerImageFileInput: function(e) {
     e.preventDefault();
     $("#profile-pic-file-input").trigger('click');
@@ -21,16 +21,15 @@ const ProfileHeader = React.createClass({
     fileReader.onloadend = () => {
       this.setState({ imageFile: file, imageUrl: fileReader.result} );
       let formData = new FormData();
-      debugger
       formData.append("user[image]", this.state.imageFile);
-      formData.append("user[id]", SessionStore.currentUser().id);
-      
-      UserActions.editUser(formData);
+
+
+      UserActions.editUser(formData, SessionStore.currentUser().id);
     };
     if (file) {
       fileReader.readAsDataURL(file);
     }
-    
+
   },
   showEditImageButton(){
     this.setState({showEditImageButton: true});
@@ -54,10 +53,14 @@ const ProfileHeader = React.createClass({
     let editImageButtonClass = this.state.showEditImageButton ? "image-button visible" : "image-button hidden";
       let src = this.state.imageUrl ?
         this.state.imageUrl :
-        "http://funny-pics.co/wp-content/uploads/sinister-otter.jpg";
-        
-      let image = <img className="profile-picture" src={src} />;
-    
+        this.props.user.image_url ?
+          this.props.user.image_url :
+          "";
+
+
+      let image = src ? <img className="profile-picture" src={src} /> : <div/>;
+
+
       let imageWithButton =
       <div
         className="profile-picture"

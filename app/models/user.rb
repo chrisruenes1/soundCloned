@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :custom_url, length: {minimum: 1}
   has_attached_file :image, default_url: "camera.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password
 

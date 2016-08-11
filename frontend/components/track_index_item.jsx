@@ -11,10 +11,7 @@ import {Link} from 'react-router';
 const TrackIndexItem = React.createClass({
   getInitialState(){
     //sort comments to be able to play through them in correct order
-    this.commentShowLength = 400000;
-    let sortedComments = this.props.track.comments.sort(function(a, b){
-      return a.elapsed_time - b.elapsed_time;
-    });
+    this.commentShowLength = 4000;
 
     this.listeners = [];
 
@@ -24,7 +21,7 @@ const TrackIndexItem = React.createClass({
       //the first comment may be well into the song, so we want
       //it to start as the NEXT comment rather than current comment
       currentCommentIdx: -1,
-      comments: sortedComments,
+      comments: this.props.track.comments, //sorted by timestamp
       hideComments: false
     };
   },
@@ -135,10 +132,7 @@ const TrackIndexItem = React.createClass({
     }
   },
   _onCommentChange(){
-    let comments = CommentStore.allCommentsForTrack(this.props.track.id);
-    let sortedComments = comments.sort(function(a, b){
-      return a.elapsed_time - b.elapsed_time;
-    });
+    let comments = CommentStore.allCommentsForTrack(this.props.track.id); //sorted by timestamp
     let currentCommentIdx;
     if (this.state.currentCommentIdx >= 0 ){
       let currentCommentUpdatedIdx = comments.indexOf(this.state.comments[this.state.currentCommentIdx]);

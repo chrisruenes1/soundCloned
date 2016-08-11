@@ -2,7 +2,7 @@ const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
   fetchUser(url, success, error){
-    
+
     $.ajax({
       url:`api/users/url/${url}`,
       type:"GET",
@@ -12,10 +12,10 @@ module.exports = {
       }
     });
   },
-  
-  updateUser(formData, success, error){
+
+  updateUser(formData, id, success, error){
     $.ajax({
-      url:`api/users/${formData.user.id}`,
+      url:`api/users/${id}`,
       type:"PATCH",
       processData: false,
       contentType: false,
