@@ -81,7 +81,7 @@ const ProfileForm = React.createClass({
               }
             </ul>
 
-            <img className="profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
+            <img className="modal-profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
 
             <article className="modal-form-text-info" >
 

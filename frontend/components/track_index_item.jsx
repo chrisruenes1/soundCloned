@@ -10,7 +10,6 @@ import {Link} from 'react-router';
 
 const TrackIndexItem = React.createClass({
   getInitialState(){
-    this.commentShowLength = 4000;
     //sort comments to be able to play through them in correct order
     let sortedComments = this.props.track.comments.sort(function(a, b){
       return a.elapsed_time - b.elapsed_time;
@@ -46,14 +45,6 @@ const TrackIndexItem = React.createClass({
       this.state.comments[this.state.currentCommentIdx].content :
       "";
 
-    //wipe currentComment off screen after a few seconds
-    if (currentComment && !this.wipeCommentTimeoutSet){
-      this.wipeCommentTimeoutSet = true;
-      this.hideTimeout = window.setTimeout(() => {
-        this.setState( {hideComments: true });
-        this.clearWipeoutTimer();
-      }, this.commentShowLength);
-    }
     return(
     <li>
       <div className="track-index-item group">
@@ -72,7 +63,11 @@ const TrackIndexItem = React.createClass({
           </div>
 
           <div className="playback-container">
-            <CommentIndex comments={this.state.comments} track={this.props.track}/>
+            <CommentIndex
+              currentTime={this.state.elapsedTime}
+              comments={this.state.comments}
+              track={this.props.track}
+            />
           </div>
 
           <div className="comment-form-container">

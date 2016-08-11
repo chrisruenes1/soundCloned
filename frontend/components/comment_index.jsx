@@ -7,7 +7,11 @@ const CommentIndex = React.createClass({
       <ul className='comment-image-list'>
         {
           this.props.comments.map((comment) => {
-            return <CommentIndexItem comment={comment} track={this.props.track} key={comment.id}/>;
+            return <CommentIndexItem
+              comment={comment}
+              track={this.props.track}
+              currentTime={this.props.currentTime}
+              key={comment.id}/>;
           })
         }
       </ul>

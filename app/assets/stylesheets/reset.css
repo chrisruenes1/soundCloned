@@ -20,17 +20,6 @@ ul {
   list-style: none;
 }
 
-marquee {
-  font-size:100px;
-  color:pink;
-  text-shadow:
-   -1px -1px 0 #EE82EE,
-    1px -1px 0 #EE82EE,
-    -1px 1px 0 #EE82EE,
-    1px 1px 0 #EE82EE;
-  marquee-speed:200;
-}
-
 img {
   display: block;
   width: 100%;

@@ -63,7 +63,7 @@
   text-align:center;
   height:26px;
   top:0;
-  margin-left:25%;
+  margin-left:20%;
   position:absolute;
   border: 1px solid #e5e5e5;
   background-color: #fff;
@@ -71,7 +71,7 @@
   font-weight: 100;
   font-size: 14px;
   line-height: 20px;
-  width:50%;
+  width:60%;
 }
 
 .track-button {
@@ -88,6 +88,14 @@
   height:0px;
   width: 0px;
   background-color:transparent;
+}
+
+.visible {
+  display: inherit;
+}
+
+.hidden {
+  display: none;
 }
 
 .upload-modal-form-text-info {
