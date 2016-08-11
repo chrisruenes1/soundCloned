@@ -19,9 +19,9 @@ const CommentIndexItem = React.createClass({
   render(){
     let commentShow = this.state.shouldShowComment ?
 
-    <div>
-      <span className="just-for-show">{this.props.comment.author_id}</span>
-      <span className="just-for-show">{this.props.comment.content}</span>
+    <div className="comment-info top-to-bottom">
+      <span className="author-name">{this.props.comment.author_id}</span>
+      <span className="comment-content">{this.props.comment.content}</span>
     </div>
 
     :
@@ -32,9 +32,9 @@ const CommentIndexItem = React.createClass({
     const imageStyle = {
       left: `calc(100% * ${portionDone})`
     };
+
     return(
-      <div>
-        <div className='comment-index-item' style={imageStyle}/>
+      <div className='comment-index-item' style={imageStyle}>
         {commentShow}
       </div>
     );
