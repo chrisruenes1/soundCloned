@@ -4,15 +4,10 @@ const CommentStore = new Store(AppDispatcher);
 const CommentConstants = require('../constants/comment_constants');
 
 let _comments = {};
-let _currentComment = {};
 
 
 CommentStore.allCommentsForTrack = function(track_id){
   return _comments[track_id] || [];
-};
-
-CommentStore.getCurrentComment = function(){
-  return Object.assign({}, _currentComment);
 };
 
 const _resetComments = function(comments){
@@ -44,11 +39,6 @@ const _removeComment = function(comment){
   CommentStore.__emitChange();
 };
 
-const _setCurrentComment = function(comment){
-  _currentComment = comment;
-  CommentStore.__emitChange();
-};
-
 
 CommentStore.__onDispatch = function(payload){
   switch (payload.actionType){
@@ -60,9 +50,6 @@ CommentStore.__onDispatch = function(payload){
       break;
     case CommentConstants.REMOVE_COMMENT:
       _removeComment(payload.comment);
-      break;
-    case CommentConstants.SET_CURRENT_COMMENT:
-      _setCurrentComment(payload.comment);
       break;
   }
 };

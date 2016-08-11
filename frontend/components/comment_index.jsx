@@ -10,7 +10,7 @@ const CommentIndex = React.createClass({
             return <CommentIndexItem
               comment={comment}
               track={this.props.track}
-              currentTime={this.props.currentTime}
+              currentComment={this.props.currentComment}
               key={comment.id}/>;
           })
         }

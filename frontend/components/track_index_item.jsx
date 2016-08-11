@@ -42,8 +42,10 @@ const TrackIndexItem = React.createClass({
     let playOrPauseFunc = this.state.playing ? this.pauseTrack : this.playTrack;
     let currentComment =
       this.state.comments[this.state.currentCommentIdx] && !this.state.hideComments &&this.state.playing ?
-      this.state.comments[this.state.currentCommentIdx].content :
-      "";
+      this.state.comments[this.state.currentCommentIdx] :
+      null;
+      
+      debugger
 
     return(
     <li>
@@ -64,7 +66,7 @@ const TrackIndexItem = React.createClass({
 
           <div className="playback-container">
             <CommentIndex
-              currentTime={this.state.elapsedTime}
+              currentComment={this.state.comments[this.state.currentCommentIdx]}
               comments={this.state.comments}
               track={this.props.track}
             />
@@ -73,7 +75,6 @@ const TrackIndexItem = React.createClass({
           <div className="comment-form-container">
             <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
           </div>
-          <section>{currentComment}</section>
         </div>
       </div>
     </li>
