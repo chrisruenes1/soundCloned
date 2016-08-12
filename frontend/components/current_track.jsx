@@ -92,7 +92,7 @@ const CurrentTrack = React.createClass({
     );
     
     this.audio.addEventListener("timeupdate", () => {
-      TimeActions.reset_timer(this.audio.currentTime, this.state.currentTrack.id);
+      TimeActions.resetTimer(this.audio.currentTime, this.state.currentTrack.id);
     });
   },
   componentWillUnmount(){
@@ -111,10 +111,10 @@ const CurrentTrack = React.createClass({
           }
           //change soruce to new current track
           this.audio.setAttribute('src', newCurrentTrack.audio_file_url);
-          this.audio.currentTime = TimeStore.getTimeForTrack(newCurrentTrack.id);
-
           this.audio.load();
         }
+        this.audio.currentTime = TimeStore.getTimeForTrack(newCurrentTrack.id);
+
         //if it's not a track switch and it's playing, let it play
         if (this.audio.paused){
           this.audio.play();

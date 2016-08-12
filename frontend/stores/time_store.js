@@ -15,16 +15,22 @@ TimeStore.getTimeForTrack = function(trackId){
 };
 
 const _resetCurrentTime = function(time, currentTrackId) {
-  console.log("currentTrackId is " + currentTrackId);
   _currentTime = time;
   _pauseTimes[currentTrackId] = time;
   TimeStore.__emitChange();
+};
+
+const _setTimeForTrack = function(time, trackId){
+  _pauseTimes[trackId] = time;
 };
 
 TimeStore.__onDispatch = function(payload){
   switch (payload.actionType){
     case TimeConstants.RESET_TIMER :
       _resetCurrentTime(payload.time, payload.currentTrackId);
+      break;
+    case TimeConstants.UPDATE_TRACK :
+      _setTimeForTrack(payload.time, payload.trackId);
       break;
   }
 };
