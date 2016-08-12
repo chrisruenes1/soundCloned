@@ -5,8 +5,8 @@
   position: absolute;
 }
 
-.wavesurfer {
-  height: 60px;
+.clickable {
+  cursor: pointer;
 }
 
 .progress-bar {

@@ -30,7 +30,6 @@ const TrackIndexItem = React.createClass({
     };
   },
   playTrack(e){
-    console.log("Play track at least called");
     e.preventDefault();
     TrackActions.setCurrentTrack(this.props.track.id);
   },
@@ -65,7 +64,7 @@ const TrackIndexItem = React.createClass({
 
         <div className="track-content-container">
 
-          <div className="track-play-buttons">
+          <div className="track-play-buttons group">
             <button className="play-button track-list-item-element" onClick={playOrPauseFunc}><div className={buttonImageClass} /></button>
 
             <div className="track-list-item-element">
