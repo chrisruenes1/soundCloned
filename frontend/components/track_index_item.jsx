@@ -75,7 +75,11 @@ const TrackIndexItem = React.createClass({
           </div>
 
           <div className="playback-container">
-            <WaveSurferVisualizer track={this.props.track} progressColor="green"/>
+            <WaveSurferVisualizer
+              track={this.props.track}
+              playing={this.state.playing}
+              pos={this.state.elapsedTime}
+            />
             <CommentIndex
               currentComment={currentComment}
               comments={this.state.comments}
