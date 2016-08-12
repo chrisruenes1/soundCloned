@@ -73,7 +73,8 @@ let getStyles = function(){
       left              : 0,
       right             : 0,
       bottom            : 0,
-      backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+      backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+      zIndex            : 9
     },
     content : {
       width                      : width,
@@ -90,7 +91,8 @@ let getStyles = function(){
       WebkitOverflowScrolling    : 'touch',
       borderRadius               : '4px',
       outline                    : 'none',
-      padding                    : '20px'
+      padding                    : '20px',
+      zIndex                     : 10
 
     }
   };
