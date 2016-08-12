@@ -46,7 +46,7 @@ chance = {
   city: "Chicago",
   state: "Illinois",
   username: "chance3",
-  password: "coloringbook"
+  password: "coloringbook",
   image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/chance.jpeg"
 }
 grisey = {
