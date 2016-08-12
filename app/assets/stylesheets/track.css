@@ -5,6 +5,10 @@
   position: absolute;
 }
 
+.wavesurfer {
+  height: 60px;
+}
+
 .progress-bar {
   height:2px;
   line-height: 10px;
