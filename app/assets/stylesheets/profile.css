@@ -8,6 +8,14 @@
   position:absolute;
 }
 
+.profile-picture-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 15px;
+  float: left;
+}
+
 .modal-profile-picture {
   width:200px;
   height:200px;
@@ -54,17 +62,16 @@
 }
 
 .profile-user-info {
-  padding-left: 250px;
   padding-top:30px;
   font-size: 25px;
   width:300px;
+  float: left;
 }
 
 .profile-header-image {
   background:linear-gradient( to bottom right, #f50, #fff);
-  margin-left:100px;
-  margin-right:100px;
-  height:260px;
+  margin: auto;
+  width: 1240px;
 }
 
 /**profile form classes**/

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, :custom_url, uniqueness:true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :custom_url, length: {minimum: 1}
-  has_attached_file :image, default_url: "camera.png"
+  has_attached_file :image, default_url: "https://s3.amazonaws.com/sound-cloned-seeds/images/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password

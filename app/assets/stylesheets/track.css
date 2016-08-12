@@ -165,8 +165,12 @@
 
 .track-index-item {
   width:100%;
-  height: 160px;
-  margin-bottom:15px;
+  margin-bottom:25px;
+}
+
+.upload-submit:disabled {
+  background-color:rgba(255, 85, 0, 0.44);
+  cursor:default;
 }
 
 .play-button {
