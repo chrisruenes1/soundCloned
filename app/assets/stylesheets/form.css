@@ -21,7 +21,9 @@ form textarea {
   width:400px;
 }
 .profile-form {
-  width:850px;
+  width:750px;
+  position:relative;
+  max-height:500px;
 }
 
 /**general styling and positioning of form in relation to modal**/
@@ -91,13 +93,17 @@ form textarea {
   display:block;
   float:left;
   margin-bottom:5px;
-  width:100%;
 }
 
 .modal-form-textarea {
   width:515px;
-  height:130px;
+  height:70px;
   margin-bottom:5px;
+}
+
+form hr {
+  float: left;
+  width: 100%;
 }
 
 form h1 {

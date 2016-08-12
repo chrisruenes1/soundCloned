@@ -38,7 +38,7 @@ const Navbar = React.createClass({
       :
     <ul className="group">
       <li><button className="navbar-element navbar-button signup" onClick={this.guestLogin}>Guest Login</button></li>
-      <li className="navbar-element navbar-button reactive-navbar-button login"><FormModal height='55%' buttonText="Sign In"><LoginForm /></FormModal></li>
+      <li className="navbar-element navbar-button reactive-navbar-button login"><FormModal buttonText="Sign In"><LoginForm /></FormModal></li>
       <li className="navbar-element navbar-minor">or</li>
       <li className="navbar-element navbar-button signup"><FormModal buttonText="Create account"><SignupForm /></FormModal></li>
     </ul>;

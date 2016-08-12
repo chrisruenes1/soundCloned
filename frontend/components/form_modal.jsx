@@ -64,13 +64,13 @@ let getStyles = function(){
 
   if (this.props.big){
     height = '85%';
-    maxHeight = '535px';
+    maxHeight = '635px';
     maxWidth='920px';
     width='60%';
   }
 
   else {
-    height = this.props.height || 'inherit';
+    height = '55%';
     maxHeight = '500px';
     width = "auto";
     maxWidth = "auto";
