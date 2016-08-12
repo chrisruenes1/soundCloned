@@ -46,24 +46,21 @@ chance = {
   city: "Chicago",
   state: "Illinois",
   username: "chance3",
-  password: "coloringbook",
-  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/chance.jpeg"
+  password: "coloringbook"
 }
 grisey = {
   group_name: "Gerard Grisey",
   city: "Paris",
   state: "France",
   username: "gg24",
-  password: "spectralism",
-  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/Gerard-Grisey-009.jpg"
+  password: "spectralism"
 }
 replacements = {
   group_name: "The Replacements",
   city: "Minneapolis",
   state: "Minnessota",
   username: "thereppp",
-  password: "androgynous",
-  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/Gerard-Grisey-009.jpg"
+  password: "androgynous"
 }
 
 users.push(chance);
