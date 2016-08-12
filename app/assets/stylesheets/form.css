@@ -95,6 +95,10 @@ form textarea {
   margin-bottom:5px;
 }
 
+.full-length-section {
+  width: 100%;
+}
+
 .modal-form-textarea {
   width:515px;
   height:70px;
