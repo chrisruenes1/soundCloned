@@ -1,3 +1,18 @@
+.author-name {
+  color: #f50;
+  padding-left: 5px;
+}
+
+.comment-form-container {
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+  margin: 1px;
+  float: left;
+  position: relative;
+  margin-top:25px;
+}
+
 .comment-index-item {
   width:10px;
   height:10px;
@@ -10,9 +25,13 @@
   margin-top: 45px;
 }
 
-.author-name {
-  color: #f50;
-  padding-left: 5px;
+.comment-image-list {
+  height: 10px;
+  position: absolute;
+  width: 100%;
+  background-color: blue;
+  float: left;
+  bottom: 5px;
 }
 
 .comment-content {

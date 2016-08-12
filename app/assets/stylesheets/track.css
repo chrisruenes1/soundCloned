@@ -175,7 +175,7 @@
   border-radius: 50%;
   width: 36px;
   height: 36px;
-  position: absolute;
+  position: relative;
 
 }
 
@@ -202,6 +202,7 @@
   width: calc(100% - 165px);
   float: right;
   height: 100%;
+  margin-top: 5px;
 }
 
 .track-artist-link {
@@ -218,25 +219,6 @@
   line-height: 1.2;
   font-weight: 100;
 
-}
-
-.comment-image-list {
-  height: 10px;
-  position: absolute;
-  width: 100%;
-  background-color: blue;
-  float: left;
-  bottom: 5px;
-}
-
-.comment-form-container {
-  width: 100%;
-  height: 20px;
-  padding: 5px;
-  margin: 1px;
-  float: left;
-  position: relative;
-  padding-top: 50px;
 }
 
 .play-button-image {
