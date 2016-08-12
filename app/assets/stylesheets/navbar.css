@@ -5,6 +5,14 @@
   font-size:15px;
 }
 
+.right {
+  position:absolute;
+}
+
+.home {
+  padding:10px;
+}
+
 .navbar-minor{
   color:#999;
 }
