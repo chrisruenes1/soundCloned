@@ -99,6 +99,15 @@ Track.create!([
     album: "Coloring Book",
     public: true,
     duration:204
+  },
+  {
+    title: "Partiels",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/audio/Ge%CC%81rard+Grisey+++-%E2%80%93+Partiels.mp3",
+    composer_id: chance_id,
+    album: "Coloring Book",
+    public: true,
+    duration:204
   }
 ]);
 
