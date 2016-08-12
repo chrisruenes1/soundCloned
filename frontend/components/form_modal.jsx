@@ -1,24 +1,38 @@
 const React = require('react');
 const Modal = require('react-modal');
+const FormConstants = require('../constants/form_constants');
+const LoginForm = require('./login_form');
+const SignupForm = require('./signup_form');
+
+let formNameToObjectMap = {};
+formNameToObjectMap[FormConstants.LOGIN_FORM] = <LoginForm />;
+formNameToObjectMap[FormConstants.SIGNUP_FORM] = <SignupForm />;
+
 
 const FormModal = React.createClass({
   getInitialState(){
-    return {modalIsOpen:false};
+    return {modalIsOpen:false, swappedChildren: null};
   },
   openModal(){
     this.setState({modalIsOpen:true});
   },
-  afterOpenModal(){
-
-  },
   closeModal(){
     this.setState({modalIsOpen: false});
   },
+  swapChildren(newChildren){
+    this.setState({ swappedChildren: newChildren });
+  },
   render(){
+    let children = this.state.swappedChildren ?
+      this.state.swappedChildren.map(function(childFormName){
+        return formNameToObjectMap[childFormName];
+      }) 
+      :
+      this.props.children;
 
     //clone children with closeModal callback
-    var newChildren = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, { close: this.closeModal });
+    var newChildren = React.Children.map(children, (child) => {
+      return React.cloneElement(child, { close: this.closeModal, swapChildren: this.swapChildren });
     });
 
     return(
@@ -33,7 +47,6 @@ const FormModal = React.createClass({
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={getStyles.bind(this)()}
         >
@@ -60,7 +73,7 @@ let getStyles = function(){
   }
 
   else {
-    height = '55%';
+    height = this.props.height || 'inherit';
     maxHeight = '500px';
     width = "auto";
     maxWidth = "auto";
