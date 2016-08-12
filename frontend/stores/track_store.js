@@ -95,6 +95,9 @@ const _playPreviousTrack = function(){
   if (previousTrackId){
     _setCurrentTrack(previousTrackId);
   }
+  else {
+    _currentTrack = null;
+  }
   TrackStore.__emitChange();
 };
 
