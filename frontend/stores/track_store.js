@@ -98,11 +98,6 @@ const _playPreviousTrack = function(){
   TrackStore.__emitChange();
 };
 
-const _seekTime = function(track, time){
-  track.elapsedTime = time;
-  
-};
-
 TrackStore.__onDispatch = (payload) => {
   switch (payload.actionType){
     case TrackConstants.RECEIVE_ALL_TRACKS:
@@ -117,19 +112,19 @@ TrackStore.__onDispatch = (payload) => {
 
     //playback
     case TrackConstants.SET_CURRENT_TRACK:
-      _setCurrentTrack(payload.id);
+      _setCurrentTrack(payload.id, payload.timestamp);
       break;
     case TrackConstants.PAUSE_CURRENT_TRACK:
       _pauseCurrentTrack();
+      break;
+    case TrackConstants.SET_TIME_FOR_TRACK:
+      _setTimeForTrack(payload.track, payload.time, payload.current);
       break;
     case TrackConstants.PLAY_NEXT_TRACK:
       _playNextTrack();
       break;
     case TrackConstants.PLAY_PREVIOUS_TRACK:
       _playPreviousTrack();
-      break;
-    case TrackConstants.SEEK_TIME:
-      _updateTime(payload.newTime, payload.track);
       break;
   }
 };

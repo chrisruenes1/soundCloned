@@ -2,9 +2,9 @@ const React = require('react');
 import Wavesurfer from 'react-wavesurfer';
 
 const WaveSurferVisualizer = React.createClass({
-  onSeek(e){
-    debugger
-  },
+  // onSeek(e){
+  //   TrackActions.updateTime()
+  // },
   render(){
     
     let waveSurferOptions = {

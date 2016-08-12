@@ -19,7 +19,6 @@ const TrackIndexItem = React.createClass({
     this.commentShowLength = 4000;
 
     this.listeners = [];
-
     return {
       playing: TrackStore.isTrackPlaying(this.props.track.id),
       elapsedTime: 0,
@@ -31,6 +30,7 @@ const TrackIndexItem = React.createClass({
     };
   },
   playTrack(e){
+    console.log("Play track at least called");
     e.preventDefault();
     TrackActions.setCurrentTrack(this.props.track.id);
   },

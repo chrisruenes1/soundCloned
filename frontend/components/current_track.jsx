@@ -11,11 +11,10 @@ const CurrentTrack = React.createClass({
     this.listeners = [];
     this.audio = new Audio();
     window.audio = this.audio;
-    this.elapsedTimes = {};
     return { currentTrack: TrackStore.getCurrentTrack()};
   },
   playTrack(){
-    TrackActions.setCurrentTrack(this.state.currentTrack.id);
+    TrackActions.setCurrentTrack(this.state.currentTrack.id, this.audio.currentTime);
   },
   pauseTrack(){
     TrackActions.pauseCurrentTrack();
@@ -91,9 +90,9 @@ const CurrentTrack = React.createClass({
         this.playNextTrack();
       }
     );
+    
     this.audio.addEventListener("timeupdate", () => {
-      //~around 500ms precision
-      TimeActions.reset_timer(this.audio.currentTime);
+      TimeActions.reset_timer(this.audio.currentTime, this.state.currentTrack.id);
     });
   },
   componentWillUnmount(){
@@ -109,13 +108,10 @@ const CurrentTrack = React.createClass({
           //pause the current track and save location
           if (this.state.currentTrack.id){
             this.audio.pause();
-            this.elapsedTimes[this.state.currentTrack.id] = this.audio.currentTime;
           }
-          //change soruce to current track
+          //change soruce to new current track
           this.audio.setAttribute('src', newCurrentTrack.audio_file_url);
-          this.audio.currentTime = this.elapsedTimes[newCurrentTrack.id] ?
-            this.elapsedTimes[newCurrentTrack.id] :
-            0;
+          this.audio.currentTime = TimeStore.getTimeForTrack(newCurrentTrack.id);
 
           this.audio.load();
         }
@@ -127,7 +123,6 @@ const CurrentTrack = React.createClass({
       //in case this is a pause message
       else {
         this.audio.pause();
-        this.elapsedTimes[newCurrentTrack.id] = this.audio.currentTime;
       }
       this.setState({ currentTrack: newCurrentTrack });
     }
