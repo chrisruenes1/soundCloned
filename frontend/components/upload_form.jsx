@@ -217,36 +217,34 @@ const UploadForm = React.createClass({
           </label>
         </section>
 
-        <section className="modal-form-section">
-          <div className="horizontal-radio-button-container">
-            <span className="radio-buttons">Track will be
-              <label htmlFor="public-radio"> public </label>
-                <input
-                  id="public-radio"
-                  type="radio"
-                  name="privacy"
-                  value="public"
-                  checked={this.state.public}
-                  onChange={this.update.bind(null, "public")}
-                ></input>
+        <section className="modal-form-section full-length-section">
+          <span className="radio-buttons">Track will be
+            <label htmlFor="public-radio"> public </label>
+              <input
+                id="public-radio"
+                type="radio"
+                name="privacy"
+                value="public"
+                checked={this.state.public}
+                onChange={this.update.bind(null, "public")}
+              ></input>
 
 
-              <label htmlFor="private-radio"> private </label>
-                <input
-                  id="private-radio"
-                  type="radio"
-                  name="privacy"
-                  value="private"
-                  checked={!this.state.public}
-                  onChange={this.update.bind(null, "public")}
-                ></input>
-            </span>
-            <input disabled={this.state.submitDisabled}
-              className="upload-submit"
-              type="submit"
-              value="Save"
-            ></input>
-          </div>
+            <label htmlFor="private-radio"> private </label>
+              <input
+                id="private-radio"
+                type="radio"
+                name="privacy"
+                value="private"
+                checked={!this.state.public}
+                onChange={this.update.bind(null, "public")}
+              ></input>
+          </span>
+          <input disabled={this.state.submitDisabled}
+            className="upload-submit"
+            type="submit"
+            value="Save"
+          ></input>
         </section>
 
       </article>;
