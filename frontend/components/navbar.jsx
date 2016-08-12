@@ -22,9 +22,13 @@ const Navbar = React.createClass({
   },
   render(){
     let currentUser = SessionStore.currentUser();
+    let homeButton = <li className="navbar-element"><Link className="navbar-button reactive-navbar-button home" to={`/`}>Home</Link></li>;
     let navbarButtons = SessionStore.isUserLoggedIn() ?
 
     <ul className="group">
+
+      {homeButton}
+
       <li className="navbar-element">
         Hello, <Link className="reactive-navbar-text underline" to={`users/url/${currentUser.custom_url}`}>
           {currentUser.username}!
@@ -37,6 +41,7 @@ const Navbar = React.createClass({
 
       :
     <ul className="group">
+      {homeButton}
       <li><button className="navbar-element navbar-button signup" onClick={this.guestLogin}>Guest Login</button></li>
       <li className="navbar-element navbar-button reactive-navbar-button login"><FormModal buttonText="Sign In"><LoginForm /></FormModal></li>
       <li className="navbar-element navbar-minor">or</li>

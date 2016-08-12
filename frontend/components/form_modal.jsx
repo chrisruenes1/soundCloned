@@ -31,7 +31,7 @@ const FormModal = React.createClass({
     var newChildren = React.Children.map(children, (child) => {
       return React.cloneElement(child, { close: this.closeModal, swapChildren: this.swapChildren });
     });
-    newChildren.push(<button key="-1" className="exit" onClick={this.closeModal}>&times;</button>);
+    newChildren.push(<button key="-1" className="exit" onClick={this.closeModal}>&times;</button>); //-1 to suppress react warnings
     return(
       <div>
         <button
@@ -52,8 +52,9 @@ const FormModal = React.createClass({
       </div>
     );
   }
-
 });
+
+
 
 let getStyles = function(){
 
