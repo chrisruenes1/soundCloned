@@ -1,17 +1,11 @@
 const React = require('react');
 const Modal = require('react-modal');
-const FormConstants = require('../constants/form_constants');
 const LoginForm = require('./login_form');
 const SignupForm = require('./signup_form');
 
-let formNameToObjectMap = {};
-formNameToObjectMap[FormConstants.LOGIN_FORM] = <LoginForm />;
-formNameToObjectMap[FormConstants.SIGNUP_FORM] = <SignupForm />;
-
-
 const FormModal = React.createClass({
   getInitialState(){
-    return {modalIsOpen:false, swappedChildren: null};
+    return {modalIsOpen:false, children: null};
   },
   openModal(){
     this.setState({modalIsOpen:true});
@@ -20,17 +14,20 @@ const FormModal = React.createClass({
     this.setState({modalIsOpen: false});
   },
   swapChildren(newChildren){
-    this.setState({ swappedChildren: newChildren });
+    this.setState({ children: newChildren });
   },
   render(){
-    let children = this.state.swappedChildren ?
-      this.state.swappedChildren.map(function(childFormName){
-        return formNameToObjectMap[childFormName];
-      }) 
-      :
-      this.props.children;
+    let children = this.props.children;
+    if (this.state.children){
+      if (this.state.children === "signup"){
+        children = [<SignupForm />];
+      }
+      else if (this.state.children === "login"){
+        children = [<LoginForm />];
+      }
+    }
 
-    //clone children with closeModal callback
+    //clone children with closeModal and swapChildren callbacks
     var newChildren = React.Children.map(children, (child) => {
       return React.cloneElement(child, { close: this.closeModal, swapChildren: this.swapChildren });
     });

@@ -116,8 +116,15 @@ form h1 {
   width:400px;
   color:black;
   margin-bottom:10px;
-  margin-top: 3px;
   font-size:20px;
+}
+
+.form-text {
+  margin-top: 3px;
+}
+
+.clickable-text:hover {
+  color: #f50;
 }
 
 .required {
