@@ -47,9 +47,28 @@ chance = {
   state: "Illinois",
   username: "chance3",
   password: "coloringbook"
+  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/chance.jpeg"
+}
+grisey = {
+  group_name: "Gerard Grisey",
+  city: "Paris",
+  state: "France",
+  username: "gg24",
+  password: "spectralism",
+  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/Gerard-Grisey-009.jpg"
+}
+replacements = {
+  group_name: "The Replacements",
+  city: "Minneapolis",
+  state: "Minnessota",
+  username: "thereppp",
+  password: "androgynous",
+  image_file: "https://s3.amazonaws.com/sound-cloned-seeds/images/Gerard-Grisey-009.jpg"
 }
 
 users.push(chance);
+users.push(grisey);
+users.push(replacements);
 
 User.create!(
   users
@@ -60,6 +79,8 @@ users = User.all
 
 
 chance_id = User.find_by(username: "chance3").id;
+grisey_id = User.find_by(username: "gg24").id;
+replacements_id = User.find_by(username: "thereppp").id;
 
 puts "found chance"
 
@@ -102,13 +123,24 @@ Track.create!([
   },
   {
     title: "Partiels",
-    image: "https://s3.amazonaws.com/sound-cloned-seeds/cover_art.jpg",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/images/Gerard-Grisey-009.jpg",
     audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/audio/Ge%CC%81rard+Grisey+++-%E2%80%93+Partiels.mp3",
-    composer_id: chance_id,
-    album: "Coloring Book",
+    composer_id: grisey_id,
+    album: "",
     public: true,
-    duration:204
-  }
+    duration:1127
+  },
+  {
+
+    title: "Can't Hardly Wait",
+    image: "https://s3.amazonaws.com/sound-cloned-seeds/images/pleased.jpeg",
+    audio_file: "https://s3.amazonaws.com/sound-cloned-seeds/audio/The+Replacements+-+Can%27t+Hardly+Wait.mp3",
+    composer_id: replacements_id,
+    album: "Pleased To Meet Me",
+    public: true,
+    duration:188
+  },
+
 ]);
 
 tracks = Track.all
