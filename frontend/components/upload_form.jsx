@@ -32,7 +32,9 @@ const UploadForm = React.createClass({
     formData.append("track[public]", this.state.public);
     formData.append("track[genre]", this.state.genre);
     formData.append("track[description]", this.state.description);
-    formData.append("track[image]", this.state.imageFile);
+    if (this.state.imageFile){
+      formData.append("track[image]", this.state.imageFile);
+    }
     formData.append("track[audio_file]", this.state.trackFile);
     formData.append("track[duration]", this.state.duration);
 
