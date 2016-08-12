@@ -5,7 +5,7 @@ const SessionConstants = require('../constants/session_constants');
 const ErrorStore = require('../stores/error_store');
 const ErrorListItem = require("../components/error_list_item");
 const ErrorConstants = require("../constants/error_constants");
-import {hashHistory} from 'react-router';
+
 
 const LoginForm = React.createClass({
   getInitialState(){
@@ -33,6 +33,10 @@ const LoginForm = React.createClass({
     e.preventDefault();
     let submitData = SessionConstants.GUEST_CREDENTIALS;
     SessionActions.login(submitData);
+  },
+  switchToSignup(e){
+    e.preventDefault();
+    this.props.swapChildren("signup");
   },
   render(){
     let current_error_key = 0;
@@ -78,11 +82,12 @@ const LoginForm = React.createClass({
                 type="submit"
                 value="Sign In!"
                 ></input>
-              <p className="modal-form-text-spacer">or</p>
+              <p className="form-text modal-form-text-spacer">or</p>
               <button className="modal-form-element modal-form-submit"
                 onClick={this.logInGuest}
                 >Guest Login</button>
             </div>
+            <p className="form-text">Don't have an account yet? <button className="clickable-text" onClick={this.switchToSignup}> Click here</button> to sign up.</p>
           </form>
 
         </div>

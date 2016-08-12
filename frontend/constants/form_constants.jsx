@@ -1,6 +1,0 @@
-module.exports = {
-  SIGNUP_FORM: "SIGNUP_FORM",
-  LOGIN_FORM: "LOGIN_FORM",
-  UPLOAD_FORM: "UPDLOAD_FORM",
-  EDIT_FORM: "EDIT_FORM"
-};

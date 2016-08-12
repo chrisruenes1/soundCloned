@@ -29,6 +29,11 @@ const SignupForm = React.createClass({
     SessionActions.signup(submitData);
     this.setState({username:"", password:""});
   },
+  switchToLogin(e){
+    e.preventDefault();
+    this.props.swapChildren("login");
+
+  },
   render(){
     let current_error_key = 0;
     let errorMessages = this.state.errors.map( (error) => {
@@ -71,7 +76,7 @@ const SignupForm = React.createClass({
               type="submit"
               value="Sign Up!"
               ></input>
-
+            <p className="form-text">Already have an account? <button className="clickable-text" onClick={this.switchToLogin}> Click here</button> to sign in.</p>
           </form>
         </div>
       </div>
