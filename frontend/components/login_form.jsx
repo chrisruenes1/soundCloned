@@ -29,6 +29,11 @@ const LoginForm = React.createClass({
     SessionActions.login(submitData);
     this.setState({username:"", password:""});
   },
+  logInGuest(e){
+    e.preventDefault();
+    let submitData = SessionConstants.GUEST_CREDENTIALS;
+    SessionActions.login(submitData);
+  },
   render(){
     let current_error_key = 0;
     let errorMessages = this.state.errors.map( (error) => {
@@ -73,9 +78,11 @@ const LoginForm = React.createClass({
                 type="submit"
                 value="Sign In!"
                 ></input>
-
+              <p className="modal-form-text-spacer">or</p>
+              <button className="modal-form-element modal-form-submit"
+                onClick={this.logInGuest}
+                >Guest Login</button>
             </div>
-
           </form>
 
         </div>
@@ -95,7 +102,6 @@ const LoginForm = React.createClass({
   _onSessionChange(){
     if (SessionStore.isUserLoggedIn()){
       this.props.close();
-      hashHistory.push("/");
     }
   },
   _onErrorChange(){
