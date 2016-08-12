@@ -2,6 +2,7 @@ const React = require('react');
 const SessionStore = require('../stores/session_store');
 const CommentActions = require('../actions/comment_actions');
 
+
 const CommentForm = React.createClass({
   getInitialState(){
     return { content: "" };
@@ -24,7 +25,8 @@ const CommentForm = React.createClass({
       return(
 
         <form onSubmit={this.handleSubmit}>
-          <input
+          <span><img className="comment-pic" src={SessionStore.currentUser().image_url}/></span>
+          <input className="comment-input"
             type="text"
             value={this.state.content}
             onChange={this.contentChange}
