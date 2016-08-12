@@ -20,13 +20,13 @@ const UploadForm = React.createClass({
       trackUrl: null,
       errors:[],
       success_message:"",
+      frontendError:"",
       submitDisabled:true
     };
   },
   handleSubmit(e){
     e.preventDefault();
     var formData = new FormData();
-
     formData.append("track[title]", this.state.title);
     formData.append("track[composer_id]", SessionStore.currentUser().id);
     formData.append("track[public]", this.state.public);
@@ -106,7 +106,14 @@ const UploadForm = React.createClass({
 
     return niceName;
   },
+  isFileExtensionValid(name){
+    let extension = name.split('.').pop().toLowerCase();
+    return this.getValidAudioFileTypes().indexOf(extension) > -1;
+  },
 
+  getValidAudioFileTypes(){
+    return ['mp3','aiff', 'aif', 'wav', 'flac'];
+  },
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
@@ -120,13 +127,19 @@ const UploadForm = React.createClass({
           trackUrl: fileReader.result,
           title: this.parseName(file.name),
           success_message: `Successfully loaded "${file.name}"`,
+          frontendError: "",
           submitDisabled: false
         });
       });
-
     };
+
     if (file) {
-      fileReader.readAsDataURL(file);
+      if(this.isFileExtensionValid(file.name)){
+        fileReader.readAsDataURL(file);
+      }
+      else {
+        this.setState({frontendError: "Sorry, we cannot support that file type!", success: ""});
+      }
     }
   },
 
@@ -156,9 +169,10 @@ const UploadForm = React.createClass({
     </ul>;
 
     let success = <span className="success">{this.state.success_message}</span>;
-
+    let frontendError = <span className="small-error">{this.state.frontendError}</span>;
     let messages =
       <div className="message-container">
+        {frontendError}
         {errors}
         {success}
       </div>;

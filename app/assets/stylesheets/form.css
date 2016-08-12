@@ -163,3 +163,11 @@ form h1 {
   display:block;
 
 }
+
+.exit {
+  width:5px;
+  height:5px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
