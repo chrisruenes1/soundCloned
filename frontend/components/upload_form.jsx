@@ -119,7 +119,7 @@ const UploadForm = React.createClass({
           duration: duration,
           trackUrl: fileReader.result,
           title: this.parseName(file.name),
-          success_message: `Successfully uploaded "${file.name}"`,
+          success_message: `Successfully loaded "${file.name}"`,
           submitDisabled: false
         });
       });

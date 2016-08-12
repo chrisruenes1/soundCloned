@@ -63,7 +63,7 @@ const ProfileHeader = React.createClass({
 
       let imageWithButton =
       <div
-        className="profile-picture"
+        className="profile-picture-container"
         onMouseOver={this.showEditImageButton}
         onMouseOut={this.hideEditImageButton}
       >

@@ -65,6 +65,9 @@ form textarea {
   font-size: 15px;
   display:block;
   float:left;
+}
+
+.label-short {
   width: 263px;
 }
 
@@ -77,6 +80,7 @@ form textarea {
   width:255px;
   height:25px;
   margin-right:5px;
+  padding-right:2px;
 }
 
 .multi-input-section {
