@@ -18,9 +18,13 @@ const CommentIndexItem = React.createClass({
     }
   },
   render(){
+    let commentIndexItemStyle = {
+      backgroundImage: this.props.comment.author.image
+    };
+    
     let commentShow = this.state.shouldShowComment ?
 
-    <div className="comment-info top-to-bottom">
+    <div className="comment-info top-to-bottom" style={commentIndexItemStyle}>
       <span className="author-name">{this.props.comment.author.username}</span>
       <span className="comment-content">{this.props.comment.content}</span>
     </div>
