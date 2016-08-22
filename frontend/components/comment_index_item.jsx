@@ -18,6 +18,7 @@ const CommentIndexItem = React.createClass({
     }
   },
   render(){
+
     let commentIndexItemStyle = {
       backgroundImage: 'url(' + this.props.comment.author.image_url + ')'
     };
@@ -39,7 +40,11 @@ const CommentIndexItem = React.createClass({
     };
 
     return(
+<<<<<<< HEAD
       <div className='comment-index-item' style={commentIndexItemStyle}>
+=======
+      <div className='comment-index-item' style={imageStyle}>
+>>>>>>> 54b341296df34fbf4b4b418c243c3bafc14988d5
         {commentShow}
       </div>
     );

@@ -19,6 +19,7 @@
 #  image_updated_at   :datetime
 #  created_at         :datetime
 #  updated_at         :datetime
+
 #
 
 class User < ActiveRecord::Base
