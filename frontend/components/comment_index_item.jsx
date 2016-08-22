@@ -19,12 +19,12 @@ const CommentIndexItem = React.createClass({
   },
   render(){
     let commentIndexItemStyle = {
-      backgroundImage: this.props.comment.author.image
+      backgroundImage: 'url(' + this.props.comment.author.image_url + ')'
     };
     
     let commentShow = this.state.shouldShowComment ?
 
-    <div className="comment-info top-to-bottom" style={commentIndexItemStyle}>
+    <div className="comment-info top-to-bottom">
       <span className="author-name">{this.props.comment.author.username}</span>
       <span className="comment-content">{this.props.comment.content}</span>
     </div>
@@ -39,7 +39,7 @@ const CommentIndexItem = React.createClass({
     };
 
     return(
-      <div className='comment-index-item' style={imageStyle}>
+      <div className='comment-index-item' style={commentIndexItemStyle}>
         {commentShow}
       </div>
     );

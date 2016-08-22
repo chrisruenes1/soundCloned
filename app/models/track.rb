@@ -17,6 +17,9 @@
 #  description             :text
 #  public                  :boolean          default(TRUE)
 #  genre                   :string
+#  duration                :float            default(0.0), not null
+#  created_at              :datetime
+#  updated_at              :datetime
 #
 
 class Track < ActiveRecord::Base

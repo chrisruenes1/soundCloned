@@ -7,7 +7,7 @@ module.exports = {
       type:"GET",
       success,
       error: function(xhr){
-        console.log("Error in tracks#fetchAllTracks: " + xhr.responseJSON);
+        error(ErrorConstants.TRACKS_INDEX, xhr.responseJSON);
       }
     });
   },
@@ -17,7 +17,7 @@ module.exports = {
       type:"GET",
       success,
       error: function(xhr){
-        console.log("Error in tracks#fetchTrack: " + xhr.responseJSON);
+        error(ErrorConstants.FETCH_TRACK, xhr.responseJSON);
       }
     });
   },
@@ -53,7 +53,7 @@ module.exports = {
       type:"DELETE",
       success,
       error: function(xhr){
-        console.log("Error in tracks#deleteTrack: " + xhr.responseJSON);
+        error(ErrorConstants.DELETE_TRACK, xhr.responseJSON);
       }
     });
   }

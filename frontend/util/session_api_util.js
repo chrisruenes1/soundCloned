@@ -28,8 +28,8 @@ module.exports = {
       url:'api/session',
       type:'DELETE',
       success,
-      error:function(){
-        console.log("Logout error in SessionApiUtil#logout");
+      error:function(xhr){
+        error(ErrorConstants.LOGOUT, xhr.responseJSON);
       }
     });
   },

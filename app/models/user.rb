@@ -2,17 +2,23 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  fname           :string
-#  lname           :string
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  group_name      :string           default("The Peaches"), not null
-#  city            :string           default("New York City"), not null
-#  state           :string
-#  bio             :text             default("")
-#  custom_url      :string           not null
+#  id                 :integer          not null, primary key
+#  fname              :string
+#  lname              :string
+#  username           :string           not null
+#  password_digest    :string           not null
+#  session_token      :string           not null
+#  group_name         :string           default("The Peaches"), not null
+#  city               :string           default("New York City"), not null
+#  state              :string
+#  bio                :text             default("")
+#  custom_url         :string           not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
 class User < ActiveRecord::Base

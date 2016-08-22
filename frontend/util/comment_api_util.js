@@ -7,7 +7,7 @@ module.exports = {
       type: `GET`,
       success,
       error: function(xhr){
-        console.log("Error in #commentApiUtil: " + xhr.responseText);
+        error(ErrorConstants.FETCH_COMMENT, xhr.responseJSON);
       }
     });
   },

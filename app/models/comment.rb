@@ -7,6 +7,8 @@
 #  author_id    :integer          not null
 #  track_id     :integer          not null
 #  elapsed_time :float            not null
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 class Comment < ActiveRecord::Base
