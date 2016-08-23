@@ -17,11 +17,7 @@ module.exports = {
       type:"GET",
       success,
       error: function(xhr){
-<<<<<<< HEAD
         error(ErrorConstants.FETCH_TRACK, xhr.responseJSON);
-=======
-        console.log("Error in tracks#fetchTrack: " + xhr.responseJSON);
->>>>>>> 54b341296df34fbf4b4b418c243c3bafc14988d5
       }
     });
   },
@@ -57,11 +53,7 @@ module.exports = {
       type:"DELETE",
       success,
       error: function(xhr){
-<<<<<<< HEAD
         error(ErrorConstants.DELETE_TRACK, xhr.responseJSON);
-=======
-        console.log("Error in tracks#deleteTrack: " + xhr.responseJSON);
->>>>>>> 54b341296df34fbf4b4b418c243c3bafc14988d5
       }
     });
   }

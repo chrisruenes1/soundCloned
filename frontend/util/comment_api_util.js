@@ -1,7 +1,7 @@
 const ErrorConstants = require('../constants/error_constants');
 
 module.exports = {
-  fetchAllComments(success){
+  fetchAllComments(success, error){
     $.ajax({
       url: `api/comments`,
       type: `GET`,

@@ -9,8 +9,9 @@
 
 User.destroy_all
 Track.destroy_all
+Comment.destroy_all
 
-puts "destroyed tracks"
+puts "destroyed tracks, users and comments"
 
 
 users = []

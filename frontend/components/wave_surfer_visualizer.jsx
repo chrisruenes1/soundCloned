@@ -14,6 +14,7 @@ const WaveSurferVisualizer = React.createClass({
         barWidth:2,
         playing:false,
         normalize:true,
+        hideScrollbar: true
     };
     
     return(

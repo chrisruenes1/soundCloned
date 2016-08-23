@@ -18,10 +18,6 @@ const CommentIndexItem = React.createClass({
     }
   },
   render(){
-
-    let commentIndexItemStyle = {
-      backgroundImage: 'url(' + this.props.comment.author.image_url + ')'
-    };
     
     let commentShow = this.state.shouldShowComment ?
 
@@ -36,15 +32,14 @@ const CommentIndexItem = React.createClass({
 
     let portionDone = this.props.comment.elapsed_time/this.props.track.duration || 0;
     const imageStyle = {
-      left: `calc(100% * ${portionDone})`
+      left: `calc(100% * ${portionDone})`,
+      backgroundImage: 'url(' + this.props.comment.author.image_url + ')',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
     };
 
     return(
-<<<<<<< HEAD
-      <div className='comment-index-item' style={commentIndexItemStyle}>
-=======
       <div className='comment-index-item' style={imageStyle}>
->>>>>>> 54b341296df34fbf4b4b418c243c3bafc14988d5
         {commentShow}
       </div>
     );

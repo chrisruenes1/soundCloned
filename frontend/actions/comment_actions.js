@@ -5,7 +5,7 @@ const CommentConstants = require('../constants/comment_constants');
 
 module.exports = {
   fetchAllComments(){
-    CommentAPIUtil.fetchAllComments(this.receiveAllComments);
+    CommentAPIUtil.fetchAllComments(this.receiveAllComments, ErrorActions.setErrors);
   },
   createComment(comment, track_id){
     CommentAPIUtil.createComment(comment, track_id, this.receiveComment, ErrorActions.setErrors);
