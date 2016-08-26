@@ -1,5 +1,5 @@
-var path = require("path");
-var webpack = require("webpack");
+let path = require("path");
+let webpack = require("webpack");
 
 
 module.exports = {
@@ -26,5 +26,17 @@ module.exports = {
   resolve: {
     extensions: ["", ".js", ".jsx"]
   },
+  plugins:[
+  new webpack.DefinePlugin({
+    'process.env':{
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress:{
+      warnings: true
+    }
+  })
+],
   devtool: 'source-map'
 };
