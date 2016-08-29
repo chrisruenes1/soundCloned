@@ -21,6 +21,7 @@ const ProfileForm = React.createClass({
       city: user.city,
       state: user.state,
       bio: user.bio,
+      imageUrl: user.image_url,
       errors:[]};
   },
   update(field, e){
@@ -46,12 +47,11 @@ const ProfileForm = React.createClass({
   },
   handleSubmit(e){
     e.preventDefault();
-    let submitData = {};
+    let formData = new FormData();
     for (let key in this.state){
-      submitData[key] = this.state[key];
+      formData.append(`user[${key}]`, this.state[key]);
     }
-    submitData.id = this.state.userId;
-    UserActions.editUser(submitData);
+    UserActions.editUser(formData, this.state.userId);
   },
   render(){
     //error_stuff
@@ -79,7 +79,7 @@ const ProfileForm = React.createClass({
             }
           </ul>
 
-          <img className="modal-profile-picture" src="http://funny-pics.co/wp-content/uploads/sinister-otter.jpg" />
+          <img className="modal-profile-picture" src={this.state.imageUrl} />
 
           <article className="modal-form-text-info" >
 
