@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811114451) do
+ActiveRecord::Schema.define(version: 20160829015938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,14 +56,14 @@ ActiveRecord::Schema.define(version: 20160811114451) do
   create_table "users", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
-    t.string   "username",                                     null: false
-    t.string   "password_digest",                              null: false
-    t.string   "session_token",                                null: false
-    t.string   "group_name",         default: "The Peaches",   null: false
-    t.string   "city",               default: "New York City", null: false
+    t.string   "username",                        null: false
+    t.string   "password_digest",                 null: false
+    t.string   "session_token",                   null: false
+    t.string   "group_name",         default: ""
+    t.string   "city",               default: ""
     t.string   "state"
     t.text     "bio",                default: ""
-    t.string   "custom_url",                                   null: false
+    t.string   "custom_url",                      null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

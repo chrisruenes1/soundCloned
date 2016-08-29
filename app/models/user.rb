@@ -23,7 +23,7 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, :password_digest, :session_token, :group_name, :city, presence:true
+  validates :username, :password_digest, :session_token, presence:true
   validates :username, :password_digest, :session_token, :custom_url, uniqueness:true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :custom_url, length: {minimum: 1}

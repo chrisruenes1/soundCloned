@@ -45,7 +45,6 @@
   width: auto;
   margin-bottom: 3px;
   float: left;
-  padding:3px;
 }
 
 .edit-button {
@@ -71,7 +70,6 @@
 .profile-header-image {
   background:linear-gradient( to bottom right, #f50, #fff);
   margin: auto;
-  width: 1240px;
 }
 
 /**profile form classes**/

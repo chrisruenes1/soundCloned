@@ -85,6 +85,16 @@ const ProfileHeader = React.createClass({
           </div>
         </div>
       </div>;
+    
+    let loc = this.props.user.city && this.props.user.state ?
+      `${this.props.user.city}, ${this.props.user.state}` :
+      this.props.user.city ?
+      `${this.props.user.city}` :
+      this.props.user.state ?
+      `${this.props.user.state}` :
+      '';
+      
+    
     return(
       <header className="group profile-header-image">
 
@@ -92,7 +102,7 @@ const ProfileHeader = React.createClass({
         <div className="profile-user-info">
           <span className="profile-element profile-large">{this.props.user.group_name}</span>
           <span className="profile-element profile-small">{this.props.user.fname} {this.props.user.lname}</span>
-          <span className="profile-element profile-small">{this.props.user.city}, {this.props.user.state}</span>
+          <span className="profile-element profile-small">{loc}</span>
         </div>
         {editInfo}
 
