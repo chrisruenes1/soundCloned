@@ -21,7 +21,7 @@ const ProfileForm = React.createClass({
       city: user.city || "",
       state: user.state || "",
       bio: user.bio || "",
-      image: user.image,
+      image: null, //for viewing and submitting purposes once updated
       imageUrl: user.image_url,
       errors:[]};
   },
@@ -65,7 +65,9 @@ const ProfileForm = React.createClass({
     e.preventDefault();
     let formData = new FormData();
     for (let key in this.state){
-      formData.append(`user[${key}]`, this.state[key]);
+      if (this.state[key] !== null){
+        formData.append(`user[${key}]`, this.state[key]);
+      }
     }
     UserActions.editUser(formData, this.state.userId);
   },
