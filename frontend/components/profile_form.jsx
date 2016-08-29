@@ -14,13 +14,13 @@ const ProfileForm = React.createClass({
     this.listeners = [];
     return {
       userId: user.id,
-      fname: user.fname,
-      lname: user.lname,
-      groupName: user.group_name,
-      customUrl: user.custom_url,
-      city: user.city,
-      state: user.state,
-      bio: user.bio,
+      fname: user.fname || "",
+      lname: user.lname || "",
+      groupName: user.group_name || "",
+      customUrl: user.custom_url || user.username,
+      city: user.city || "",
+      state: user.state || "",
+      bio: user.bio || "",
       imageUrl: user.image_url,
       errors:[]};
   },

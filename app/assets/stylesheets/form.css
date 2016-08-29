@@ -26,10 +26,13 @@ form textarea {
   max-height:500px;
 }
 
+.upload-form {
+  width: 765px;
+}
+
 /**general styling and positioning of form in relation to modal**/
 
 .modal-form {
-  height:200px;
   text-align:center;
   margin:0 auto;
   margin-top:3%;
