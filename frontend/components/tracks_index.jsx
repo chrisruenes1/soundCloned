@@ -1,5 +1,6 @@
 const React = require('react');
 const TrackStore = require('../stores/track_store');
+const UserStore = require('../stores/user_store');
 const TrackIndexItem = require('./track_index_item');
 const TrackActions = require('../actions/track_actions');
 const CommentActions = require('../actions/comment_actions');
@@ -9,7 +10,10 @@ let _tracksWithDuration = [];
 const TracksIndex = React.createClass({
   getInitialState(){
     this.listeners = [];
-    return { tracks: TrackStore.all()};
+    let tracks = this.props.tracks ? //the user show page will pass down the user's tracks
+      this.props.tracks :
+      TrackStore.all();
+    return { tracks: tracks};
   },
   render(){
     return(
@@ -25,6 +29,11 @@ const TracksIndex = React.createClass({
         }
       </ul>
     );
+  },
+  componentWillReceiveProps(newProps){
+    if (newProps.tracks){
+      this.setState({ tracks: newProps.tracks });
+    }
   },
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
