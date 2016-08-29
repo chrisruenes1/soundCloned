@@ -100,8 +100,8 @@ const ProfileHeader = React.createClass({
 
         {imageWithButton}
         <div className="profile-user-info">
-          <span className="profile-element profile-large">{this.props.user.group_name}</span>
-          <span className="profile-element profile-small">{this.props.user.fname} {this.props.user.lname}</span>
+          <span className="profile-element profile-large">{this.props.user.group_name}</span><br/>
+          <span className="profile-element profile-small">{this.props.user.fname} {this.props.user.lname}</span><br/>
           <span className="profile-element profile-small">{loc}</span>
         </div>
         {editInfo}
