@@ -64,14 +64,11 @@ let getStyles = function(){
   let maxWidth;
 
   if (this.props.big){
-    height = '85%';
     maxHeight = '635px';
     maxWidth='920px';
-    width='60%';
   }
 
   else {
-    height = '55%';
     maxHeight = '500px';
     width = "auto";
     maxWidth = "auto";
@@ -88,10 +85,8 @@ let getStyles = function(){
       zIndex            : 9
     },
     content : {
-      width                      : width,
       maxWidth                   : maxWidth,
       maxHeight                  : maxHeight,
-      height                     : height,
       position                   : 'absolute',
       left                       : '50%',
       top                        : '50%',
