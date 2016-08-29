@@ -8,6 +8,13 @@
   position:absolute;
 }
 
+.profile-form-button-positioner {
+  height: 25%;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+}
+
 .profile-picture-container {
   position: relative;
   width: 200px;
@@ -22,7 +29,6 @@
   border-radius:50%;
   float:left;
   position:absolute;
-  margin-top:50px;
 }
 
 .camera-img{

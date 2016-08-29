@@ -21,8 +21,24 @@ const ProfileForm = React.createClass({
       city: user.city || "",
       state: user.state || "",
       bio: user.bio || "",
+      image: user.image,
       imageUrl: user.image_url,
       errors:[]};
+  },
+  updateImage: function (e) {
+    e.preventDefault();
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ image: file, imageUrl: fileReader.result} );
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  },
+  triggerImageInput: function(e) {
+    e.preventDefault();
+    $("#profile-pic-modal-file-input").trigger('click');
   },
   update(field, e){
     let newValue = e.target.value;
@@ -65,6 +81,30 @@ const ProfileForm = React.createClass({
       return <div></div>;
     }
 
+
+    //set up image with button overlay
+    let image = <img className="modal-profile-picture" src={this.state.imageUrl} />;
+    
+    let imageWithButton =
+    <div className="profile-picture-container">
+      <div className="profile-picture-overlay">
+        {image}
+        <div className="profile-form-button-positioner">
+          <div className="image-button-container">
+            <button
+              className="image-button"
+              onClick={this.triggerImageInput}>
+                <img
+                  className='camera-img'
+                  src="https://s3.amazonaws.com/SOUND-CLONED-PROD/images/camera.png" />
+                Update image
+            </button>
+            <input type="file" className="hidden-file-input" id="profile-pic-modal-file-input" onChange={this.updateImage} />
+          </div>
+        </div>
+      </div>;
+    </div>;
+
     return(
       <div>
 
@@ -79,7 +119,7 @@ const ProfileForm = React.createClass({
             }
           </ul>
 
-          <img className="modal-profile-picture" src={this.state.imageUrl} />
+          {imageWithButton}
 
           <article className="modal-form-text-info" >
 
