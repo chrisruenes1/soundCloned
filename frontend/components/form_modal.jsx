@@ -5,7 +5,7 @@ const SignupForm = require('./signup_form');
 
 const FormModal = React.createClass({
   getInitialState(){
-    return {modalIsOpen:false, children: null};
+    return {modalIsOpen:false, children: null, mounted: false};
   },
   openModal(){
     this.setState({modalIsOpen:true});
@@ -24,13 +24,13 @@ const FormModal = React.createClass({
     this.setState({ children: newChildren });
   },
   componentDidMount(){
-    _mounted = true;
+    this.setState({ mounted: true });
   },
   componentWillUnmount(){
-    _mounted = false;
+    this.setState({ mounted: false});
   },
   _mounted(){
-    return _mounted;
+    return this.state.mounted;
   },
   render(){
     let divClass = this.props.inline ?
@@ -72,8 +72,6 @@ const FormModal = React.createClass({
     );
   },
 });
-
-let _mounted = false;
 
 let getStyles = function(){
 

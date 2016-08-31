@@ -4,6 +4,7 @@ const TrackActions = require('../actions/track_actions');
 const SessionStore = require('../stores/session_store');
 const ErrorStore = require('../stores/error_store');
 const ErrorConstants = require('../constants/error_constants');
+const ErrorActions = require('../actions/error_actions');
 
 const UploadForm = React.createClass({
   getInitialState(){
@@ -113,7 +114,7 @@ const UploadForm = React.createClass({
   },
 
   getValidAudioFileTypes(){
-    return ['mp3', 'mp4','aiff', 'aif', 'wav', 'flac'];
+    return ['mp3','aiff', 'aif', 'wav', 'flac'];
   },
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
@@ -143,13 +144,18 @@ const UploadForm = React.createClass({
     }
   },
 
+  handleTrackUploadClick: function(e){
+    e.preventDefault();
+    ErrorActions.clearErrors();
+    this.triggerTrackFileInput();
+  },
+
   triggerImageFileInput: function(e) {
     e.preventDefault();
     $("#image-file-input").trigger('click');
   },
 
-  triggerTrackFileInput: function(e) {
-    e.preventDefault();
+  triggerTrackFileInput: function() {
     $("#track-file-input").trigger('click');
   },
 
@@ -272,7 +278,7 @@ const UploadForm = React.createClass({
             <h1 className="modal-form-title">Upload to SoundCloned</h1>
 
             <div className="track-button-container">
-              <button onClick={this.triggerTrackFileInput} className="track-button">Choose a file to upload</button>
+              <button onClick={this.handleTrackUploadClick} className="track-button">Choose a file to upload</button>
               <input type="file" className="hidden-file-input" id="track-file-input" onChange={this.updateTrackFile} />
             </div>
 
