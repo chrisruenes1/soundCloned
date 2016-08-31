@@ -4,6 +4,8 @@ const UserStore = require('../stores/user_store');
 const TrackIndexItem = require('./track_index_item');
 const TrackActions = require('../actions/track_actions');
 const CommentActions = require('../actions/comment_actions');
+const FormModal = require('./form_modal');
+const UploadForm = require('./upload_form');
 
 let _tracksWithDuration = [];
 
@@ -14,19 +16,28 @@ const TracksIndex = React.createClass({
   },
   render(){
     let tracks = this.state.tracks ?
-      <ul>
-        {
-          this.state.tracks.map(function(track){
-            return <TrackIndexItem
-              className="track-index-item"
-              track={track}
-              key={track.id}
-              />;
-          })
-        }
-      </ul> :
+      this.state.tracks.length === 0 ?
+        <div>It looks like you do not have any tracks uploaded yet! Click&nbsp;
+          <FormModal
+            buttonText=" here"
+            className="clickable-text"
+            big
+            inline>
+              <UploadForm/>
+          </FormModal> to add your first.</div> :
+        
+        <ul>
+          {
+            this.state.tracks.map(function(track){
+              return <TrackIndexItem
+                className="track-index-item"
+                track={track}
+                key={track.id}
+                />;
+            })
+          }
+        </ul> :
       <div></div>;
-      
     return(
       tracks
     );

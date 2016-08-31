@@ -19,7 +19,6 @@ const UploadForm = React.createClass({
       trackFile: null,
       trackUrl: null,
       errors:[],
-      success_message:"",
       frontendError:"",
       submitDisabled:true
     };
@@ -98,7 +97,7 @@ const UploadForm = React.createClass({
       }
       //Also check to see if file name is written in camelCase,
       //and add a space before next capital if it is
-      else if ( character === character.toUpperCase() && i > 0 && i-1 != " " ){
+      else if ( character === character.toUpperCase() && i > 0 && i != " " && i-1 != " "){
         niceName = niceName.concat(" ").concat(name[i]);
       }
       else {
@@ -114,7 +113,7 @@ const UploadForm = React.createClass({
   },
 
   getValidAudioFileTypes(){
-    return ['mp3','aiff', 'aif', 'wav', 'flac'];
+    return ['mp3', 'mp4','aiff', 'aif', 'wav', 'flac'];
   },
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
@@ -128,7 +127,6 @@ const UploadForm = React.createClass({
           duration: duration,
           trackUrl: fileReader.result,
           title: this.parseName(file.name),
-          success_message: `Successfully loaded "${file.name}"`,
           frontendError: "",
           submitDisabled: false
         });
@@ -140,7 +138,7 @@ const UploadForm = React.createClass({
         fileReader.readAsDataURL(file);
       }
       else {
-        this.setState({frontendError: "Sorry, we cannot support that file type!", success: ""});
+        this.setState({frontendError: "Sorry, we cannot support that file type!"});
       }
     }
   },
@@ -170,13 +168,11 @@ const UploadForm = React.createClass({
       }
     </ul>;
 
-    let success = <span className="success">{this.state.success_message}</span>;
     let frontendError = <span className="small-error">{this.state.frontendError}</span>;
     let messages =
       <div className="message-container">
         {frontendError}
         {errors}
-        {success}
       </div>;
 
     let image = this.state.imageUrl ? <img className="upload-form-image" src={this.state.imageUrl} /> : <div></div>;

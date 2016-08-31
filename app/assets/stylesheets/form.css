@@ -4,6 +4,10 @@
   min-width:500px;
 }
 
+.inline-div {
+  display: inline;
+}
+
 /**does anyone ever want textareas to resize?**/
 
 form textarea {

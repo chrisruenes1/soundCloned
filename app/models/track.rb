@@ -28,7 +28,7 @@ class Track < ActiveRecord::Base
 
 
   has_attached_file :audio_file, default_url: "NoMoreHeroes-NineToLife.mp3"
-  validates_attachment_content_type :audio_file, content_type: /\Aaudio\/.*\Z/
+  validates_attachment_content_type :audio_file, content_type: ['application/mp3', 'application/x-mp3', 'audio/mpeg', ['audio/mpeg'], 'audio/mp3']
 
 
   validates :title, :composer_id, :duration, :audio_file, presence: true

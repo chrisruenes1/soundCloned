@@ -11,12 +11,31 @@ const FormModal = React.createClass({
     this.setState({modalIsOpen:true});
   },
   closeModal(){
-    this.setState({modalIsOpen: false});
+    //since we are sometimes calling this from a tracksIndexComponent that will render away this
+    //modal's parent component, we need to check to make sure the modal is still mounted before
+    //updating its state. Ideal implementation would be to simply cancel this callback in unmount,
+    //but since it will ultimately be an action class that invokes the callback, the logic must
+    //be defined here
+    if (this._mounted()){
+      this.setState({modalIsOpen: false});
+    }
   },
   swapChildren(newChildren){
     this.setState({ children: newChildren });
   },
+  componentDidMount(){
+    _mounted = true;
+  },
+  componentWillUnmount(){
+    _mounted = false;
+  },
+  _mounted(){
+    return _mounted;
+  },
   render(){
+    let divClass = this.props.inline ?
+      "inline-div" :
+      "";
     let children = this.props.children;
     if (this.state.children){
       if (this.state.children === "signup"){
@@ -33,7 +52,7 @@ const FormModal = React.createClass({
     });
     newChildren.push(<button key="-1" className="exit" onClick={this.closeModal}>&times;</button>); //-1 to suppress react warnings
     return(
-      <div>
+      <div className={divClass}>
         <button
           className={this.props.className}
           onClick={this.openModal}>
@@ -51,10 +70,10 @@ const FormModal = React.createClass({
         </Modal>
       </div>
     );
-  }
+  },
 });
 
-
+let _mounted = false;
 
 let getStyles = function(){
 
