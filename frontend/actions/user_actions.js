@@ -10,6 +10,11 @@ module.exports = {
   editUser(formData, id){
     UserApiUtil.updateUser(formData, id, this.receiveUser, ErrorActions.setErrors);
   },
+  clearUser(){
+    AppDispatcher.dispatch({
+      actionType: UserConstants.CLEAR_USER
+    });
+  },
   receiveUser(user){
     AppDispatcher.dispatch({
       actionType: UserConstants.RECEIVE_USER,

@@ -15,6 +15,16 @@ TrackStore.all = function(){
   return allTracks;
 };
 
+TrackStore.allForUserId = function(userId){
+  let allTracksForUserId = [];
+  for (let key in _tracks){
+    if (_tracks[key].composer.id === userId){
+      allTracksForUserId.push(_tracks[key]);
+    }
+  }
+  return allTracksForUserId;
+};
+
 TrackStore.find = function(id){
   return _tracks[id] ? tracks[id] : {};
 };

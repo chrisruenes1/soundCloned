@@ -13,7 +13,7 @@ const Profile = React.createClass({
     return(
       <div>
         <ProfileHeader user={this.state.user} customUrl={this.props.params.customUrl}/>
-        // <TracksIndex tracks={this.state.user.tracks}/>
+        <TracksIndex userId={this.state.user.id}/>
       </div>
     );
   },
@@ -28,6 +28,7 @@ const Profile = React.createClass({
     this.listeners.forEach(function(listener){
       listener.remove();
     });
+    UserActions.clearUser();
   },
   _onUserChange(){
     this.setState({user: UserStore.user()});

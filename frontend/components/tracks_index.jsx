@@ -10,13 +10,10 @@ let _tracksWithDuration = [];
 const TracksIndex = React.createClass({
   getInitialState(){
     this.listeners = [];
-    let tracks = this.props.tracks ? //the user show page will pass down the user's tracks
-      this.props.tracks :
-      TrackStore.all();
-    return { tracks: tracks};
+    return { tracks: null };
   },
   render(){
-    return(
+    let tracks = this.state.tracks ?
       <ul>
         {
           this.state.tracks.map(function(track){
@@ -24,22 +21,26 @@ const TracksIndex = React.createClass({
               className="track-index-item"
               track={track}
               key={track.id}
-            />;
+              />;
           })
         }
-      </ul>
+      </ul> :
+      <div></div>;
+      
+    return(
+      tracks
     );
   },
   componentWillReceiveProps(newProps){
-    if (newProps.tracks){
-      this.setState({ tracks: newProps.tracks });
-    }
+    let tracks = newProps.hasOwnProperty("userId") ? //the user show page will pass down the user's tracks
+      TrackStore.allForUserId(newProps.userId) :
+      TrackStore.all();
+    this.setState({ tracks: tracks });
   },
   componentDidMount(){
     this.listeners.push(TrackStore.addListener(this._onChange));
     TrackActions.fetchAllTracks();
     CommentActions.fetchAllComments();
-
   },
   componentWillUnmount(){
     this.listeners.forEach(function(listener){
@@ -47,7 +48,12 @@ const TracksIndex = React.createClass({
     });
   },
   _onChange(){
-    this.setState({ tracks: TrackStore.all() });
+    if (this.props.userId){
+      this.setState( {tracks: TrackStore.allForUserId(this.props.userId)});
+    }else {
+      this.setState({ tracks: TrackStore.all() });
+    }
+    
   }
 });
 

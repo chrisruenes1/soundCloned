@@ -14,7 +14,7 @@ const _resetUser = function(user){
   UserStore.__emitChange();
 };
 
-const _removeUser = function(){
+const _clearUser = function(){
   _user = {};
   UserStore.__emitChange();
 };
@@ -24,8 +24,8 @@ UserStore.__onDispatch = (payload) => {
     case UserConstants.RECEIVE_USER:
       _resetUser(payload.user);
       break;
-    case UserConstants.REMOVE_USER:
-      _removeUser();
+    case UserConstants.CLEAR_USER:
+      _clearUser();
       break;
   }
 };

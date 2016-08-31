@@ -1,4 +1,4 @@
 module.exports = {
   RECEIVE_USER:"RECEIVE_USER",
-  REMOVE_USER:"REMOVE_USER"
+  CLEAR_USER:"CLEAR_USER"
 };
