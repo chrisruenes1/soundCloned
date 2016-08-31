@@ -104,7 +104,7 @@ const ProfileForm = React.createClass({
             <input type="file" className="hidden-file-input" id="profile-pic-modal-file-input" onChange={this.updateImage} />
           </div>
         </div>
-      </div>;
+      </div>
     </div>;
 
     return(
