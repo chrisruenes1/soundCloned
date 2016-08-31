@@ -32,13 +32,18 @@ const ProfileHeader = React.createClass({
 
   },
   showEditImageButton(){
-    this.setState({showEditImageButton: true});
+    if (this.isCurrentUser()){
+      this.setState({showEditImageButton: true});
+    }
   },
   hideEditImageButton(){
     this.setState({showEditImageButton: false});
   },
+  isCurrentUser(){
+    return this.props.user.id === SessionStore.currentUser().id;
+  },
   render(){
-    let editInfo = this.props.user.id === SessionStore.currentUser().id ?
+    let editInfo = this.isCurrentUser() ?
       <FormModal
         className="navbar-button reactive-navbar-button edit-button"
         buttonText="Edit Profile"
