@@ -98,7 +98,11 @@ const UploadForm = React.createClass({
       }
       //Also check to see if file name is written in camelCase,
       //and add a space before next capital if it is
-      else if ( character === character.toUpperCase() && i > 0 && i != " " && i-1 != " "){
+      else if ( character === character.toUpperCase() &&
+        i > 0 &&
+        character.match(/[A-Za-z]/) &&
+        name[i-1].match(/[A-Za-z]/))
+      {
         niceName = niceName.concat(" ").concat(name[i]);
       }
       else {
@@ -114,7 +118,7 @@ const UploadForm = React.createClass({
   },
 
   getValidAudioFileTypes(){
-    return ['mp3','aiff', 'aif', 'wav', 'flac'];
+    return ['mp3'];
   },
   updateTrackFile: function (e) {
     var file = e.currentTarget.files[0];
