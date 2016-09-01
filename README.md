@@ -11,7 +11,7 @@ SoundCloned is a single-page audio hosting and streaming app built on [Ruby on R
 
 Users can listen to music and visit artist pages regardless of their authentication status, but they must log in to upload music or comment on tracks. Users are able to create and update profiles, and their information is stored in a `users` table. The user object uses ActiveRecord associations to keep references to all `tracks` and `comments` that a user has created, and which are stored in separate tables.
 
-![](./app/assets/images/edit_profile_screenshot?raw=true)
+![](./app/assets/images/edit_profile_screen_shot?raw=true)
 
 ### Custom URLS
 
