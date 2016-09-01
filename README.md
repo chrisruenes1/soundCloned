@@ -1,5 +1,64 @@
 # SoundCloned
 
+[SoundCloned live](www.soundcloned.com)
+
+SoundCloned is a single-page audio hosting and streaming app built on [Ruby on Rails](http://rubyonrails.org/) and [React.js](https://facebook.github.io/react/) and inspired by [Soundcloud](www.soundcloud.com).
+
+
+# Features & Implementation
+
+## Profiles
+
+Users can listen to music and visit artist pages regardless of their authentication status, but they must log in to upload music or comment on tracks. Users are able to create and update profiles, and their information is stored in a `users` table. The user object uses ActiveRecord associations to keep references to all `tracks` and `comments` that a user has created, and which are stored in separate tables.
+
+![edit_profile_screen_shot]
+
+### Custom URLS
+
+A field in the `ProfileForm` asks users for a `customURL`. This field defautls to the user's `username`, but users can also choose, and dynamically switch whenever they so please, the path at which their profile should live (e.g. soundcloned.com/this_is_my_path). Soundcloud's site inspired this feature, but SoundCloned's implementation enhances the original by using [ReactRouter](https://github.com/reactjs/react-router)'s' `hashHistory` to instantaneously update the url on change, making sure that the page always loads as expected upon a refresh.
+
+````JavaScript
+_onUserChange(){
+  //little bit of handling to make sure modal stays open on initial refresh
+  let shouldClose = false;
+  if (this.state.userId){
+    shouldClose = true;
+  }
+
+  let user = UserStore.user();
+  hashHistory.push(`/users/url/${user.custom_url}`);
+  this.setState({
+    userId: user.id,
+    fname: user.fname,
+    lname: user.lname,
+    groupName: user.group_name,
+    customUrl: user.custom_url,
+    city: user.city,
+    state: user.state,
+    bio: user.bio
+  });
+
+  if (shouldClose){
+    this.props.close();
+  }
+
+},
+````
+
+
+## File Upload
+
+
+## Comments
+
+## Continuous & Interactive Playback
+
+## Waveform Visualization
+
+
+
+ The app leverages a lean audio stack — HTML5 audio enhanced and centralized with React and Flux — in order to provide the user with a seamless listening experience. Playback responsibilities are divided between two Flux cycles, one for time information and the other for audio, making the app exceptionally fast when it comes to switching between songs at arbitrary points in playback. AJAX integration and a modular component architecture allow users to navigate around the site freely while audio plays continuously.
+
 [Heroku link][heroku] https://soundcloned.herokuapp.com/
 
 [heroku]: http://www.herokuapp.com
