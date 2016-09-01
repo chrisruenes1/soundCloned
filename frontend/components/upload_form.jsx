@@ -21,11 +21,28 @@ const UploadForm = React.createClass({
       trackUrl: null,
       errors:[],
       frontendError:"",
+      loadMessage:"",
       submitDisabled:true
     };
   },
   handleSubmit(e){
     e.preventDefault();
+    //render load message
+    let loadMessage = "Saving";
+    this.setState({ loadMessage: loadMessage, submitDisabled: true });
+    this.loadingInterval = setInterval( () => {
+      let currentLoadMessage = this.state.loadMessage;
+      if (currentLoadMessage.length < "Saving...".length){
+        currentLoadMessage = currentLoadMessage.concat(".");
+      }
+      else {
+        currentLoadMessage = "Saving";
+      }
+      this.setState({ loadMessage : currentLoadMessage });
+    }, 1000);
+    
+    
+    
     var formData = new FormData();
     formData.append("track[title]", this.state.title);
     formData.append("track[composer_id]", SessionStore.currentUser().id);
@@ -118,9 +135,22 @@ const UploadForm = React.createClass({
   },
 
   getValidAudioFileTypes(){
-    return ['mp3'];
+    return ['mp3']; //consider supporting m4a etc.
   },
   updateTrackFile: function (e) {
+    this.setState({ loadMessage: "Loading" });
+    
+    let loadingInterval = setInterval( () => {
+      let loadMessage = this.state.loadMessage;
+      if (loadMessage.length < "Loading...".length){
+        loadMessage = loadMessage.concat(".");
+      }
+      else {
+        loadMessage = "Loading";
+      }
+      this.setState({ loadMessage: loadMessage });
+    }, 1000);
+    
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -136,6 +166,9 @@ const UploadForm = React.createClass({
           submitDisabled: false
         });
       });
+      
+      clearInterval(loadingInterval);
+      this.setState({ loadMessage: "" });
     };
 
     if (file) {
@@ -179,8 +212,11 @@ const UploadForm = React.createClass({
     </ul>;
 
     let frontendError = <span className="small-error">{this.state.frontendError}</span>;
+      
+    let loadMessage = <span className="small-error">{this.state.loadMessage}</span>;
     let messages =
       <div className="message-container">
+        {loadMessage}
         {frontendError}
         {errors}
       </div>;
@@ -308,6 +344,7 @@ const UploadForm = React.createClass({
     this.listeners.forEach(function(listener){
       listener.remove();
     });
+    clearInterval(this.loadingInterval);
   },
   _onErrorChange(){
     this.setState({errors:ErrorStore.errors(ErrorConstants.CREATE_TRACK)});
