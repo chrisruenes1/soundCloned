@@ -8,7 +8,6 @@ const CommentIndexItem = React.createClass({
     return ({ shouldShowComment: this.props.comment.id === currentCommentId });
   },
   componentWillReceiveProps(newProps){
-    //CHANGE BACK TO AUTHOR.USERNAME ON BUG FIX
     let currentCommentId = newProps.currentComment ? newProps.currentComment.id : -1;
     if (newProps.comment.id === currentCommentId){
       this.setState({ shouldShowComment: true});

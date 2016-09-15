@@ -7,6 +7,7 @@ const CommentForm = require('./comment_form');
 const CommentIndex = require('./comment_index');
 const WaveSurferVisualizer = require('./wave_surfer_visualizer');
 import {Link} from 'react-router';
+import Measure from 'react-measure';
 
 
 const TrackIndexItem = React.createClass({
@@ -22,11 +23,9 @@ const TrackIndexItem = React.createClass({
     return {
       playing: TrackStore.isTrackPlaying(this.props.track.id),
       elapsedTime: 0,
-      //the first comment may be well into the song, so we want
-      //it to start as the NEXT comment rather than current comment
-      currentCommentIdx: -1,
+      currentComment: null,
       comments: sortedComments,
-      hideComments: false
+      dimensions: {}
     };
   },
   playTrack(e){
@@ -42,20 +41,21 @@ const TrackIndexItem = React.createClass({
     let composerURL = `users/url/${composer.custom_url}`;
     let buttonImageClass = this.state.playing ? "pause-button-image" : "play-button-image";
     let playOrPauseFunc = this.state.playing ? this.pauseTrack : this.playTrack;
-    let currentComment =
-      this.state.comments[this.state.currentCommentIdx] && !this.state.hideComments &&this.state.playing ?
-      this.state.comments[this.state.currentCommentIdx] :
-      { id: -1 }; //send an empty object with a non-matching id to all comment objects
+    let currentComment = this.state.playing && this.state.currentComment !== -1 ?
+      this.state.currentComment :
+      "";
 
-    //wipe currentComment off screen after a few seconds
-    if (currentComment.id >= 0 && !this.wipeCommentTimeoutSet){
+    //clear comment from screen after a few seconds
+    if (currentComment && !this.wipeCommentTimeoutSet){
       this.wipeCommentTimeoutSet = true;
       this.hideTimeout = window.setTimeout(() => {
-        this.setState( {hideComments: true });
+        this.setState( {currentComment: null });
         this.clearWipeoutTimer();
       }, this.commentShowLength);
     }
-
+    
+    
+    
     return(
     <li>
       <div className="track-index-item group">
@@ -73,19 +73,26 @@ const TrackIndexItem = React.createClass({
             </div>
           </div>
 
-          <div className="playback-container">
-            <WaveSurferVisualizer
-              track={this.props.track}
-              playing={this.state.playing}
-              pos={this.state.elapsedTime}
-            />
-            <CommentIndex
-              currentComment={currentComment}
-              comments={this.state.comments}
-              track={this.props.track}
-              currentTime={this.state.elapsedTime}
-            />
-          </div>
+          {/*measure playback container with react-measure so that fixed-width comment_index_item always represents correct portion of variable width track_index_item*/}
+          <Measure
+            onMeasure={(dimensions) => {
+              this.setState({dimensions: dimensions});
+            }}
+          >
+            <div className="playback-container">
+                <WaveSurferVisualizer
+                  track={this.props.track}
+                  playing={this.state.playing}
+                  pos={this.state.elapsedTime}
+                />
+              <CommentIndex
+                currentComment={currentComment}
+                comments={this.state.comments}
+                track={this.props.track}
+                currentTime={this.state.elapsedTime}
+              />
+            </div>
+          </Measure>
 
           <div className="comment-form-container">
             <CommentForm trackId={this.props.track.id} currentTime={this.state.elapsedTime} />
@@ -118,47 +125,30 @@ const TrackIndexItem = React.createClass({
     if (this.state.playing){
 
       let currentTime = TimeStore.getCurrentTime();
-
-      let nextCommentIdx = this.state.currentCommentIdx + 1;
-      let nextComment = this.state.comments[nextCommentIdx];
-
-      let commentIdx =
-        nextComment && nextComment.elapsed_time <= currentTime ?
-        nextCommentIdx :
-        this.state.currentCommentIdx;
-
-      //make sure hide comments is set to false
-      let shouldHide;
-      if (commentIdx !== this.state.currentCommentIdx){
+      
+      let commentDuration = (10 * this.props.track.duration) / this.state.dimensions.width;
+      let timeOverlappingComment = function(comment){
+        if (currentTime >= comment.elapsed_time && currentTime <= comment.elapsed_time + commentDuration){
+          return true;
+        }
+        return false;
+      };
+      let currentComment = this.state.comments.find(timeOverlappingComment);
+      if (currentComment !== -1){
+        //prevent it from being erased immediately
         this.clearWipeoutTimer();
-        shouldHide = false;
-      }
-      else {
-        shouldHide = this.state.hideComments;
       }
 
-      this.setState( { elapsedTime: currentTime, currentCommentIdx: commentIdx, hideComments: shouldHide } );
+      this.setState( { elapsedTime: currentTime, currentComment: currentComment } );
     }
   },
   _onCommentChange(){
     let comments = CommentStore.allCommentsForTrack(this.props.track.id);
-    let sortedComments = comments.sort(function(a, b){ //the comment create method only returns the added comment, without position info
+    let sortedComments = comments.sort(function(a, b){
       return a.elapsed_time - b.elapsed_time;
     });
-    let currentCommentIdx;
-    if (this.state.currentCommentIdx >= 0 ){
-      let currentCommentUpdatedIdx = comments.indexOf(this.state.comments[this.state.currentCommentIdx]);
-      if (currentCommentUpdatedIdx >= 0){  //make sure comment playback does not restart if currentComment was removed
-        currentCommentIdx = currentCommentUpdatedIdx;
-      }
-      else {
-        currentCommentIdx = this.state.currentCommentIdx;
-      }
-    }
-    else {
-      currentCommentIdx = 0;
-    }
-    this.setState( { comments: sortedComments, currentCommentIdx: currentCommentIdx });
+    
+    this.setState( { comments: sortedComments });
   },
   clearWipeoutTimer(){
     window.clearTimeout(this.hideTimeout);
