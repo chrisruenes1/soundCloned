@@ -25,8 +25,8 @@ const CurrentTrack = React.createClass({
   playPreviousTrack(){
     TrackActions.playPreviousTrack();
   },
-  resetPlayback(){
-    this.audio.currentTime = 0;
+  resetPlayback(track){
+    TimeActions.resetTimeForTrack(track.id);
   },
   render(){
     if (this.state.currentTrack.id){
@@ -86,7 +86,7 @@ const CurrentTrack = React.createClass({
     this.listeners.push(TrackStore.addListener(this._onChange));
     // AudioSourceActions.setAudioSource(this.audio); //allow visualizer components to subscribe to the audio source
     this.audio.addEventListener("ended", () => {
-        this.resetPlayback();
+        this.resetPlayback(this.state.currentTrack);
         this.playNextTrack();
       }
     );

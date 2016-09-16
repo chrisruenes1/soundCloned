@@ -141,6 +141,10 @@ const TrackIndexItem = React.createClass({
 
       this.setState( { elapsedTime: currentTime, currentComment: currentComment } );
     }
+    else {
+      let currentTime = TimeStore.getTimeForTrack(this.props.track.id);
+      this.setState( {elapsedTime: currentTime});
+    }
   },
   _onCommentChange(){
     let comments = CommentStore.allCommentsForTrack(this.props.track.id);

@@ -15,6 +15,11 @@ module.exports = {
       time: time,
       trackId: trackId
     });
-    
+  },
+  resetTimeForTrack(trackId){
+    AppDispatcher.dispatch({
+      actionType: TimeConstants.RESET_TRACK,
+      trackId: trackId
+    });
   }
 };

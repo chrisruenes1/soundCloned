@@ -24,6 +24,10 @@ const _setTimeForTrack = function(time, trackId){
   _pauseTimes[trackId] = time;
 };
 
+const _resetTimeForTrack = function(trackId){
+  _pauseTimes[trackId] = 0;
+};
+
 TimeStore.__onDispatch = function(payload){
   switch (payload.actionType){
     case TimeConstants.RESET_TIMER :
@@ -31,6 +35,9 @@ TimeStore.__onDispatch = function(payload){
       break;
     case TimeConstants.UPDATE_TRACK :
       _setTimeForTrack(payload.time, payload.trackId);
+      break;
+    case TimeConstants.RESET_TRACK :
+      _resetTimeForTrack(payload.trackId);
       break;
   }
 };
