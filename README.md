@@ -17,6 +17,7 @@ Users can listen to music and visit artist pages regardless of their authenticat
 
 A field in the `ProfileForm` asks users for a `customURL`. This field defautls to the user's `username`, but users can also choose, and dynamically switch whenever they so please, the path at which their profile should live (e.g. soundcloned.com/this_is_my_path). Soundcloud's site inspired this feature, but SoundCloned's implementation enhances the original by using [ReactRouter](https://github.com/reactjs/react-router)'s `hashHistory` to instantaneously update the url on change, making sure that the page always loads as expected upon a refresh.
 
+`frontend/components/profile_form.jsx`
 ````JavaScript
 _onUserChange(){
   //little bit of handling to make sure modal stays open on initial refresh
@@ -49,6 +50,8 @@ _onUserChange(){
 
 Logged in users can upload mp3 files which are immediately added to their profile page and, if public, added to the app's stream, which all users can access. SoundCloned file upload uses Paperclip to validate the type of file attachments and upload attached files to AWS S3. The `track` object stores the S3 url for the audio file and for an optional image attachment associated with the file.
 
+
+`app/models/track.rb`
 ````Ruby
 class Track < ActiveRecord::Base
   has_attached_file :image, default_url: "missing.png"
@@ -80,8 +83,9 @@ end
 
 ### Track Metadata Parsing
 
-When a user uploads an mp3, the file type is verified by Paperclip. The title of the track and its duration are parsed from the track's metadata. The parsed title is automatically added to the title input field on the upload track. All of the information is saved to the database when the user submits, except for the audio and image files themselves, which are uploaded to AWS S3 using Paperclip.
+When a user uploads an mp3, the file type is verified by Paperclip. The title of the track and its duration are parsed from the track's metadata. The parsed title is automatically added to the title input field on the upload track.
 
+`frontend/components/upload_form.jsx`
 ````JavaScript
 fileReader.onloadend = () => {
   let audio = new Audio(fileReader.result);
@@ -103,6 +107,7 @@ fileReader.onloadend = () => {
 
 A logged in user is able to add comments to a track as they listen to it. Since the `CommentForm` is a child of the associated `TrackIndexItem`, it has access to the `currentTime` through its props when a track is playing. This enables associating a comment with a particular point in playback:
 
+`frontend/components/comment_form.jsx`
 ````JavaScript
 handleSubmit(e){
   e.preventDefault();
@@ -118,6 +123,7 @@ When a user submits the comment, they will see it appear in real time under the 
 
 When a `CommentIndexItem` registers a change in the `CommentStore` (for example, if a user has added a new comment), it gets all comments from the `CommentStore`, then sorts all of them by time:
 
+`frontend/components/track_index_item.jsx`
 ````JavaScript
 _onCommentChange(){
   let comments = CommentStore.allCommentsForTrack(this.props.track.id);
@@ -131,6 +137,7 @@ _onCommentChange(){
 
 When the `CommentIndexItem` registers a change in the `TimeStore` (these occur periodically, as the HTML5 `<audio>` element emits `timeupdate` events to the `CurrentTrack` component), it checks to see if any of its comments overlap with the new timestamp.
 
+`frontend/components/track_index_item.jsx`
 ````JavaScript
 _onTimeChange(){
   if (this.state.playing){
@@ -159,6 +166,7 @@ _onTimeChange(){
 
 Finally, the `TrackIndexItem` passes `currentComment` state information to its associated `TrackIndex` component, which handles letting its `CommentIndexItem` children know that they should render their text as the `currentTime` overlaps them.
 
+`frontend/components/comment_index.jsx`
 ````JavaScript
 const CommentIndex = React.createClass({
   render(){
@@ -183,4 +191,82 @@ const CommentIndex = React.createClass({
 
 ## Continuous & Interactive Playback
 
-## Waveform Visualization
+Playback responsibilities are divided between two flux cycles. Dividing up data between a `TimeStore` and `TrackStore` allows multiple components to control playback at the same time while everything remains up to date.
+
+A `CurrentTrack` component is responsible for continuous playback. It listens to the `TrackStore`, and, whenever it registers a change in the store, it fetches the new CurrentTrack, and stores the track's audio data in an HTML5 `<audio>` object. It then listens to this object, and sends an update to the `TimeStore` whenever it gets a new timestamp from the track.
+
+`frontend/components/current_track.jsx`
+````JavaScript
+this.audio.addEventListener("timeupdate", () => {
+  TimeActions.resetTimer(this.audio.currentTime, this.state.currentTrack.id);
+});
+````
+
+Pausing and resuming tracks is extremely straightforward and rapid. When the `CurrentTrack` component gets an update from the `TrackStore`, it checks to see if:
+
+  1) It needs to update its current playing track
+  2) It needs to update its play/pause state
+  
+If it does need to update its play/pause state, it first updates the state of the audio, then, if pausing, kicks off a Flux cycle to save the pause time for the track to the `TimeStore`.
+
+`frontend/components/track_index_item.jsx`
+````JavaScript
+_onChange(){
+  let newCurrentTrack = TrackStore.getCurrentTrack();
+  if (newCurrentTrack){
+    if (newCurrentTrack.playing) {
+      if (newCurrentTrack.id !== this.state.currentTrack.id){
+        //pause the current track and save location
+        if (this.state.currentTrack.id){
+          this.audio.pause();
+        }
+        //change soruce to new current track
+        this.audio.setAttribute('src', newCurrentTrack.audio_file_url);
+        this.audio.load();
+      }
+      this.audio.currentTime = TimeStore.getTimeForTrack(newCurrentTrack.id);
+
+      //if it's not a track switch and it's playing, let it play
+      if (this.audio.paused){
+        this.audio.play();
+      }
+    }
+    //in case this is a pause message
+    else {
+      this.audio.pause();
+    }
+    this.setState({ currentTrack: newCurrentTrack });
+  }
+}
+````
+
+Because this component, along with the `Navbar`, is always rendered on the screen as part of the top-level `App` component, it enables continuous playback by holding on to the HTML5 `<audio>` objects it creates.
+
+Relatedly, it will automatically send a message to the `TrackStore` to move to the next track when the current track ends. This allows a user to listen to the `TrackIndex` stream like a playlist.
+
+`frontend/components/track_index_item.jsx`
+````JavaScript
+this.audio.addEventListener("ended", () => {
+    this.resetPlayback(this.state.currentTrack);
+    this.playNextTrack();
+  }
+);
+````
+The `TrackIndexItem` component handles waveform visualization using `react-wavesurfer`, and provides users with a more interactive playback experience. Users can click around the waveforms to update playback time, and even switch between arbitrary points in playback of different tracks by doing so. They can also switch between tracks as often as they like by hitting the play/pause button on the `TrackIndexItem` they would like to listen to. When this button is pressed, the `TrackIndexItem` initiates a Flux cycle to set itself as the current track and update the state of the audio to play or pause, respectively.
+
+`track_store.jsx`
+````JavaScript
+const _setCurrentTrack = function(id){
+  if (_currentTrack){
+    _tracks[_currentTrack].playing = false;
+  }
+  _currentTrack = id;
+  _tracks[id].playing = true;
+  TrackStore.__emitChange();
+};
+
+const _pauseCurrentTrack = function(){
+  _tracks[_currentTrack].playing = false;
+  TrackStore.__emitChange();
+};
+````
