@@ -82,9 +82,104 @@ end
 
 When a user uploads an mp3, the file type is verified by Paperclip. The title of the track and its duration are parsed from the track's metadata. The parsed title is automatically added to the title input field on the upload track. All of the information is saved to the database when the user submits, except for the audio and image files themselves, which are uploaded to AWS S3 using Paperclip.
 
-
+````JavaScript
+fileReader.onloadend = () => {
+  let audio = new Audio(fileReader.result);
+  audio.addEventListener("loadedmetadata", () => {
+    let duration = audio.duration;
+    this.setState({
+      trackFile: file,
+      duration: duration,
+      trackUrl: fileReader.result,
+      title: this.parseName(file.name),
+      frontendError: "",
+      submitDisabled: false
+    });
+  });
+}
+````
 
 ## Comments
+
+A logged in user is able to add comments to a track as they listen to it. Since the `CommentForm` is a child of the associated `TrackIndexItem`, it has access to the `currentTime` through its props when a track is playing. This enables associating a comment with a particular point in playback:
+
+````JavaScript
+handleSubmit(e){
+  e.preventDefault();
+  let comment = this.state;
+  comment.author_id = SessionStore.currentUser().id;
+  let track_id = this.props.trackId;
+  comment.elapsed_time = this.props.currentTime;
+  CommentActions.createComment(comment, track_id);
+  this.setState({ content: "" });
+}
+````
+When a user submits the comment, they will see it appear in real time under the playing track, marked by a 10px image of their profile picture, with the text of the comment extending beneath this image. `CommentIndexItem`s are able to render in real time by listening to two stores: the `TimeStore` and the `CommentStore`.
+
+When a `CommentIndexItem` registers a change in the `CommentStore` (for example, if a user has added a new comment), it gets all comments from the `CommentStore`, then sorts all of them by time:
+
+````JavaScript
+_onCommentChange(){
+  let comments = CommentStore.allCommentsForTrack(this.props.track.id);
+  let sortedComments = comments.sort(function(a, b){
+    return a.elapsed_time - b.elapsed_time;
+  });
+  
+  this.setState( { comments: sortedComments });
+}
+````
+
+When the `CommentIndexItem` registers a change in the `TimeStore` (these occur periodically, as the HTML5 `<audio>` element emits `timeupdate` events to the `CurrentTrack` component), it checks to see if any of its comments overlap with the new timestamp.
+
+````JavaScript
+_onTimeChange(){
+  if (this.state.playing){
+
+    let currentTime = TimeStore.getCurrentTime();
+    
+    //calculated as a function of the comment's width (fixed at 10px) relative to the current width of the track (variable)
+    let commentDuration = (10 * this.props.track.duration) / this.state.dimensions.width;
+    
+    let timeOverlappingComment = function(comment){
+      if (currentTime >= comment.elapsed_time && currentTime <= comment.elapsed_time + commentDuration){
+        return true;
+      }
+      return false;
+    };
+    let currentComment = this.state.comments.find(timeOverlappingComment);
+    if (currentComment !== -1){
+      //prevent it from being erased immediately
+      this.clearWipeoutTimer();
+    }
+
+    this.setState( { elapsedTime: currentTime, currentComment: currentComment } );
+  }
+}
+````
+
+Finally, the `TrackIndexItem` passes `currentComment` state information to its associated `TrackIndex` component, which handles letting its `CommentIndexItem` children know that they should render their text as the `currentTime` overlaps them.
+
+````JavaScript
+const CommentIndex = React.createClass({
+  render(){
+    return(
+      <ul className='comment-image-list'>
+        {
+          this.props.comments.map((comment, idx) => {
+            return <CommentIndexItem
+              comment={comment}
+              track={this.props.track}
+              currentComment={this.props.currentComment}
+              currentTime={this.props.currentTime}
+              idx={idx}
+              key={comment.id}/>;
+          })
+        }
+      </ul>
+    );
+  }
+});
+````
 
 ## Continuous & Interactive Playback
 

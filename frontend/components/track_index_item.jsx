@@ -126,7 +126,9 @@ const TrackIndexItem = React.createClass({
 
       let currentTime = TimeStore.getCurrentTime();
       
+      //calculated as a function of the comment's width (fixed at 10px) relative to the current width of the track (variable)
       let commentDuration = (10 * this.props.track.duration) / this.state.dimensions.width;
+      
       let timeOverlappingComment = function(comment){
         if (currentTime >= comment.elapsed_time && currentTime <= comment.elapsed_time + commentDuration){
           return true;
