@@ -80,6 +80,10 @@ end
 
 ### Track Metadata Parsing
 
+When a user uploads an mp3, the file type is verified by Paperclip. The title of the track and its duration are parsed from the track's metadata. The parsed title is automatically added to the title input field on the upload track. All of the information is saved to the database when the user submits, except for the audio and image files themselves, which are uploaded to AWS S3 using Paperclip.
+
+
+
 ## Comments
 
 ## Continuous & Interactive Playback
